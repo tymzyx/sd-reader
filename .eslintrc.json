@@ -1,0 +1,27 @@
+{
+  "extends": "eslint-config-ali/react",
+  "parser": "babel-eslint",
+  "rules": {
+    "import/prefer-default-export": 0,
+    "react/no-array-index-key": 0,
+    "react/no-find-dom-node": 0,
+    "no-console": 0,
+    "react/forbid-prop-types": 0,
+    "no-script-url": 0,
+    "quotes":0,
+    "no-param-reassign":0
+  },
+  "plugins": [
+    "react",
+    "eslint-plugin-react"
+  ],
+  "globals": {
+    "React": true,
+    "ReactDOM": true,
+    "Immutable": true,
+    "ImmutableMap": true,
+    "ImmutableSet": true,
+    "ImmutableList": true,
+    "window": true
+  }
+}
