@@ -7,7 +7,7 @@ class Home extends Component {
             <div className="home-wrapper">
                 HOME
             </div>
-        )
+        );
     }
 }
 

@@ -1,0 +1,48 @@
+.entry-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750px;
+  height: 100vh;
+  background-image: url(../../assets/image/bg.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .pure-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 750px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 1);
+    animation: disappear 6s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes disappear {
+    from { background: rgba(0, 0, 0, 1); color: #777; }
+    to { background: rgba(0, 0, 0, 0); color: #fff; }
+  }
+
+  .entry-main {
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-icon {
+    fill: #999;
+    width: 120px;
+    height: 120px;
+    animation: icon 6s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes icon {
+    from { fill: #777 }
+    to { fill: #fff }
+  }
+}
