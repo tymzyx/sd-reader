@@ -46,3 +46,13 @@
     to { fill: #fff }
   }
 }
+
+.entry-animation {
+  animation: die 0.5s 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes die {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
