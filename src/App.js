@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import Entry from './components/Entry';
 
@@ -8,9 +8,10 @@ class App extends Component {
         return (
             <BrowserRouter basename="/">
                 <div>
-                    <Entry />
+                    <Entry noneDelay={0} />
                     <Switch>
-                        <Route exact path="/" component={Home} />
+                        <Route path="/home" component={Home} />
+                        <Redirect exact from="/" to="/home" />
                     </Switch>
                 </div>
             </BrowserRouter>

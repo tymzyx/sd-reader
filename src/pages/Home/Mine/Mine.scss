@@ -1,0 +1,65 @@
+.mine-wrapper {
+
+  .mine-base {
+    margin-top: 28px;
+
+    .mine-base-tab {
+      width: 750px;
+      height: 120px;
+    }
+
+    .vip-tip {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .am-list-item .am-list-line-multiple {
+      padding: 40px 12px 40px 0;
+    }
+    .am-list-item .am-list-line .am-list-content, .am-list-item .am-list-line .am-list-brief {
+      font-size: 28px;
+    }
+    .am-list-item .am-list-line .am-list-extra {
+      font-size: 20px;
+      color: red;
+    }
+  }
+
+  .icon-my {
+    fill: #000;
+    width: 90px;
+    height: 90px;
+  }
+
+  .mine-main {
+    margin-top: 28px;
+
+    .am-list-item {
+      min-height: 76px;
+    }
+    .am-list-item .am-list-thumb:first-child {
+      margin-right: 30px;
+    }
+  }
+  .mine-main-gap {
+    height: 28px;
+    background: #f5f5f9;
+  }
+
+  .icon-mine-main {
+    fill: #999;
+    width: 32px;
+    height: 32px;
+    vertical-align: sub;
+  }
+
+  // 重写antd-mobile样式
+  .am-navbar {
+    height: 70px;
+    line-height: 70px;
+  }
+  .am-navbar-title {
+    font-size: 30px;
+  }
+}
