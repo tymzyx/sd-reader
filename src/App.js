@@ -8,7 +8,7 @@ class App extends Component {
         return (
             <BrowserRouter basename="/">
                 <div>
-                    <Entry noneDelay={0} />
+                    <Entry noneDelay={5600} />
                     <Switch>
                         <Route path="/home" component={Home} />
                         <Redirect exact from="/" to="/home" />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Mine from './Mine/index';
 import Find from './Find/index';
 import Collection from './Collection/index';
@@ -23,6 +23,7 @@ class Home extends Component {
                     <Route exact path="/home/find" component={Find} />
                     <Route exact path="/home/vip" component={Vip} />
                     <Route exact path="/home/mine" component={Mine} />
+                    <Redirect exact from="/home" to="/home/find" />
                 </Switch>
                 <BottomTab tabs={bottomTabs} defaultIndex={1} />
             </div>
