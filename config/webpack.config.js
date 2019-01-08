@@ -46,7 +46,7 @@ const postcssPxToViewport = require('postcss-px-to-viewport');
 const postcssWriteSvg = require('postcss-write-svg');
 const postcssCssnext = require('postcss-cssnext');
 const postcssViewportUnits = require('postcss-viewport-units');
-const cssnano = require('cssnano');
+// const cssnano = require('cssnano');
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -128,11 +128,11 @@ module.exports = function(webpackEnv) {
             }),
             postcssCssnext({}),
             postcssViewportUnits({}),
-            cssnano({
-              preset: "advanced",
-              autoprefixer: false,
-              "postcss-zindex": false
-            })
+            // cssnano({
+            //   preset: "advanced",
+            //   autoprefixer: false,
+            //   "postcss-zindex": false
+            // })
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },

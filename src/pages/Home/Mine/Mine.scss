@@ -1,11 +1,21 @@
 .mine-wrapper {
 
+  .mine-title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 750px;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+  }
+
   .mine-base {
-    margin-top: 28px;
+    margin-top: 98px;
 
     .mine-base-tab {
       width: 750px;
       height: 120px;
+      border-bottom: 1px solid #ddd;
     }
 
     .vip-tip {
@@ -24,6 +34,10 @@
       font-size: 20px;
       color: red;
     }
+    .am-list-item .am-list-line .am-list-arrow {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   .icon-my {
@@ -33,33 +47,50 @@
   }
 
   .mine-main {
-    margin-top: 28px;
+    margin-top: 18px;
 
     .am-list-item {
-      min-height: 76px;
+      min-height: 88px;
     }
     .am-list-item .am-list-thumb:first-child {
       margin-right: 30px;
     }
+    .am-list-item .am-list-line .am-list-content {
+      font-size: 30px;
+    }
+    .am-list-item .am-list-line .am-list-arrow {
+      width: 24px;
+      height: 24px;
+    }
   }
   .mine-main-gap {
-    height: 28px;
+    height: 18px;
     background: #f5f5f9;
+    position: relative;
+  }
+  .mine-main-gap::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: #ddd;
+    height: 1px;
+    top: -1px;
+    left: 0;
   }
 
   .icon-mine-main {
     fill: #999;
-    width: 32px;
-    height: 32px;
-    vertical-align: sub;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
   }
 
   // 重写antd-mobile样式
   .am-navbar {
-    height: 70px;
-    line-height: 70px;
+    height: 80px;
+    line-height: 80px;
   }
   .am-navbar-title {
-    font-size: 30px;
+    font-size: 34px;
   }
 }

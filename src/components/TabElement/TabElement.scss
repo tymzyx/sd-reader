@@ -1,3 +1,5 @@
+@import '../../assets/css/baseVar.scss';
+
 .tab-wrapper {
   background: #fff;
   display: flex;
@@ -10,9 +12,10 @@
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  color: $inactiveColor;
 
   .tab-icon {
-    fill: #999;
+    fill: $inactiveColor;
     width: 48px;
     height: 48px;
   }
@@ -20,5 +23,17 @@
   h4 {
     margin: 0;
     font-size: 30px;
+    color: #666;
+  }
+}
+
+.tab-element-active {
+
+  .tab-icon {
+    fill: $activeColor;
+  }
+
+  span {
+    color: $activeColor;
   }
 }

@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
+import classNames from 'classnames';
 
 import './TabElement.scss';
 import SvgIcon from "../SvgIcon";
 
 class TabElement extends Component {
     render() {
-        const { tab } = this.props;
+        const { tab, isActive } = this.props;
 
         return (
-            <div className="tab-element">
+            <div
+                className={classNames(
+                    'tab-element',
+                    {
+                        'tab-element-active': isActive
+                    }
+                )}
+                onClick={(e) => {
+                    this.props.click && this.props.click(tab, e);
+                }}
+            >
                 {!tab.svg ? (
                     <h4>{tab.title}</h4>
                 ) : (
-                    <SvgIcon iconClass={tab.svg} propClass="tab-icon" />
+                    <SvgIcon
+                        iconClass={tab.svg}
+                        propClass={classNames(
+                            'tab-icon',
+                            {
+                                'tab-icon-active': isActive
+                            }
+                        )}
+                    />
                 )}
                 <span>{tab.name}</span>
             </div>
@@ -22,7 +41,9 @@ class TabElement extends Component {
 }
 
 TabElement.propTypes = {
-    tab: Proptypes.object
+    tab: Proptypes.object,
+    isActive: Proptypes.bool,
+    click: Proptypes.func
 };
 
 export default TabElement;

@@ -28,7 +28,18 @@ const mainList = [
     { text: '充值', svg: 'recharge' },
     { text: '已购', svg: 'bag' },
     { text: 'gap' },
-    { text: '消息提醒', svg: 'envelope' }
+    { text: '消息提醒', svg: 'envelope' },
+    { text: 'gap' },
+    { text: '笔记', svg: 'envelope' },
+    { text: '档案', svg: 'envelope' },
+    { text: 'gap' },
+    { text: '心愿单', svg: 'envelope' },
+    { text: '阅历', svg: 'envelope' },
+    { text: 'gap' },
+    { text: '兴趣偏好', svg: 'envelope' },
+    { text: '吐槽', svg: 'envelope' },
+    { text: '设置', svg: 'envelope' },
+    { text: 'gap' }
 ];
 
 class Mine extends Component {
