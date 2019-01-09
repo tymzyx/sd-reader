@@ -1,10 +1,52 @@
+@import '../../../assets/css/baseVar.scss';
+
 .find-wrapper {
-  .mine-title {
+  .find-title {
     position: fixed;
     top: 0;
     left: 0;
     width: 750px;
     z-index: 100;
+  }
+
+  .find-head-section {
+    margin-top: 80px;
+    padding-top: 20px;
+    width: 750px;
+    background: #fff;
+
+    .find-search-bar {
+      width: 700px;
+      height: 64px;
+      margin: 0 auto 10px;
+      border: 1px solid #eee;
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 0 10px 6px #eee;
+
+      .icon-search {
+        margin: 0 20px;
+        width: 34px;
+        height: 34px;
+        fill: #666;
+      }
+      .search-bar-text {
+        border-left: 1px solid $inactiveColor;
+        color: $inactiveColor;
+        font-size: 24px;
+        padding-left: 20px;
+      }
+    }
+
+    .find-head-tab {
+      height: 140px;
+    }
+  }
+
+  .find-main-section {
+    margin-top: 18px;
+    background: #fff;
   }
 
   // 重写antd-mobile样式

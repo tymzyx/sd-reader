@@ -10,15 +10,15 @@ const { Brief } = Item;
 const svg = (iconClass, propClass) => (
     <SvgIcon iconClass={iconClass} propClass={propClass} />
 );
-const gap = key => (
-    <div key={key} className="mine-main-gap" />
+const gap = (key, text) => (
+    <div key={key} className={text === 'gap' ? 'mine-main-gap' : 'mine-end-gap'} />
 );
 const baseExtra = () => (
     <div className="vip-tip">
         试用已结束，点击加入vip
     </div>
 );
-const baseText = [
+const baseTabs = [
     { text: '动态', key: 'updating' },
     { text: '关注', key: 'following' },
     { text: '粉丝', key: 'follower' }
@@ -30,16 +30,16 @@ const mainList = [
     { text: 'gap' },
     { text: '消息提醒', svg: 'envelope' },
     { text: 'gap' },
-    { text: '笔记', svg: 'envelope' },
-    { text: '档案', svg: 'envelope' },
+    { text: '笔记', svg: 'note' },
+    { text: '档案', svg: 'folder' },
     { text: 'gap' },
-    { text: '心愿单', svg: 'envelope' },
-    { text: '阅历', svg: 'envelope' },
+    { text: '心愿单', svg: 'heart' },
+    { text: '阅历', svg: 'history' },
     { text: 'gap' },
-    { text: '兴趣偏好', svg: 'envelope' },
-    { text: '吐槽', svg: 'envelope' },
-    { text: '设置', svg: 'envelope' },
-    { text: 'gap' }
+    { text: '兴趣偏好', svg: 'star' },
+    { text: '吐槽', svg: 'advice' },
+    { text: '设置', svg: 'set' },
+    { text: 'endGap' }
 ];
 
 class Mine extends Component {
@@ -78,7 +78,7 @@ class Mine extends Component {
                         </Item>
                     </List>
                     <div className="mine-base-tab tab-wrapper">
-                        {baseText.map((item, index) => (
+                        {baseTabs.map((item, index) => (
                             <TabElement
                                 key={index}
                                 tab={{ title: mineInfo[item.key], name: item.text }}
@@ -101,7 +101,7 @@ class Mine extends Component {
                                     </Item>
                                 );
                             } else {
-                                return gap(index);
+                                return gap(index, item.text);
                             }
                         })}
                     </List>

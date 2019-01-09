@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Mine from './Mine/index';
 import Find from './Find/index';
@@ -16,6 +17,16 @@ const bottomTabs = [
 
 class Home extends Component {
     render() {
+        const { location } = this.props;
+        let defaultIndex = 1;
+        bottomTabs.find((item, index) => {
+            if (item.url === location.pathname) {
+                defaultIndex = index;
+                return true;
+            }
+            return false;
+        });
+
         return (
             <div className="home-wrapper">
                 <Switch>
@@ -25,10 +36,14 @@ class Home extends Component {
                     <Route exact path="/home/mine" component={Mine} />
                     <Redirect exact from="/home" to="/home/find" />
                 </Switch>
-                <BottomTab tabs={bottomTabs} defaultIndex={1} />
+                <BottomTab tabs={bottomTabs} defaultIndex={defaultIndex} />
             </div>
         );
     }
 }
+
+Home.propTypes = {
+    location: Proptypes.any
+};
 
 export default Home;

@@ -68,7 +68,12 @@
     background: #f5f5f9;
     position: relative;
   }
-  .mine-main-gap::after {
+  .mine-end-gap {
+    height: 118px;
+    background: #f5f5f9;
+    position: relative;
+  }
+  .mine-main-gap::after, .mine-end-gap::after {
     content: "";
     position: absolute;
     width: 100%;

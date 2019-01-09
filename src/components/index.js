@@ -1,3 +1,4 @@
 import SvgIcon from './SvgIcon';
+import HeadBar from './HeadBar';
 
-export { SvgIcon };
+export { SvgIcon, HeadBar };

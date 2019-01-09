@@ -1,0 +1,30 @@
+@import '../../assets/css/baseVar.scss';
+
+.head-bar-wrapper {
+  width: 750px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 24px;
+
+  .head-left {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .head-right {
+    font-size: 24px;
+    color: $inactiveColor;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-arrow-right {
+    transform: rotate(180deg);
+    fill: $inactiveColor;
+    width: 30px;
+    height: 30px;
+  }
+}
