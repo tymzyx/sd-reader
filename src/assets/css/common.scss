@@ -1,0 +1,21 @@
+.common-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750px;
+  z-index: 100;
+}
+
+.book-image {
+  width: 250px;
+  max-height: 350px;
+}
+
+// 重写antd-mobile样式
+.am-navbar {
+  height: 80px !important;
+  line-height: 80px !important;
+}
+.am-navbar-title {
+  font-size: 34px !important;
+}

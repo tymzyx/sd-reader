@@ -1,13 +1,6 @@
 @import '../../../assets/css/baseVar.scss';
 
 .find-wrapper {
-  .find-title {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 750px;
-    z-index: 100;
-  }
 
   .find-head-section {
     margin-top: 80px;
@@ -47,14 +40,5 @@
   .find-main-section {
     margin-top: 18px;
     background: #fff;
-  }
-
-  // 重写antd-mobile样式
-  .am-navbar {
-    height: 80px;
-    line-height: 80px;
-  }
-  .am-navbar-title {
-    font-size: 34px;
   }
 }

@@ -1,4 +1,5 @@
 import SvgIcon from './SvgIcon';
 import HeadBar from './HeadBar';
+import Rank from './Rank';
 
-export { SvgIcon, HeadBar };
+export { SvgIcon, HeadBar, Rank };

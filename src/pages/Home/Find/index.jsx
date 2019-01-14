@@ -15,7 +15,7 @@ class Find extends Component {
     render() {
         return (
             <div className="find-wrapper">
-                <section className="find-title">
+                <section className="find-title common-title">
                     <NavBar mode="light" >
                         找书
                     </NavBar>

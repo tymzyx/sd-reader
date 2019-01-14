@@ -60,7 +60,7 @@ class Mine extends Component {
 
         return (
             <div className="mine-wrapper">
-                <div className="mine-title">
+                <div className="mine-title common-title">
                     <NavBar mode="light" >
                         我的
                     </NavBar>

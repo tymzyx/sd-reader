@@ -1,11 +1,6 @@
 .mine-wrapper {
 
   .mine-title {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 750px;
-    z-index: 100;
     border-bottom: 1px solid #eee;
   }
 
@@ -88,14 +83,5 @@
     width: 40px;
     height: 40px;
     vertical-align: middle;
-  }
-
-  // 重写antd-mobile样式
-  .am-navbar {
-    height: 80px;
-    line-height: 80px;
-  }
-  .am-navbar-title {
-    font-size: 34px;
   }
 }
