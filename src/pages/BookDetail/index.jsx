@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavBar, Card } from 'antd-mobile';
-import { Rate, SvgIcon } from '../../components';
+import { Rate, SvgIcon, BookTag, HeadBar } from '../../components';
 
 import './BookDetail.scss';
 
@@ -95,6 +95,15 @@ class BookDetail extends Component {
                                         }
                                     </React.Fragment>
                                 )}
+                            </div>
+                        </div>
+                        <div className="detail-recommend">
+                            <HeadBar title="猜你喜欢" extra="换一换" type="middle" />
+                            <div className="recommend-body">
+                                <BookTag />
+                                <BookTag />
+                                <BookTag />
+                                <BookTag />
                             </div>
                         </div>
                     </div>

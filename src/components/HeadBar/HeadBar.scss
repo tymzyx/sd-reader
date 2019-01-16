@@ -10,8 +10,19 @@
   padding: 0 24px;
 
   .head-left {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: $largeSize;
+  }
+  .huge-size {
+    font-size: $hugeSize;
+  }
+  .large-size {
+    font-size: $largeSize;
+  }
+  .middle-size {
+    font-size: $middleSize;
+  }
+  .small-size {
+    font-size: $smallSize;
   }
 
   .head-right {
