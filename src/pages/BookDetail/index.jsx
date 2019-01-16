@@ -1,16 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavBar } from 'antd-mobile';
-import { Rank, SvgIcon } from '../../components';
+import { NavBar, Card } from 'antd-mobile';
+import { Rate, SvgIcon } from '../../components';
 
 import './BookDetail.scss';
 
 const mockImg = require("../../assets/image/book-cover.jpg");
 
 class BookDetail extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isFold: true
+        };
+    }
+
+    shareTitle = () => {
+        const share = 'test';
+        return (
+            <span className="share-user"><strong>{share}</strong>分享此书</span>
+        );
+    };
+
+    shareAvatar = () => {
+        const avatar = require('../../assets/image/default-avatar.png');
+        return (
+            <img src={avatar} className="share-avatar" />
+        );
+    };
+
+    switchFold = () => {
+        this.setState({
+            isFold: !this.state.isFold
+        });
+    };
+
     render() {
+        const { isFold } = this.state;
         const { bookInfo } = this.props;
-        const { title, author } = bookInfo;
+        const { title, author, brief } = bookInfo;
+        const mockBrief = '简介内容'.repeat(50);
 
         return (
             <div className="book-detail-wrapper">
@@ -25,7 +55,7 @@ class BookDetail extends Component {
                         <div className="detail-head-collection">
                             <h4>书名书名书名书名</h4>
                             <span>作者作者作者</span>
-                            <Rank rank={3.5} />
+                            <Rate rank={3.5} />
                         </div>
                         <div className="detail-head-foot">
                             <div>
@@ -35,6 +65,36 @@ class BookDetail extends Component {
                             <div>
                                 <SvgIcon iconClass="eye" propClass="icon-eye" />
                                 <span>11203</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="detail-body">
+                        <div className="detail-share">
+                            <Card>
+                                <Card.Header
+                                    title={this.shareTitle()}
+                                    thumb={this.shareAvatar()}
+                                    extra="1M"
+                                />
+                            </Card>
+                        </div>
+                        <div className="detail-brief">
+                            <h4>简介</h4>
+                            <div className="brief-body">
+                                {mockBrief.length > 100 && isFold ? (
+                                    <React.Fragment>
+                                        <span>{`${mockBrief.substring(0, 100)}...`}</span>
+                                        <SvgIcon click={this.switchFold} iconClass="arrow" propClass="icon-arrow-unfold" />
+                                    </React.Fragment>
+                                ) : (
+                                    <React.Fragment>
+                                        <span>{mockBrief}</span>
+                                        {
+                                            mockBrief.length > 100 &&
+                                            <SvgIcon click={this.switchFold} iconClass="arrow" propClass="icon-arrow-fold" />
+                                        }
+                                    </React.Fragment>
+                                )}
                             </div>
                         </div>
                     </div>

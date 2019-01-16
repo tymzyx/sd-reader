@@ -1,5 +1,5 @@
 import SvgIcon from './SvgIcon';
 import HeadBar from './HeadBar';
-import Rank from './Rank';
+import Rate from './Rate';
 
-export { SvgIcon, HeadBar, Rank };
+export { SvgIcon, HeadBar, Rate };

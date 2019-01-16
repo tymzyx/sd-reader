@@ -12,6 +12,9 @@ class SvgIcon extends Component {
                     fill: !this.props.propClass ? this.props.color : ''
                 }}
                 aria-hidden="true"
+                onClick={(e) => {
+                    this.props.click && this.props.click(e);
+                }}
             >
                 <use xlinkHref={`#icon-${this.props.iconClass}`} />
             </svg>
@@ -27,7 +30,8 @@ SvgIcon.defaultProps = {
 SvgIcon.propTypes = {
     iconClass: PropTypes.string.isRequired,
     color: PropTypes.string,
-    propClass: PropTypes.string
+    propClass: PropTypes.string,
+    click: PropTypes.func
 };
 
 export default SvgIcon;

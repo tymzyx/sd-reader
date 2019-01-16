@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 import SvgIcon from '../SvgIcon';
 
-import './Rank.scss';
+import './Rate.scss';
 
 class Rank extends Component {
     render() {
