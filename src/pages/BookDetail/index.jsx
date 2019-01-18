@@ -39,7 +39,8 @@ class BookDetail extends Component {
     render() {
         const { isFold } = this.state;
         const { bookInfo } = this.props;
-        const { title, author, brief } = bookInfo;
+        console.log(bookInfo);
+        // const { title, author, brief } = bookInfo;
         const mockBrief = '简介内容'.repeat(50);
 
         return (
