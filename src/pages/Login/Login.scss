@@ -1,0 +1,124 @@
+@import '../../assets/css/baseVar';
+.login-header{
+  min-height: 100vh;
+  color: #999;
+  background-color: #fff;
+  .left-icon{
+    width: 50px;
+    height: 50px;
+  }
+  .logo{
+    padding: 60px 0;
+    height: 180px;
+    line-height: 180px;
+    text-align: center;
+    .book{
+      width: 180px;
+      height: 180px;
+    }
+  }
+  .login-content{
+    padding: 20px 80px;
+    background-color: #fff;
+    .item-input{
+      height: 100px;
+      position: relative;
+      input {
+        font-size: 30px;
+      }
+    }
+    .input-icon{
+      width: 40px;
+      height: 40px;
+    }
+    .input-icon-key{
+      width: 30px;
+      height: 30px;
+    }
+    .input-icon-eye{
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 35px;
+      right: 10px;
+    }
+    .am-button-primary{
+      background-color: black;
+      color: #fff;
+    }
+    .forget-password{
+      text-align: right;
+      padding-bottom: 20px;
+      a{
+        color: #999;
+      }
+    }
+    .login-other-des{
+      //margin-top: -10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      &:before{
+        display: table;
+        content: '';
+        width: 30%;
+        border-top: 1px solid #eee;
+      }
+      &:after{
+        display: table;
+        content: '';
+        width: 30%;
+        border-top: 1px solid #eee;
+      }
+    }
+    .my-radio .am-radio {
+      padding: 2.5px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .agree{
+      padding: 20px 0 40px 0;
+      text-align: center;
+    }
+    .login-btn{
+      line-height: 70px;
+      height: 70px;
+      font-size: 30px;
+    }
+    .other-login-box{
+      line-height: 200px;
+      //padding-bottom: 37px;
+      text-align: center;
+      .border-circle{
+        margin: 20px;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #eee;
+        border-radius: 50%;
+      }
+      .register{
+        color: #fff;
+      }
+      .wechart{
+        background: url("../../assets/image/wechat.svg") no-repeat center;
+        background-size: 80% 80%;
+      }
+      .QQ{
+        background: url("../../assets/image/qq.svg") no-repeat center;
+        background-size: 80% 80%;
+      }
+      .sina{
+        background: url("../../assets/image/sina .svg") no-repeat center;
+        background-size: 80% 80%;
+      }
+    }
+
+  }
+}
+.am-whitespace.am-whitespace-md{
+  height: 30px;
+}
