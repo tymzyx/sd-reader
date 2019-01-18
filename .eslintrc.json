@@ -8,14 +8,15 @@
     "no-console": 0,
     "react/forbid-prop-types": 0,
     "no-script-url": 0,
-    "quotes":0,
+    "quotes": 0,
     "no-param-reassign":0,
     "indent": [1, 4],
     "react/jsx-indent": 0,
     "react/jsx-indent-props": 0,
     "comma-dangle": [2, "never"],
     "no-unused-vars": 1,
-    "spaced-comment": 1
+    "spaced-comment": 1,
+    "no-debugger": 0
   },
   "plugins": [
     "react",
