@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { NavBar, InputItem, Button, Radio, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { SvgIcon } from '../../components';
@@ -50,6 +51,16 @@ class Register extends Component {
         );
     };
 
+    backNode = () => {
+        return (
+            <SvgIcon
+                iconClass="arrow"
+                propClass="icon-arrow-back"
+                click={() => { this.props.history.goBack(); }}
+            />
+        );
+    };
+
     render() {
         const { eyeOpen, isAgreement } = this.state;
         const { getFieldProps } = this.props.form;
@@ -57,7 +68,10 @@ class Register extends Component {
         return (
             <div className="register-wrapper">
                 <div className="register-head">
-                    <NavBar mode="light" />
+                    <NavBar
+                        mode="light"
+                        leftContent={this.backNode()}
+                    />
                 </div>
                 <div className="register-body">
                     <SvgIcon iconClass="book" propClass="icon-book-logo" />
@@ -122,4 +136,4 @@ Register.propTypes = {
     form: PropTypes.any
 };
 
-export default createForm()(Register);
+export default createForm()(withRouter(Register));
