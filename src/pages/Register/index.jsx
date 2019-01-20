@@ -12,7 +12,8 @@ class Register extends Component {
         super(props);
 
         this.state = {
-            eyeOpen: false
+            eyeOpen: false,
+            isAgreement: true
         };
     }
 
@@ -50,7 +51,7 @@ class Register extends Component {
     };
 
     render() {
-        const { eyeOpen } = this.state;
+        const { eyeOpen, isAgreement } = this.state;
         const { getFieldProps } = this.props.form;
 
         return (
@@ -95,11 +96,19 @@ class Register extends Component {
                             <span>获取验证码</span>
                         </div>
                         <div className="confirm-btn-item">
-                            <Button className="login-btn" onClick={this.submit}>
+                            <Button
+                                className="login-btn"
+                                onClick={this.submit}
+                                disabled={!isAgreement}
+                            >
                                 注册
                             </Button>
                         </div>
-                        <Radio className="my-radio" onChange={e => console.log('checkbox', e)}>
+                        <Radio
+                            className="my-radio"
+                            checked={isAgreement}
+                            onClick={() => this.setState({ isAgreement: !isAgreement })}
+                        >
                             我已同意服务协议
                         </Radio>
                     </section>
