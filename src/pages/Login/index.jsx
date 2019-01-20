@@ -45,7 +45,7 @@ class Login extends Component {
                     <div className="logo">
                         <SvgIcon iconClass="book" propClass="book" />
                     </div>
-                    <div className="login-form">
+                    <div className="login-form form-box">
                         <div className="form-input">
                             <InputItem placeholder="请输入账号" className="item-input" value={this.state.account} onChange={this.changeAccount}>
                                 <SvgIcon iconClass="person" propClass="input-icon" />

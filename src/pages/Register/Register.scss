@@ -1,17 +1,57 @@
+@import '../../assets/css/baseVar';
+
 .register-wrapper {
   width: 750px;
   height: 100vh;
   background: #fff;
 
   .register-body {
-    padding: 40px 160px 0;
+    padding: 40px 100px 0;
     box-sizing: border-box;
     text-align: center;
+
+    .verify-code-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 70px;
+
+      .am-input-control {
+        width: 360px;
+      }
+
+      span {
+        font-size: 28px;
+      }
+    }
+
+    .confirm-btn-item {
+      margin-bottom: 60px;
+
+      .am-button {
+        background: #333;
+        color: #fff;
+      }
+    }
+
+    .my-radio {
+      color: $inactiveColor;
+    }
+
+    .icon-eye {
+      width: 30px;
+      height: 30px;
+    }
+
+    .am-input-extra {
+      overflow: visible;
+    }
   }
 
   .icon-book-logo {
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
     fill: #333;
+    margin-bottom: 60px;
   }
 }

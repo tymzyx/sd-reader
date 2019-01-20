@@ -1,11 +1,58 @@
 import React, { Component } from 'react';
-import { NavBar, InputItem, Button, List } from 'antd-mobile';
+import PropTypes from 'prop-types';
+import { NavBar, InputItem, Button, Radio, Toast } from 'antd-mobile';
+import { createForm } from 'rc-form';
 import { SvgIcon } from '../../components';
+import { registerApi } from '../../api/request';
 
 import './Register.scss';
 
 class Register extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            eyeOpen: false
+        };
+    }
+
+    submit = () => {
+        this.props.form.validateFields(async (error, value) => {
+            if (error) {
+                if (error.mobile) {
+                    Toast.info('请输入正确的手机号码', 2);
+                } else if (error.password) {
+                    Toast.info('密码长度在6-16位之间，且同时含有数字字母', 2);
+                } else if (error.verifyCode) {
+                    Toast.info('请输入正确的验证码', 2);
+                }
+            } else {
+                console.log(value);
+                try {
+                    const data = await registerApi(value);
+                    console.log('data', data);
+                } catch (err) {
+                    console.log('err', err);
+                }
+            }
+        });
+    };
+
+    eyeNode = () => {
+        const { eyeOpen } = this.state;
+        return (
+            <SvgIcon
+                iconClass={eyeOpen ? 'eyeopen' : 'eyeoclose'}
+                propClass="icon-eye"
+                click={() => { this.setState({ eyeOpen: !eyeOpen }); }}
+            />
+        );
+    };
+
     render() {
+        const { eyeOpen } = this.state;
+        const { getFieldProps } = this.props.form;
+
         return (
             <div className="register-wrapper">
                 <div className="register-head">
@@ -13,21 +60,48 @@ class Register extends Component {
                 </div>
                 <div className="register-body">
                     <SvgIcon iconClass="book" propClass="icon-book-logo" />
-                    <section className="register-form">
+                    <section className="register-form form-box">
                         <InputItem
+                            type="text"
+                            className="item-input"
                             placeholder="请输入手机号"
+                            {...getFieldProps('mobile', {
+                                trigger: 'onBlur',
+                                rules: [{ required: true, pattern: /^1[34578]\d{9}$/ }]
+                            })}
                         />
                         <InputItem
+                            type={eyeOpen ? 'text' : 'password'}
+                            className="item-input"
                             placeholder="请输入密码"
+                            extra={this.eyeNode()}
+                            {...getFieldProps('password', {
+                                trigger: 'onBlur',
+                                rules: [{
+                                    required: true,
+                                    pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/
+                                }]
+                            })}
                         />
-                        <InputItem
-                            placeholder="请输入验证码"
-                        />
-                        <span>获取验证码</span>
-                        <Button>
-                            下一步
-                        </Button>
-                        <span>我已同意服务协议</span>
+                        <div className="verify-code-item">
+                            <InputItem
+                                className="item-input"
+                                placeholder="请输入验证码"
+                                {...getFieldProps('verifyCode', {
+                                    trigger: 'onBlur',
+                                    rules: [{ required: true }]
+                                })}
+                            />
+                            <span>获取验证码</span>
+                        </div>
+                        <div className="confirm-btn-item">
+                            <Button className="login-btn" onClick={this.submit}>
+                                注册
+                            </Button>
+                        </div>
+                        <Radio className="my-radio" onChange={e => console.log('checkbox', e)}>
+                            我已同意服务协议
+                        </Radio>
                     </section>
                 </div>
             </div>
@@ -35,4 +109,8 @@ class Register extends Component {
     }
 }
 
-export default Register;
+Register.propTypes = {
+    form: PropTypes.any
+};
+
+export default createForm()(Register);

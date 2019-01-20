@@ -20,13 +20,7 @@
   .login-content{
     padding: 20px 80px;
     background-color: #fff;
-    .item-input{
-      height: 100px;
-      position: relative;
-      input {
-        font-size: 30px;
-      }
-    }
+
     .input-icon{
       width: 40px;
       height: 40px;
@@ -73,20 +67,9 @@
         border-top: 1px solid #eee;
       }
     }
-    .my-radio .am-radio {
-      padding: 2.5px;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      margin-right: 5px;
-    }
     .agree{
       padding: 20px 0 40px 0;
       text-align: center;
-    }
-    .login-btn{
-      line-height: 70px;
-      height: 70px;
-      font-size: 30px;
     }
     .other-login-box{
       line-height: 200px;
@@ -119,6 +102,35 @@
 
   }
 }
+
+.form-box {
+  .item-input{
+    height: 100px;
+    position: relative;
+    input {
+      font-size: 30px;
+    }
+  }
+
+  .login-btn{
+    line-height: 70px;
+    height: 70px;
+    font-size: 30px;
+  }
+
+  .my-radio {
+    font-size: $smallSize;
+  }
+
+  .my-radio .am-radio {
+    padding: 2.5px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+}
+
+
 .am-whitespace.am-whitespace-md{
   height: 30px;
 }
