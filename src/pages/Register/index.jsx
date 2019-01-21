@@ -51,15 +51,14 @@ class Register extends Component {
         );
     };
 
-    backNode = () => {
-        return (
-            <SvgIcon
-                iconClass="arrow"
-                propClass="icon-arrow-back"
-                click={() => { this.props.history.goBack(); }}
-            />
-        );
-    };
+    backNode = () => (
+        <SvgIcon
+            iconClass="arrow"
+            propClass="icon-arrow-back"
+            click={() => { this.props.history.goBack(); }}
+        />
+    );
+
 
     render() {
         const { eyeOpen, isAgreement } = this.state;

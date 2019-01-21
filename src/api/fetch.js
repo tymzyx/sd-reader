@@ -1,7 +1,7 @@
 import axios from './instance';
 
-export const fetch = (url, params, method = 'get') => {
-    return new Promise((resolve, reject) => {
+export const fetch = (url, params, method = 'get') => (
+    new Promise((resolve, reject) => {
         const data = method.toUpperCase() === 'GET' ? 'params' : 'data';
         axios({
             method,
@@ -14,5 +14,5 @@ export const fetch = (url, params, method = 'get') => {
             .catch((err = {}) => {
                 reject(err);
             });
-    });
-};
+    })
+);

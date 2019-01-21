@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavBar, Card } from 'antd-mobile';
+import { NavBar, Card, Button } from 'antd-mobile';
 import { Rate, SvgIcon, BookTag, HeadBar } from '../../components';
 
 import './BookDetail.scss';
@@ -107,6 +107,7 @@ class BookDetail extends Component {
                                 <BookTag />
                             </div>
                         </div>
+                        <Button />
                     </div>
                 </section>
             </div>

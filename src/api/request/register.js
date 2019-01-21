@@ -1,3 +1,3 @@
 import { fetch } from '../fetch';
 
-export default (params) => { return fetch('/api/register', params, 'post'); };
+export default params => fetch('/api/register', params, 'post');
