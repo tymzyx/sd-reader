@@ -1,0 +1,20 @@
+@import '../../assets/css/baseVar';
+
+.footer-extra-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .footer-extra-item {
+    display: flex;
+    align-items: center;
+    font-size: $middleSize;
+    margin-left: 30px;
+
+    .footer-extra-icon {
+      width: 40px;
+      height: 40px;
+      fill: $inactiveColor;
+      margin-right: 10px;
+    }
+  }
+}

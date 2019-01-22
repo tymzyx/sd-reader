@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavBar, Card, Button } from 'antd-mobile';
-import { Rate, SvgIcon, BookTag, HeadBar } from '../../components';
+import { NavBar, Card } from 'antd-mobile';
+import { Rate, SvgIcon, BookTag, HeadBar, BriefComment } from '../../components';
 
 import './BookDetail.scss';
 
 const mockImg = require("../../assets/image/book-cover.jpg");
+const avatar = require('../../assets/image/default-avatar.png');
 
 class BookDetail extends Component {
     constructor(props) {
@@ -24,7 +25,6 @@ class BookDetail extends Component {
     };
 
     shareAvatar = () => {
-        const avatar = require('../../assets/image/default-avatar.png');
         return (
             <img src={avatar} className="share-avatar" />
         );
@@ -56,7 +56,7 @@ class BookDetail extends Component {
                         <div className="detail-head-collection">
                             <h4>书名书名书名书名</h4>
                             <span>作者作者作者</span>
-                            <Rate rank={3.5} />
+                            <Rate rate={3.5} />
                         </div>
                         <div className="detail-head-foot">
                             <div>
@@ -107,7 +107,18 @@ class BookDetail extends Component {
                                 <BookTag />
                             </div>
                         </div>
-                        <Button />
+                        <div className="detail-comments">
+                            <HeadBar title="书评" extra="评论" type="middle" />
+                            <div className="comment-body">
+                                <BriefComment
+                                    username="小不懂"
+                                    time="2019-01-22"
+                                    commentContent="好书！"
+                                    rate={4.5}
+                                    avatar={avatar}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>

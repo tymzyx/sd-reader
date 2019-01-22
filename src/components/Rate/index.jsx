@@ -4,12 +4,12 @@ import SvgIcon from '../SvgIcon';
 
 import './Rate.scss';
 
-class Rank extends Component {
+class Rate extends Component {
     render() {
-        const { rank } = this.props;
-        const num0 = Math.floor(rank);
-        const num1 = Math.floor(5 - rank);
-        const num2 = (rank - num0) ? 1 : 0;
+        const { rate } = this.props;
+        const num0 = Math.floor(rate);
+        const num1 = Math.floor(5 - rate);
+        const num2 = (rate - num0) ? 1 : 0;
 
         return (
             <div className="rank-wrapper">
@@ -25,8 +25,8 @@ class Rank extends Component {
     }
 }
 
-Rank.propTypes = {
-    rank: Proptypes.number
+Rate.propTypes = {
+    rate: Proptypes.number
 };
 
-export default Rank;
+export default Rate;
