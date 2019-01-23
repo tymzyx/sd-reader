@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavBar, Card } from 'antd-mobile';
+import { NavBar, Card, Button } from 'antd-mobile';
 import { Rate, SvgIcon, BookTag, HeadBar, BriefComment } from '../../components';
+import { bookDetail } from '../../api/request';
 
 import './BookDetail.scss';
 
@@ -13,22 +14,43 @@ class BookDetail extends Component {
         super(props);
 
         this.state = {
-            isFold: true
+            isFold: true,
+            bookInfo: {}
         };
     }
 
+    componentWillMount() {
+        this.getBookInfo();
+    }
+
+    getBookInfo = async () => {
+        try {
+            const data = await bookDetail({ bookId: '1' });
+            this.setState({
+                bookInfo: data
+            });
+        } catch (err) {
+            console.log('err', err);
+        }
+    };
+
     shareTitle = () => {
-        const share = 'test';
+        const { share } = this.state.bookInfo;
         return (
             <span className="share-user"><strong>{share}</strong>分享此书</span>
         );
     };
 
-    shareAvatar = () => {
-        return (
-            <img src={avatar} className="share-avatar" />
-        );
-    };
+    shareAvatar = () => (
+        <img src={avatar} className="share-avatar" alt="" />
+    );
+
+    commentNode = () => (
+        <div className="comment-head-note">
+            <SvgIcon iconClass="note" propClass="icon-comment-note" />
+            <span>评论</span>
+        </div>
+    );
 
     switchFold = () => {
         this.setState({
@@ -37,11 +59,12 @@ class BookDetail extends Component {
     };
 
     render() {
-        const { isFold } = this.state;
-        const { bookInfo } = this.props;
-        console.log(bookInfo);
-        // const { title, author, brief } = bookInfo;
-        const mockBrief = '简介内容'.repeat(50);
+        const { isFold, bookInfo } = this.state;
+        const { title, author, score, readers } = bookInfo;
+        let { brief = '' } = bookInfo;
+        brief = brief || '内容太精彩了，我只能说这么多！';
+        const isCache = true;
+        console.log(this.props.history);
 
         return (
             <div className="book-detail-wrapper">
@@ -54,9 +77,9 @@ class BookDetail extends Component {
                     <div className="detail-head">
                         <img src={mockImg} className="book-image" />
                         <div className="detail-head-collection">
-                            <h4>书名书名书名书名</h4>
-                            <span>作者作者作者</span>
-                            <Rate rate={3.5} />
+                            <h4>{title}</h4>
+                            <span>{author}</span>
+                            <Rate rate={+score} />
                         </div>
                         <div className="detail-head-foot">
                             <div>
@@ -65,7 +88,7 @@ class BookDetail extends Component {
                             </div>
                             <div>
                                 <SvgIcon iconClass="eye" propClass="icon-eye" />
-                                <span>11203</span>
+                                <span>{readers}</span>
                             </div>
                         </div>
                     </div>
@@ -82,17 +105,30 @@ class BookDetail extends Component {
                         <div className="detail-brief">
                             <h4>简介</h4>
                             <div className="brief-body">
-                                {mockBrief.length > 100 && isFold ? (
+                                {brief.length > 100 && isFold ? (
                                     <React.Fragment>
-                                        <span>{`${mockBrief.substring(0, 100)}...`}</span>
-                                        <SvgIcon click={this.switchFold} iconClass="arrow" propClass="icon-arrow-unfold" />
+                                        <span>{`${brief.substring(0, 100)}...`}</span>
+                                        <div style={{ alignSelf: 'center' }}>
+                                            <SvgIcon
+                                                click={this.switchFold}
+                                                iconClass="arrow"
+                                                propClass="icon-arrow-unfold"
+                                            />
+                                        </div>
                                     </React.Fragment>
                                 ) : (
                                     <React.Fragment>
-                                        <span>{mockBrief}</span>
+                                        <span>{brief}</span>
                                         {
-                                            mockBrief.length > 100 &&
-                                            <SvgIcon click={this.switchFold} iconClass="arrow" propClass="icon-arrow-fold" />
+                                            brief.length > 100 && (
+                                                <div style={{ alignSelf: 'center' }}>
+                                                    <SvgIcon
+                                                        click={this.switchFold}
+                                                        iconClass="arrow"
+                                                        propClass="icon-arrow-fold"
+                                                    />
+                                                </div>
+                                            )
                                         }
                                     </React.Fragment>
                                 )}
@@ -108,7 +144,7 @@ class BookDetail extends Component {
                             </div>
                         </div>
                         <div className="detail-comments">
-                            <HeadBar title="书评" extra="评论" type="middle" />
+                            <HeadBar title="书评" extra={this.commentNode()} type="middle" />
                             <div className="comment-body">
                                 <BriefComment
                                     username="小不懂"
@@ -121,17 +157,28 @@ class BookDetail extends Component {
                         </div>
                     </div>
                 </section>
+                <section className="book-detail-footer">
+                    <Button icon={<SvgIcon iconClass="heart" propClass="icon-wish" />}>
+                        心愿单
+                    </Button>
+                    <Button
+                        type="primary"
+                        icon={<SvgIcon iconClass="abstract" propClass="icon-borrow" />}
+                    >
+                        {!isCache ? '免费借阅' : '开始阅读'}
+                    </Button>
+                </section>
+                <section className="book-detail-tip">
+                    <span>支持SD平台</span>
+                    <span>变身VIP</span>
+                </section>
             </div>
         );
     }
 }
 
-BookDetail.defaultProps = {
-    bookInfo: {}
-};
-
 BookDetail.propTypes = {
-    bookInfo: PropTypes.object
+    history: PropTypes.any
 };
 
 export default BookDetail;
