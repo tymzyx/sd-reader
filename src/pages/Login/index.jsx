@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { List, InputItem, NavBar, Icon, Button, WhiteSpace, Radio, Toast } from 'antd-mobile';
+import { Redirect } from 'react-router';
+import { InputItem, NavBar, Icon, Button, WhiteSpace, Radio, Toast } from 'antd-mobile';
 import { SvgIcon } from '../../components';
-
+import { loginApi } from '@/api/request';
 import './Login.scss';
 
 class Login extends Component {
@@ -23,13 +24,24 @@ class Login extends Component {
         this.setState({ password: e });
     }
 
-    login = (e) => {
+    login = async () => {
         if (!this.state.account) {
             Toast.info('请输入账号！', 2);
         } else if (!this.state.password) {
             Toast.info('请输入密码！', 2);
         } else {
             // 请求接口
+            try {
+                console.log('this', this);
+                const res = await loginApi({ account: this.state.account, password: this.state.password });
+                if (res.status === 200) {
+                    Toast.success('登陆成功 !!!', 1);
+                    this.props.history.push('/register');
+                    // return (<Redirect to={'chat'} />);
+                }
+            } catch (e) {
+                console.log(e);
+            }
         }
     }
 
@@ -39,7 +51,7 @@ class Login extends Component {
                 <NavBar
                     mode="light"
                     icon={<Icon type="left" className="left-icon" />}
-                    onLeftClick={() => console.log('onLeftClick')}
+                    onLeftClick={() => this.props.history.go(-1)}
                 />
                 <div className="login-content">
                     <div className="logo">
@@ -56,9 +68,9 @@ class Login extends Component {
                             </InputItem>
                             <p className="forget-password"><a href="">忘记密码？</a></p>
                             <Button className="login-btn" onClick={this.login} disabled={!this.state.agree}>登录</Button><WhiteSpace />
-                            <Button type="primary" className="register login-btn">注册</Button><WhiteSpace />
+                            <Button type="primary" className="register login-btn" onClick={() => { this.props.history.push('./register'); }}>注册</Button><WhiteSpace />
                             <div className="agree">
-                                <Radio className="my-radio" checked={this.state.agree} onClick={e => { this.setState({ agree: !this.state.agree }); }}>我已同意《藏书馆服务协议》</Radio>
+                                <Radio className="my-radio" checked={this.state.agree} onClick={() => { this.setState({ agree: !this.state.agree }); }}>我已同意《藏书馆服务协议》</Radio>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ export const fetch = (url, params, method = 'get') => (
             [data]: params
         })
             .then((res) => {
-                resolve(res.data);
+                resolve(res);
             })
             .catch((err = {}) => {
                 reject(err);

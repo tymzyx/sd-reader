@@ -16,11 +16,11 @@ instance.interceptors.response.use(
         if (response.status !== 200) {
             return Promise.reject(response.data);
         }
-        if (response.data.code === 403) {
+        if (response.data.status === 403) {
             return Promise.resolve(response.data);
         }
-        if (response.data.code !== 200) {
-            console.log(response.data.msg);
+        if (response.data.status !== 200) {
+            console.log(response.data.message);
             return Promise.reject(response.data);
         }
         return response.data;

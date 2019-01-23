@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Home, BookDetail, Login, Register } from './pages';
 import Entry from './components/Entry';
+import { withRouter } from "react-router";
 
 class App extends Component {
     render() {
@@ -14,7 +15,7 @@ class App extends Component {
                         <Redirect exact from="/" to="/home" />
                         <Route path="/detail" component={BookDetail} />
                         <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
+                        <Route path="/register" component={withRouter(Register)} />
                     </Switch>
                 </div>
             </BrowserRouter>
