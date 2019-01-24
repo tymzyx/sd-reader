@@ -1,7 +1,8 @@
 import registerApi from './register';
-import bookDetail from './bookDetail';
+import { bookDetail, bookContent } from './book';
 
 export {
     registerApi,
-    bookDetail
+    bookDetail,
+    bookContent
 };
