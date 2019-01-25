@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { NavBar, InputItem, Button, Radio, Toast } from 'antd-mobile';
+import { InputItem, Button, Radio, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { SvgIcon } from '../../components';
+import { SvgIcon, PageBar } from '../../components';
 import { registerApi } from '../../api/request';
 
 import './Register.scss';
@@ -51,15 +51,6 @@ class Register extends Component {
         );
     };
 
-    backNode = () => (
-        <SvgIcon
-            iconClass="arrow"
-            propClass="icon-arrow-back"
-            click={() => { this.props.history.goBack(); }}
-        />
-    );
-
-
     render() {
         const { eyeOpen, isAgreement } = this.state;
         const { getFieldProps } = this.props.form;
@@ -67,9 +58,9 @@ class Register extends Component {
         return (
             <div className="register-wrapper">
                 <div className="register-head">
-                    <NavBar
+                    <PageBar
                         mode="light"
-                        leftContent={this.backNode()}
+                        isLeft
                     />
                 </div>
                 <div className="register-body">

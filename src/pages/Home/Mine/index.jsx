@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { NavBar, List } from 'antd-mobile';
-import { SvgIcon } from '../../../components';
+import { List } from 'antd-mobile';
+import { SvgIcon, PageBar } from '../../../components';
 import TabElement from '../../../components/TabElement';
 
 import './Mine.scss';
@@ -61,9 +61,7 @@ class Mine extends Component {
         return (
             <div className="mine-wrapper">
                 <div className="mine-title common-title">
-                    <NavBar mode="light" >
-                        我的
-                    </NavBar>
+                    <PageBar mode="light" title="我的" />
                 </div>
                 <div className="mine-base">
                     <List>

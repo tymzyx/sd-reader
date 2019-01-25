@@ -1,0 +1,24 @@
+@import '../../assets/css/common.scss';
+
+.page-bar-wrapper {
+
+  .icon-arrow-back {
+    width: 40px;
+    height: 40px;
+    fill: $inactiveColor;
+  }
+
+  .am-navbar {
+    height: 80px;
+    line-height: 80px;
+  }
+  .am-navbar-title {
+    font-size: $hugeSize;
+  }
+}
+
+.nav-bar-opacity {
+  .am-navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}

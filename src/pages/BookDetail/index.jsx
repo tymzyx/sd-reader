@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavBar, Card, Button } from 'antd-mobile';
-import { Rate, SvgIcon, BookTag, HeadBar, BriefComment } from '../../components';
+import { Card, Button } from 'antd-mobile';
+import { Rate, SvgIcon, BookTag, HeadBar, BriefComment, PageBar } from '../../components';
 import { bookDetail } from '../../api/request';
 
 import './BookDetail.scss';
@@ -69,9 +69,7 @@ class BookDetail extends Component {
         return (
             <div className="book-detail-wrapper">
                 <section className="book-detail-head common-title">
-                    <NavBar mode="light">
-                        图书详情
-                    </NavBar>
+                    <PageBar mode="light" title="图书详情" />
                 </section>
                 <section className="book-detail-main">
                     <div className="detail-head">
