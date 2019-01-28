@@ -58,13 +58,17 @@ class BookDetail extends Component {
         });
     };
 
+    switchPage = (path) => {
+        this.props.history.push(path);
+    };
+
     render() {
         const { isFold, bookInfo } = this.state;
         const { title, author, score, readers } = bookInfo;
         let { brief = '' } = bookInfo;
         brief = brief || '内容太精彩了，我只能说这么多！';
         const isCache = true;
-        console.log(this.props.history);
+        const pathname = isCache ? '/reader' : '';
 
         return (
             <div className="book-detail-wrapper">
@@ -162,6 +166,7 @@ class BookDetail extends Component {
                     <Button
                         type="primary"
                         icon={<SvgIcon iconClass="abstract" propClass="icon-borrow" />}
+                        onClick={(e) => { this.switchPage(pathname, e); }}
                     >
                         {!isCache ? '免费借阅' : '开始阅读'}
                     </Button>
