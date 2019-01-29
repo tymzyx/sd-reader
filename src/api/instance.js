@@ -14,16 +14,20 @@ instance.interceptors.request.use(config => config);
 instance.interceptors.response.use(
     (response) => {
         if (response.status !== 200) {
-            return Promise.reject(response.data);
+            return Promise.reject(response.data.message);
         }
-        if (response.data.status === 403) {
-            return Promise.resolve(response.data);
+        // if (response.data.status === 403) {
+        //     return Promise.resolve(response.data);
+        // }
+        // if (response.data.status !== 200) {
+        //     console.log(response.data.message);
+        //     return Promise.reject(response.data);
+        // }
+        // return response.data;
+        if (response.data.status !== 1) {
+            return Promise.reject(response.data.message);
         }
-        if (response.data.status !== 200) {
-            console.log(response.data.message);
-            return Promise.reject(response.data);
-        }
-        return response.data;
+        return Promise.resolve(response.data.message);
     },
     error => Promise.reject(error)
 );

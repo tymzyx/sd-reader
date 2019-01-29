@@ -6,19 +6,20 @@ import './Rate.scss';
 
 class Rate extends Component {
     render() {
-        const { rate } = this.props;
+        let { rate } = this.props;
+        rate = rate || 0;
         const num0 = Math.floor(rate);
         const num1 = Math.floor(5 - rate);
         const num2 = (rate - num0) ? 1 : 0;
 
         return (
-            <div className="rank-wrapper">
+            <div className="rate-wrapper">
                 {(new Array(num0)).fill(1).map((item, index) => (
-                    <SvgIcon key={index + item} iconClass="rank" propClass="icon-rank" />
+                    <SvgIcon key={index + item} iconClass="rate" propClass="icon-rate" />
                 ))}
-                {num2 && <SvgIcon iconClass="rank-half" propClass="icon-rank" />}
+                {num2 ? <SvgIcon iconClass="rate-half" propClass="icon-rate" /> : ''}
                 {(new Array(num1)).fill(10).map((item, index) => (
-                    <SvgIcon key={index + item} iconClass="rank-no" propClass="icon-rank" />
+                    <SvgIcon key={index + item} iconClass="rate-no" propClass="icon-rate" />
                 ))}
             </div>
         );

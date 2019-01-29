@@ -1,0 +1,35 @@
+.reader-wrapper {
+
+  .page-content {
+    position: absolute;
+    background-color: #FFF8DC;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-animation {
+    touch-action: pan-x pan-y;
+    transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    will-change: transform;
+  }
+
+  .reader-config-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 750px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .config-top-hide {
+    transform: translateY(-80px);
+  }
+  .config-bottom-hide {
+    transform: translateY(100px);
+  }
+}

@@ -3,7 +3,7 @@
 .book-detail-wrapper {
 
   .book-detail-main {
-    margin-top: 80px;
+    margin: 80px 0 102px;
 
     .book-image {
       width: 250px;
@@ -43,7 +43,7 @@
       padding: 10px 80px 40px;
       box-sizing: border-box;
       color: $inactiveColor;
-      font-size: 26px;
+      font-size: $middleSize;
 
       div {
         display: flex;
@@ -56,8 +56,8 @@
       }
 
       .icon-eye, .icon-comment {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         fill: $inactiveColor;
       }
     }
@@ -106,7 +106,6 @@
         .brief-body {
           display: flex;
           flex-direction: column;
-          align-items: center;
           width: 100%;
           color: $inactiveColor;
           font-size: 28px;
@@ -143,8 +142,80 @@
         .comment-body {
           padding-top: 20px;
         }
+
+        .comment-head-note {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: rgba(0, 0, 0, 0.8);
+          color: #fff;
+          font-size: $smallSize;
+          border-radius: 4px;
+          padding: 6px 10px;
+
+          .icon-comment-note {
+            fill: #fff;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+          }
+        }
       }
 
     }
+  }
+
+  .book-detail-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 750px;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .am-button {
+      height: 70px;
+      line-height: 70px;
+      font-size: $middleSize;
+      width: 240px;
+    }
+    .am-button-primary {
+      width: 340px;
+    }
+
+    .icon-wish {
+      fill: #000;
+      width: 36px;
+      height: 36px;
+      margin-right: 10px;
+    }
+    .icon-borrow {
+      fill: #fff;
+      width: 36px;
+      height: 36px;
+      margin-right: 10px;
+    }
+  }
+
+  .book-detail-tip {
+    position: fixed;
+    right: 0;
+    top: 420px;
+    width: 220px;
+    height: 100px;
+    background: orange;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-size: $middleSize;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }

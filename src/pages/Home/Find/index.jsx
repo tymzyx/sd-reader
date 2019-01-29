@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar } from 'antd-mobile';
-import { SvgIcon, HeadBar } from '../../../components';
+import { SvgIcon, HeadBar, PageBar } from '../../../components';
 
 import './Find.scss';
 import TabElement from "../../../components/TabElement";
@@ -16,9 +15,7 @@ class Find extends Component {
         return (
             <div className="find-wrapper">
                 <section className="find-title common-title">
-                    <NavBar mode="light" >
-                        找书
-                    </NavBar>
+                    <PageBar mode="light" title="找书" />
                 </section>
                 <section className="find-head-section">
                     <div className="find-search-bar">

@@ -3,9 +3,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
+  height: 100vh;
+  font-family: tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,18 +23,10 @@ img {
   top: 0;
   left: 0;
   width: 750px;
-  z-index: 100;
+  z-index: 999;
 }
 
 // 重写antd-mobile样式
-.am-navbar {
-  height: 80px !important;
-  line-height: 80px !important;
-}
-.am-navbar-title {
-  font-size: $hugeSize !important;
-}
-
 .am-toast {
   font-size: 30px !important;
 }

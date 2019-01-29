@@ -10,7 +10,7 @@ class BriefComment extends Component {
     footerNode = () => (
         <div className="footer-extra-wrapper">
             <div className="footer-extra-item">
-                <SvgIcon iconClass="envelope" propClass="footer-extra-icon" />
+                <SvgIcon iconClass="zan" propClass="footer-extra-icon" />
                 <span>赞</span>
             </div>
             <div className="footer-extra-item">
