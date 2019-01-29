@@ -19,6 +19,8 @@
 
   .page-animation {
     transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    touch-action: pan-x pan-y;
+    will-change: transform;
   }
 
   .page-out {
@@ -35,16 +37,47 @@
     left: 0;
     width: 750px;
     height: 100px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgb(255, 255, 255);
     z-index: 999;
     display: flex;
     justify-content: space-between;
   }
-
-  .config-top-hide {
+  .config-header-hide {
     transform: translateY(-80px);
   }
-  .config-bottom-hide {
+  .config-footer-hide {
     transform: translateY(100px);
+  }
+
+  .reader-helper-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1001;
+
+    .helper-tab {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .helper-left-hide {
+    transform: translateX(-100%);
+  }
+
+  .reader-helper-progress {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 750px;
+    padding: 50px 70px;
+    box-sizing: border-box;
+    background-color: #fff;
+    z-index: 999;
+  }
+  .helper-progress-hide {
+    display: none;
   }
 }

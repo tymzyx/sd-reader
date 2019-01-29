@@ -77,7 +77,7 @@ class BookDetail extends Component {
                 </section>
                 <section className="book-detail-main">
                     <div className="detail-head">
-                        <img src={mockImg} className="book-image" />
+                        <img src={mockImg} className="book-image" alt="" />
                         <div className="detail-head-collection">
                             <h4>{title}</h4>
                             <span>{author}</span>

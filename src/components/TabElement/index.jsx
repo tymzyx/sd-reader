@@ -7,7 +7,7 @@ import SvgIcon from "../SvgIcon";
 
 class TabElement extends Component {
     render() {
-        const { tab, isActive } = this.props;
+        const { tab, isActive, gap } = this.props;
 
         return (
             <div
@@ -34,7 +34,7 @@ class TabElement extends Component {
                         )}
                     />
                 )}
-                <span>{tab.name}</span>
+                <span style={{ marginTop: gap || 0 }}>{tab.name}</span>
             </div>
         );
     }
@@ -43,6 +43,7 @@ class TabElement extends Component {
 TabElement.propTypes = {
     tab: Proptypes.object,
     isActive: Proptypes.bool,
+    gap: Proptypes.number,
     click: Proptypes.func
 };
 

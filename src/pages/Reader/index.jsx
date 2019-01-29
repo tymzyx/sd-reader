@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { Tabs } from 'antd-mobile';
 import { bookContent } from '../../api/request';
-import { PageBar, TabElement } from '../../components';
+import { PageBar, TabElement, NoData, Range } from '../../components';
 
 import './Reader.scss';
 
@@ -26,11 +27,21 @@ const lineStyle = {
     }
 };
 
-const tabs = [
-    { svg: 'catalog', url: '/home/collection' },
-    { svg: 'progress', url: '/home/find' },
-    { svg: 'sun', url: '/home/vip' },
-    { svg: 'A', url: '/home/mine' }
+const CATALOG = Symbol();
+const PROGRESS = Symbol();
+const BRIGHT = Symbol();
+const SET = Symbol();
+const footerTabs = [
+    { name: '目录', svg: 'catalog', type: CATALOG },
+    { name: '进度', svg: 'progress', type: PROGRESS },
+    { name: '亮度', svg: 'sun', type: BRIGHT },
+    { name: '设置', svg: 'A', type: SET }
+];
+
+const helperTabs = [
+    { title: '目录' },
+    { title: '书签' },
+    { title: '笔记' }
 ];
 
 class Reader extends Component {
@@ -47,9 +58,13 @@ class Reader extends Component {
         this.state = {
             contents: [],
             totalPage: '',
+            catalog: '',
+            notes: '',
             type: 'middle',
             activePage: 1,
-            isConfig: false
+            isConfig: false,
+            isLeftHelper: false,
+            isProgress: false
         };
     }
 
@@ -80,7 +95,7 @@ class Reader extends Component {
             };
             const data = await bookContent(params);
             const contents = [];
-            data.content.forEach(item => {
+            data.content.forEach((item) => {
                 contents[item.page - 1] = item;
             });
             this.cacheContents = data.content;
@@ -112,22 +127,14 @@ class Reader extends Component {
             // right
             this.pages[pageIndex - 1].style.transform = `translateX(-${document.body.clientWidth - Math.abs(X)}px)`;
             this.onRight = true;
-            if (Math.abs(X) > 100) {
-                this.rightPaging = true;
-            } else {
-                this.rightPaging = false;
-            }
+            this.rightPaging = Math.abs(X) > 100;
         } else if (
             Math.abs(X) > Math.abs(Y) && X < 0 && !isLast
         ) {
             // left
             e.currentTarget.style.transform = `translateX(-${Math.abs(X)}px)`;
             this.onLeft = true;
-            if (Math.abs(X) > 100) {
-                this.leftPaging = true;
-            } else {
-                this.leftPaging = false;
-            }
+            this.leftPaging = Math.abs(X) > 100;
         } else if (
             Math.abs(Y) > Math.abs(X) && Y > 0
         ) {
@@ -147,8 +154,8 @@ class Reader extends Component {
                 this.setState({
                     activePage: this.state.activePage + 1
                 }, () => {
-                    const { activePage, contents } = this.state;
-                    if (activePage > this.cacheContents[9].page) {
+                    const { activePage, totalPage } = this.state;
+                    if (activePage > this.cacheContents[9].page && activePage < totalPage - 10) {
                         this.getContent(activePage);
                     }
                 });
@@ -164,6 +171,10 @@ class Reader extends Component {
                     activePage: this.state.activePage - 1
                 }, () => {
                     this.pages[pageIndex - 1].style.transform = 'none';
+                    const { activePage, totalPage } = this.state;
+                    if (activePage > 9 && activePage < totalPage - 10) {
+                        this.getContent(activePage);
+                    }
                 });
                 this.rightPaging = false;
             } else {
@@ -175,13 +186,46 @@ class Reader extends Component {
     };
 
     switchConfig = () => {
-        this.setState({
-            isConfig: !this.state.isConfig
-        });
+        const { isLeftHelper } = this.state;
+        if (isLeftHelper) {
+            this.setState({
+                isLeftHelper: false
+            });
+        } else {
+            this.setState({
+                isConfig: !this.state.isConfig,
+                isProgress: false
+            });
+        }
+    };
+
+    clickConfig = (tab) => {
+        switch (tab.type) {
+            case CATALOG:
+                this.setState({
+                    isConfig: false,
+                    isProgress: false,
+                    isLeftHelper: true
+                });
+                break;
+            case PROGRESS:
+                this.setState({
+                    isProgress: true
+                });
+        }
     };
 
     render() {
-        const { contents, isConfig, totalPage, activePage } = this.state;
+        const {
+            contents,
+            isConfig,
+            totalPage,
+            activePage,
+            isLeftHelper,
+            catalog,
+            notes,
+            isProgress
+        } = this.state;
         const displays = contents;
 
         return (
@@ -191,7 +235,7 @@ class Reader extends Component {
                         'common-title',
                         'page-animation',
                         {
-                            'config-top-hide': !isConfig
+                            'config-header-hide': !isConfig
                         }
                     ])}
                 >
@@ -249,16 +293,66 @@ class Reader extends Component {
                         'reader-config-footer',
                         'page-animation',
                         {
-                            'config-bottom-hide': !isConfig
+                            'config-footer-hide': !isConfig
                         }
                     ])}
                 >
-                    {tabs.map((item, index) => (
+                    {footerTabs.map((item, index) => (
                         <TabElement
                             key={index}
                             tab={item}
+                            click={this.clickConfig}
+                            gap={4}
                         />
                     ))}
+                </section>
+                <section
+                    className={classNames([
+                        'reader-helper-left',
+                        'page-animation',
+                        {
+                            'helper-left-hide': !isLeftHelper
+                        }
+                    ])}
+                >
+                    <Tabs
+                        tabs={helperTabs}
+                        tabBarUnderlineStyle={{ border: '1px solid #222' }}
+                        tabBarInactiveTextColor="#aaa"
+                        tabBarActiveTextColor="#222"
+                    >
+                        <div className="helper-tab">
+                            {catalog ? (
+                                <span />
+                            ) : (
+                                <NoData />
+                            )}
+                        </div>
+                        <div className="helper-tab">
+                            {window.localStorage.getItem('bookMarker') ? (
+                                <span />
+                            ) : (
+                                <NoData />
+                            )}
+                        </div>
+                        <div className="helper-tab">
+                            {notes ? (
+                                <span />
+                            ) : (
+                                <NoData />
+                            )}
+                        </div>
+                    </Tabs>
+                </section>
+                <section
+                    className={classNames([
+                        'reader-helper-progress',
+                        {
+                            'helper-progress-hide': !isProgress
+                        }
+                    ])}
+                >
+                    <Range />
                 </section>
             </div>
         );
