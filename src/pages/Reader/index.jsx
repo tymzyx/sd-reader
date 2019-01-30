@@ -155,7 +155,8 @@ class Reader extends Component {
             if (this.leftPaging) {
                 e.currentTarget.style.transform = '';
                 this.setState({
-                    activePage: this.state.activePage + 1
+                    activePage: this.state.activePage + 1,
+                    displayActivePage: this.state.activePage + 1
                 }, () => {
                     const { activePage, totalPage } = this.state;
                     if (activePage > this.cacheContents[9].page && activePage < totalPage - 10) {
@@ -171,7 +172,8 @@ class Reader extends Component {
             this.pages[pageIndex - 1].classList.add('page-animation');
             if (this.rightPaging) {
                 this.setState({
-                    activePage: this.state.activePage - 1
+                    activePage: this.state.activePage - 1,
+                    displayActivePage: this.state.activePage - 1
                 }, () => {
                     this.pages[pageIndex - 1].style.transform = 'none';
                     const { activePage, totalPage } = this.state;
