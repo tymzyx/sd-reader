@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { Tabs } from 'antd-mobile';
+import { Tabs, Toast } from 'antd-mobile';
 import { bookContent } from '../../api/request';
 import { PageBar, TabElement, NoData, Range } from '../../components';
 
 import './Reader.scss';
+import SvgIcon from "../../components/SvgIcon";
 
 const configs = {
     middle: {
@@ -57,14 +58,16 @@ class Reader extends Component {
 
         this.state = {
             contents: [],
-            totalPage: '',
+            totalPage: 0,
             catalog: '',
             notes: '',
             type: 'middle',
             activePage: 1,
+            displayActivePage: 1,
             isConfig: false,
             isLeftHelper: false,
-            isProgress: false
+            isProgress: false,
+            loading: false
         };
     }
 
@@ -215,6 +218,25 @@ class Reader extends Component {
         }
     };
 
+    changePage = (val) => {
+        if (val !== this.state.activePage) {
+            Toast.loading('loading...', 0);
+            this.setState({
+                loading: true
+            }, async () => {
+                await this.getContent(val);
+                this.setState({
+                    activePage: val
+                }, () => {
+                    Toast.hide();
+                    this.setState({
+                        loading: false
+                    });
+                });
+            });
+        }
+    };
+
     render() {
         const {
             contents,
@@ -224,7 +246,9 @@ class Reader extends Component {
             isLeftHelper,
             catalog,
             notes,
-            isProgress
+            isProgress,
+            displayActivePage,
+            loading
         } = this.state;
         const displays = contents;
 
@@ -344,16 +368,29 @@ class Reader extends Component {
                         </div>
                     </Tabs>
                 </section>
-                <section
-                    className={classNames([
-                        'reader-helper-progress',
-                        {
-                            'helper-progress-hide': !isProgress
-                        }
-                    ])}
-                >
-                    <Range />
-                </section>
+                {totalPage ? (
+                    <section
+                        className={classNames([
+                            'reader-helper-progress',
+                            {
+                                'helper-progress-hide': !isProgress
+                            }
+                        ])}
+                    >
+                        <div className="helper-progress-index">
+                            {`${displayActivePage} / ${totalPage}`}
+                        </div>
+                        <SvgIcon iconClass="arrow" propClass="icon-arrow-left" />
+                        <Range
+                            onDrag={(val) => { this.setState({ displayActivePage: val }); }}
+                            endDrag={this.changePage}
+                            max={totalPage}
+                            min={1}
+                        />
+                        <SvgIcon iconClass="arrow" propClass="icon-arrow-right" />
+                    </section>
+                ) : ''}
+                <section className="reader-loading" style={{ display: loading ? 'block' : 'none' }} />
             </div>
         );
     }

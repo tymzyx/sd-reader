@@ -1,3 +1,5 @@
+@import '../../assets/css/baseVar';
+
 .reader-wrapper {
 
   .page-content {
@@ -72,12 +74,46 @@
     left: 0;
     bottom: 100px;
     width: 750px;
-    padding: 50px 70px;
+    padding: 72px 40px 40px;
     box-sizing: border-box;
     background-color: #fff;
     z-index: 999;
+    display: flex;
+    align-items: center;
+
+    .helper-progress-index {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #222;
+    }
+
+    .icon-arrow-left {
+      width: 50px;
+      height: 50px;
+      fill: $inactiveColor;
+      margin-right: 30px;
+    }
+    .icon-arrow-right {
+      width: 50px;
+      height: 50px;
+      fill: $inactiveColor;
+      margin-left: 30px;
+      transform: rotate(180deg);
+    }
   }
   .helper-progress-hide {
     display: none;
+  }
+
+  .reader-loading {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 900;
   }
 }

@@ -14,7 +14,7 @@ class Range extends Component {
     }
 
     componentDidMount() {
-        const { disabled, min, max, step } = this.props;
+        const { disabled, min, max, step, onDrag, endDrag } = this.props;
 
         const getThumbPosition = () => {
             const contentBox = this.content.getBoundingClientRect();
@@ -26,6 +26,7 @@ class Range extends Component {
             };
         };
 
+        let val;
         let dragState = {};
         draggable(this.thumb, {
             start: (event) => {
@@ -55,14 +56,16 @@ class Range extends Component {
                     newProgress = 1;
                 }
 
-                const val = Math.round(min + newProgress * (max - min));
+                val = Math.round(min + newProgress * (max - min));
                 this.setState({
                     progress: Math.floor((val - min) / (max - min) * 100)
                 });
+                onDrag(val);
             },
             end: () => {
                 if (disabled) return;
                 dragState = {};
+                endDrag(val);
             }
         });
     }
@@ -106,7 +109,9 @@ Range.propTypes = {
     disabled: PropTypes.bool,
     min: PropTypes.number,
     max: PropTypes.number,
-    step: PropTypes.number
+    step: PropTypes.number,
+    onDrag: PropTypes.func,
+    endDrag: PropTypes.func
 };
 
 export default Range;
