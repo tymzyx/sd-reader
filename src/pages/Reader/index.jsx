@@ -8,16 +8,44 @@ import './Reader.scss';
 import SvgIcon from "../../components/SvgIcon";
 
 const configs = {
+    small: {
+        fw: 12, fh: 18, minusW: 40, minusH: 60
+    },
     middle: {
         fw: 16, fh: 26, minusW: 40, minusH: 60
+    },
+    large: {
+        fw: 20, fh: 32, minusW: 40, minusH: 60
     }
 };
 
 const pageBoxStyle = {
+    small: {
+        padding: '20px 20px 40px',
+        fontSize: 12,
+        lineHeight: '18px'
+    },
     middle: {
         padding: '20px 20px 40px',
         fontSize: 16,
         lineHeight: '26px'
+    },
+    large: {
+        padding: '20px 20px 40px',
+        fontSize: 20,
+        lineHeight: '32px'
+    },
+    bgDefault: {
+        backgroundColor: '#FFF8DC',
+        color: '#000'
+    },
+    bgGreen: {
+        backgroundColor: '#C1FFC1',
+        color: '#000'
+    },
+    bgNight: {
+        backgroundColor: '#222',
+        color: '#ddd'
     }
 };
 
@@ -55,19 +83,23 @@ class Reader extends Component {
         this.pages = [];
         this.numConfig = {};
         this.cacheContents = [];
+        this.wordType = 'middle';
 
         this.state = {
             contents: [],
             totalPage: 0,
             catalog: '',
             notes: '',
-            type: 'middle',
             activePage: 1,
             displayActivePage: 1,
             isConfig: false,
             isLeftHelper: false,
             isProgress: false,
-            loading: false
+            isWord: false,
+            loading: false,
+            bgType: 'bgDefault',
+            brightVal: 100,
+            isBright: false
         };
     }
 
@@ -77,23 +109,24 @@ class Reader extends Component {
     }
 
     getConfig = () => {
-        const { type } = this.state;
-        const config = configs[type];
-        const width = document.body.clientWidth - config.minusW;
-        const height = document.body.clientHeight - config.minusH;
-        const wordWidth = config.fw;
-        const wordHeight = config.fh;
-        const wordNum = Math.floor(width / wordWidth);
-        const rowNum = Math.floor(height / wordHeight);
-        this.numConfig = { wordNum, rowNum };
+        ['small', 'middle', 'large'].forEach(type => {
+            const config = configs[type];
+            const width = document.body.clientWidth - config.minusW;
+            const height = document.body.clientHeight - config.minusH;
+            const wordWidth = config.fw;
+            const wordHeight = config.fh;
+            const wordNum = Math.floor(width / wordWidth);
+            const rowNum = Math.floor(height / wordHeight);
+            this.numConfig[type] = { wordNum, rowNum };
+        });
     };
 
     getContent = async (pageNum) => {
         try {
             const params = {
                 bookId: '1',
-                wordNum: this.numConfig.wordNum,
-                rowNum: this.numConfig.rowNum,
+                wordNum: this.numConfig[this.wordType].wordNum,
+                rowNum: this.numConfig[this.wordType].rowNum,
                 pageNum
             };
             const data = await bookContent(params);
@@ -199,7 +232,9 @@ class Reader extends Component {
         } else {
             this.setState({
                 isConfig: !this.state.isConfig,
-                isProgress: false
+                isProgress: false,
+                isWord: false,
+                isBright: false
             });
         }
     };
@@ -210,17 +245,44 @@ class Reader extends Component {
                 this.setState({
                     isConfig: false,
                     isProgress: false,
+                    isWord: false,
+                    isBright: false,
                     isLeftHelper: true
                 });
                 break;
             case PROGRESS:
                 this.setState({
-                    isProgress: true
+                    isProgress: true,
+                    isWord: false,
+                    isBright: false
                 });
+                break;
+            case SET:
+                this.setState({
+                    isWord: true,
+                    isProgress: false,
+                    isBright: false
+                });
+                break;
+            case BRIGHT:
+                this.setState({
+                    isBright: true,
+                    isWord: false,
+                    isProgress: false
+                });
+                break;
         }
     };
 
-    changePage = (val) => {
+    changePage = (val, num) => {
+        if (num) {
+            const { totalPage } = this.state;
+            val += num;
+            val = val > totalPage ? totalPage : (val < 1 ? 1 : val);
+            this.setState({
+                displayActivePage: val
+            });
+        }
         if (val !== this.state.activePage) {
             Toast.loading('loading...', 0);
             this.setState({
@@ -241,6 +303,13 @@ class Reader extends Component {
         }
     };
 
+    changeWordStyle = (type) => {
+        if (this.wordType !== type) {
+            this.wordType = type;
+            this.getContent(1);
+        }
+    };
+
     render() {
         const {
             contents,
@@ -252,7 +321,11 @@ class Reader extends Component {
             notes,
             isProgress,
             displayActivePage,
-            loading
+            loading,
+            bgType,
+            isWord,
+            brightVal,
+            isBright
         } = this.state;
         const displays = contents;
 
@@ -270,13 +343,11 @@ class Reader extends Component {
                     <PageBar
                         mode="light"
                         isLeft
-                        isOpacity
                     />
                 </section>
                 {displays.map((display, i) => (
                     display &&
                     <div
-                        ref={(node) => { this.pages[i] = node; }}
                         className={classNames([
                             'page-content',
                             'page-animation',
@@ -284,7 +355,8 @@ class Reader extends Component {
                                 'page-out': display.page < activePage
                             }
                         ])}
-                        style={{ ...pageBoxStyle.middle, zIndex: `${100 - i}` }}
+                        ref={(node) => { this.pages[i] = node; }}
+                        style={{ ...pageBoxStyle[this.wordType], ...pageBoxStyle[bgType], zIndex: `${100 - i}` }}
                         onTouchStart={(e) => { this.touchStart(i, e); }}
                         onTouchMove={(e) => {
                             this.touchMove(i === 0, i === displays.length - 1, i, e);
@@ -293,6 +365,10 @@ class Reader extends Component {
                         onClick={this.switchConfig}
                         key={i}
                     >
+                        <div
+                            className="page-mask"
+                            style={{ opacity: `${0.5 - brightVal / 100 * 0.5}` }}
+                        />
                         {display && display.content.map((line, index) => {
                             if (line === 'blank line') {
                                 return (
@@ -384,16 +460,83 @@ class Reader extends Component {
                         <div className="helper-progress-index">
                             {`${displayActivePage} / ${totalPage}`}
                         </div>
-                        <SvgIcon iconClass="arrow" propClass="icon-arrow-left" />
+                        <SvgIcon
+                            iconClass="arrow"
+                            propClass="icon-arrow-left"
+                            click={() => {
+                                this.changePage(displayActivePage, -10);
+                            }}
+                        />
                         <Range
                             onDrag={(val) => { this.setState({ displayActivePage: val }); }}
                             endDrag={this.changePage}
                             max={totalPage}
                             min={1}
+                            currentVal={displayActivePage}
                         />
-                        <SvgIcon iconClass="arrow" propClass="icon-arrow-right" />
+                        <SvgIcon
+                            iconClass="arrow"
+                            propClass="icon-arrow-right"
+                            click={() => {
+                                this.changePage(displayActivePage, 10);
+                            }}
+                        />
                     </section>
                 ) : ''}
+                <section className="reader-helper-bright" style={{ display: isBright ? '' : 'none' }}>
+                    <Range
+                        currentVal={brightVal}
+                        onDrag={(val) => { this.setState({ brightVal: val }); }}
+                    />
+                    <div style={{ marginLeft: 14 }}>
+                        <TabElement tab={{ svg: 'moon', name: '夜间' }} />
+                    </div>
+                </section>
+                <section className="reader-helper-word" style={{ display: isWord ? 'block' : 'none' }}>
+                    <div className="helper-word-item">
+                        <span className="helper-word-title">字号</span>
+                        <div className="word-item-main">
+                            <span
+                                style={{ fontSize: pageBoxStyle.small.fontSize }}
+                                onClick={() => { this.changeWordStyle('small'); }}
+                            >
+                                小
+                            </span>
+                            <span
+                                style={{ fontSize: pageBoxStyle.middle.fontSize }}
+                                onClick={() => { this.changeWordStyle('middle'); }}
+                            >
+                                中
+                            </span>
+                            <span
+                                style={{ fontSize: pageBoxStyle.large.fontSize }}
+                                onClick={() => { this.changeWordStyle('large'); }}
+                            >
+                                大
+                            </span>
+                        </div>
+                    </div>
+                    <div className="helper-word-item">
+                        <span className="helper-word-title">背景</span>
+                        <div className="word-item-main">
+                            <span
+                                className="bg-option"
+                                style={{ ...pageBoxStyle.bgDefault }}
+                                onClick={() => { this.setState({ bgType: 'bgDefault' }); }}
+                            />
+                            <span
+                                className="bg-option"
+                                style={{ ...pageBoxStyle.bgGreen }}
+                                onClick={() => { this.setState({ bgType: 'bgGreen' }); }}
+                            />
+                            <span
+                                className="bg-option"
+                                style={{ ...pageBoxStyle.bgNight }}
+                                onClick={() => { this.setState({ bgType: 'bgNight' }); }}
+                            />
+                        </div>
+                    </div>
+                </section>
                 <section className="reader-loading" style={{ display: loading ? 'block' : 'none' }} />
             </div>
         );

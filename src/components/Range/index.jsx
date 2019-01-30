@@ -13,8 +13,15 @@ class Range extends Component {
         };
     }
 
+    componentWillMount() {
+        const { currentVal, min, max } = this.props;
+        this.setState({
+            progress: Math.floor((currentVal - min) / (max - min) * 100)
+        });
+    }
+
     componentDidMount() {
-        const { disabled, min, max, step, onDrag, endDrag } = this.props;
+        const { disabled, min, max, step, onDrag, endDrag, currentVal } = this.props;
 
         const getThumbPosition = () => {
             const contentBox = this.content.getBoundingClientRect();
@@ -26,7 +33,7 @@ class Range extends Component {
             };
         };
 
-        let val;
+        this.val = currentVal;
         let dragState = {};
         draggable(this.thumb, {
             start: (event) => {
@@ -56,18 +63,28 @@ class Range extends Component {
                     newProgress = 1;
                 }
 
-                val = Math.round(min + newProgress * (max - min));
+                this.val = Math.round(min + newProgress * (max - min));
                 this.setState({
-                    progress: Math.floor((val - min) / (max - min) * 100)
+                    progress: Math.floor((this.val - min) / (max - min) * 100)
                 });
-                onDrag(val);
+                onDrag && onDrag(this.val);
             },
             end: () => {
                 if (disabled) return;
                 dragState = {};
-                endDrag(val);
+                endDrag && endDrag(this.val);
             }
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.val !== nextProps.currentVal) {
+            const { min, max } = this.props;
+            this.val = nextProps.currentVal;
+            this.setState({
+                progress: Math.floor((this.val - min) / (max - min) * 100)
+            });
+        }
     }
 
     render() {
@@ -101,7 +118,8 @@ Range.defaultProps = {
     disabled: false,
     min: 0,
     max: 100,
-    step: 1
+    step: 1,
+    currentVal: 0
 };
 
 Range.propTypes = {
@@ -111,7 +129,8 @@ Range.propTypes = {
     max: PropTypes.number,
     step: PropTypes.number,
     onDrag: PropTypes.func,
-    endDrag: PropTypes.func
+    endDrag: PropTypes.func,
+    currentVal: PropTypes.number
 };
 
 export default Range;
