@@ -228,10 +228,12 @@ class Reader extends Component {
                 this.setState({
                     activePage: val
                 }, () => {
-                    Toast.hide();
-                    this.setState({
-                        loading: false
-                    });
+                    setTimeout(() => {
+                        Toast.hide();
+                        this.setState({
+                            loading: false
+                        });
+                    }, 500);
                 });
             });
         }
