@@ -6,7 +6,7 @@ import { bookDetail } from '../../api/request';
 
 import './BookDetail.scss';
 
-const mockImg = require("../../assets/image/book-cover.jpg");
+const mockImg = require('../../assets/image/book-cover.jpg');
 const avatar = require('../../assets/image/default-avatar.png');
 
 class BookDetail extends Component {

@@ -26,6 +26,11 @@ img {
   z-index: 999;
 }
 
+.common-pull-box {
+  box-sizing: border-box;
+  min-height: calc(100vh - 80px);
+}
+
 // 重写antd-mobile样式
 .am-toast {
   font-size: 30px !important;
