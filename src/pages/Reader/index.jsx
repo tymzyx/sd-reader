@@ -109,7 +109,7 @@ class Reader extends Component {
     }
 
     getConfig = () => {
-        ['small', 'middle', 'large'].forEach(type => {
+        ['small', 'middle', 'large'].forEach((type) => {
             const config = configs[type];
             const width = document.body.clientWidth - config.minusW;
             const height = document.body.clientHeight - config.minusH;
@@ -117,7 +117,7 @@ class Reader extends Component {
             const wordHeight = config.fh;
             const wordNum = Math.floor(width / wordWidth);
             const rowNum = Math.floor(height / wordHeight);
-            this.numConfig[type] = { wordNum, rowNum };
+            this.numConfig[type] = { wordNum, rowNum, pageCount: wordNum * rowNum };
         });
     };
 
@@ -305,9 +305,34 @@ class Reader extends Component {
 
     changeWordStyle = (type) => {
         if (this.wordType !== type) {
-            this.wordType = type;
-            this.getContent(1);
+            Toast.loading('loading...', 0);
+            this.setState({
+                loading: true
+            }, async () => {
+                let page = this.pageNumTransfer(this.wordType, type);
+                page = page < 1 ? 1 : page;
+                this.wordType = type;
+                await this.getContent(page);
+                page = page > this.state.totalPage ? this.state.totalPage : page;
+                this.setState({
+                    activePage: page,
+                    displayActivePage: page
+                }, () => {
+                    setTimeout(() => {
+                        Toast.hide();
+                        this.setState({
+                            loading: false
+                        });
+                    }, 300);
+                });
+            });
         }
+    };
+
+    pageNumTransfer = (from, to) => {
+        const { activePage } = this.state;
+        return Math.round(this.numConfig[from].pageCount * activePage /
+            this.numConfig[to].pageCount);
     };
 
     render() {
