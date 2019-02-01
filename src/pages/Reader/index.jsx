@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Tabs, Toast } from 'antd-mobile';
+import { CSSTransition } from 'react-transition-group';
 import { bookContent } from '../../api/request';
 import { PageBar, TabElement, NoData, Range } from '../../components';
+import AddComment from './AddComment';
 
 import './Reader.scss';
 import SvgIcon from "../../components/SvgIcon";
@@ -99,7 +101,8 @@ class Reader extends Component {
             loading: false,
             bgType: 'bgDefault',
             brightVal: 100,
-            isBright: false
+            isBright: false,
+            isAddComment: false
         };
     }
 
@@ -323,7 +326,7 @@ class Reader extends Component {
                         this.setState({
                             loading: false
                         });
-                    }, 300);
+                    }, 500);
                 });
             });
         }
@@ -350,7 +353,8 @@ class Reader extends Component {
             bgType,
             isWord,
             brightVal,
-            isBright
+            isBright,
+            isAddComment
         } = this.state;
         const displays = contents;
 
@@ -562,6 +566,20 @@ class Reader extends Component {
                         </div>
                     </div>
                 </section>
+                <section
+                    className="reader-add-comment"
+                    onClick={() => { this.setState({ isAddComment: true }); }}
+                >
+                    <SvgIcon iconClass="write" propClass="icon-write" />
+                </section>
+                <CSSTransition
+                    in={isAddComment}
+                    classNames="addComment"
+                    unmountOnExit
+                    timeout={300}
+                >
+                    <AddComment cancel={() => { this.setState({ isAddComment: false }); }} />
+                </CSSTransition>
                 <section className="reader-loading" style={{ display: loading ? 'block' : 'none' }} />
             </div>
         );

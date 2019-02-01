@@ -1,0 +1,23 @@
+@import '../../assets/css/baseVar';
+
+.add-comment-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750px;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 3001;
+
+  .add-comment-rate {
+    height: 86px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .am-textarea-control textarea {
+    font-size: $middleSize;
+    line-height: 40px;
+  }
+}

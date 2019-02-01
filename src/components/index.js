@@ -10,6 +10,7 @@ import TabElement from './TabElement';
 import NoData from './NoData';
 import Range from './Range';
 import Gap from './Gap';
+import CommentInput from './CommentInput';
 
 export {
     SvgIcon,
@@ -23,5 +24,6 @@ export {
     TabElement,
     NoData,
     Range,
-    Gap
+    Gap,
+    CommentInput
 };

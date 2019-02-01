@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { PullToRefresh } from 'antd-mobile';
-import { PageBar, DetailComment, Gap, Comment } from '../../components';
+import { PageBar, DetailComment, Gap, Comment, CommentInput } from '../../components';
 
 import './CommentDetail.scss';
 
 const avatar = require('../../assets/image/default-avatar.png');
 
-// const mockComments = (new Array(20)).fill(1);
+const mockComments = (new Array(20)).fill(1);
 
 class CommentDetail extends Component {
     constructor(props) {
@@ -47,17 +47,21 @@ class CommentDetail extends Component {
                             />
                             <Gap />
                             <div className="user-comment-box">
-                                <Comment
-                                    username="user"
-                                    time="2019-01-22"
-                                    avatar={avatar}
-                                >
-                                    好书!
-                                </Comment>
+                                {mockComments.map((item, index) => (
+                                    <Comment
+                                        username="user"
+                                        time="2019-01-22"
+                                        avatar={avatar}
+                                        key={item + index}
+                                    >
+                                        好书!
+                                    </Comment>
+                                ))}
                             </div>
                         </div>
                     </PullToRefresh>
                 </section>
+                <CommentInput />
             </div>
         );
     }

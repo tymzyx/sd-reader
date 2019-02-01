@@ -169,6 +169,26 @@
     }
   }
 
+  .reader-add-comment {
+    position: fixed;
+    bottom: 160px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    .icon-write {
+      width: 60px;
+      height: 60px;
+      fill: #fff;
+    }
+  }
+
   .reader-loading {
     position: fixed;
     left: 0;
@@ -179,3 +199,24 @@
     z-index: 900;
   }
 }
+
+// addComment动画
+/*设置进场前*/
+.addComment-enter {
+  transform: translateY(100%);
+}
+/*设置进场过程中*/
+.addComment-enter-active {
+  transform: translateY(0);
+  transition: 300ms linear;
+}
+/*设置退场前*/
+.addComment-exit {
+  transform: translateY(0);
+}
+/*设置退场过程中*/
+.addComment-exit-active {
+  transform: translateY(100%);
+  transition: 300ms linear;
+}
+
