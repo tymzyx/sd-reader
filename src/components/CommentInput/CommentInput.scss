@@ -1,0 +1,30 @@
+@import '../../assets/css/baseVar';
+
+.comment-input-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750px;
+  height: 80px;
+  box-shadow: 0 0 20px 2px #eee;
+  background-color: #fff;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+
+  .icon-plane {
+    fill: #666;
+    width: 54px;
+    height: 54px;
+  }
+
+  .am-list-item .am-input-control input {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: #eee;
+    padding-left: 20px;
+    width: 620px;
+    height: 60px;
+    font-size: $middleSize;
+  }
+}

@@ -1,4 +1,4 @@
-import actionTypes from '../action-type';
+import * as actionTypes from '../action-types';
 
 export default {
     testChange(val) {

@@ -1,17 +1,45 @@
+@import '../../assets/css/baseVar';
+
 .reader-wrapper {
 
   .page-content {
     position: absolute;
-    background-color: #FFF8DC;
     height: 100vh;
     width: 100%;
     box-sizing: border-box;
+    touch-action: pan-x pan-y;
+    will-change: transform;
+  }
+
+  .page-mask {
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 750px;
+    height: 100vh;
+    z-index: 10;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    color: 	#CD950C;
   }
 
   .page-animation {
-    touch-action: pan-x pan-y;
     transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    touch-action: pan-x pan-y;
     will-change: transform;
+  }
+
+  .page-out {
+    transform: translateX(-100%);
+  }
+
+  .page-none {
+    transform: none;
   }
 
   .reader-config-footer {
@@ -20,16 +48,175 @@
     left: 0;
     width: 750px;
     height: 100px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgb(255, 255, 255);
     z-index: 999;
     display: flex;
     justify-content: space-between;
   }
-
-  .config-top-hide {
+  .config-header-hide {
     transform: translateY(-80px);
   }
-  .config-bottom-hide {
+  .config-footer-hide {
     transform: translateY(100px);
   }
+
+  .reader-helper-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1001;
+
+    .helper-tab {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .helper-left-hide {
+    transform: translateX(-100%);
+  }
+
+  .reader-helper-progress {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 750px;
+    padding: 72px 40px 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+
+    .helper-progress-index {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #222;
+    }
+
+    .icon-arrow-left {
+      width: 50px;
+      height: 50px;
+      fill: $inactiveColor;
+      margin-right: 30px;
+    }
+    .icon-arrow-right {
+      width: 50px;
+      height: 50px;
+      fill: $inactiveColor;
+      margin-left: 30px;
+      transform: rotate(180deg);
+    }
+  }
+  .helper-progress-hide {
+    display: none;
+  }
+
+  .reader-helper-bright {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 750px;
+    padding: 20px 20px 20px 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .reader-helper-word {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 750px;
+    box-sizing: border-box;
+    background-color: #fff;
+    z-index: 999;
+
+    .helper-word-item {
+      height: 90px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      color: #666;
+
+      .helper-word-title {
+        padding: 0 100px 0 60px;
+        width: 80px;
+        font-size: $middleSize;
+      }
+
+      .word-item-main {
+        display: flex;
+        width: 600px;
+        padding: 0 80px 0 60px;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+      }
+      .bg-option {
+        width: 40px;
+        height: 40px;
+        border: 1px solid $inactiveColor;
+      }
+    }
+  }
+
+  .reader-add-comment {
+    position: fixed;
+    bottom: 160px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    .icon-write {
+      width: 60px;
+      height: 60px;
+      fill: #fff;
+    }
+  }
+
+  .reader-loading {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 900;
+  }
 }
+
+// addComment动画
+/*设置进场前*/
+.addComment-enter {
+  transform: translateY(100%);
+}
+/*设置进场过程中*/
+.addComment-enter-active {
+  transform: translateY(0);
+  transition: 300ms linear;
+}
+/*设置退场前*/
+.addComment-exit {
+  transform: translateY(0);
+}
+/*设置退场过程中*/
+.addComment-exit-active {
+  transform: translateY(100%);
+  transition: 300ms linear;
+}
+

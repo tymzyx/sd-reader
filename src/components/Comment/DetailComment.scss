@@ -1,0 +1,43 @@
+@import '../../assets/css/baseVar';
+
+.detail-comment-slot {
+
+  p {
+    margin: 0;
+  }
+
+  .comment-book {
+    margin-top: 18px;
+
+    .comment-book-rate {
+      display: flex;
+      color: $inactiveColor;
+      font-size: $middleSize;
+    }
+    .comment-book-box {
+      margin: 16px 0;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      background-color: $bgColor;
+      box-sizing: border-box;
+      padding-left: 16px;
+      border: 1px solid $borderColor;
+
+      .comment-book-img {
+        width: 90px;
+        border-radius: 4px;
+        margin-right: 30px;
+      }
+      h5 {
+        margin: 0;
+        font-size: $middleSize;
+        font-weight: normal;
+      }
+      span {
+        color: $inactiveColor;
+        font-size: $middleSize;
+      }
+    }
+  }
+}

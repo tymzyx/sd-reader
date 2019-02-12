@@ -1,0 +1,17 @@
+.comment-detail-wrapper {
+
+  .am-pull-to-refresh, .am-pull-to-refresh-down {
+    box-sizing: border-box;
+    height: calc(100vh - 80px);
+    overflow: auto;
+  }
+
+  .comment-detail-main {
+    padding-top: 80px;
+    background-color: #fff;
+  }
+
+  .comment-body {
+    padding: 12px 0;
+  }
+}

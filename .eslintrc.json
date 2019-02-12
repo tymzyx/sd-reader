@@ -10,13 +10,17 @@
     "no-script-url": 0,
     "quotes": 0,
     "no-param-reassign":0,
-    "indent": [1, 4],
+    "indent": [0, 4],
     "react/jsx-indent": 0,
     "react/jsx-indent-props": 0,
     "comma-dangle": [2, "never"],
     "no-unused-vars": 1,
     "spaced-comment": 0,
-    "no-debugger": 0
+    "no-debugger": 0,
+    "symbol-description": 0,
+    "default-case": 0,
+    "no-mixed-operators": 0,
+    "no-nested-ternary": 0
   },
   "plugins": [
     "react",

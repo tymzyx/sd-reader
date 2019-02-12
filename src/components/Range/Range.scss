@@ -1,0 +1,44 @@
+.range-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+
+  .range-content {
+    flex: 1;
+    margin-right: 30px;
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .range-runway {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: -30px;
+    border-top-color: #ccc;
+    border-top-style: solid;
+    box-sizing: border-box;
+  }
+  .range-progress {
+    position: absolute;
+    display: block;
+    background-color: #222;
+    top: 50%;
+    transform: translateY(-50%);
+    box-sizing: border-box;
+  }
+  .range-thumb {
+    background-color: #222;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

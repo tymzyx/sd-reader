@@ -6,7 +6,7 @@ import { bookDetail } from '../../api/request';
 
 import './BookDetail.scss';
 
-const mockImg = require("../../assets/image/book-cover.jpg");
+const mockImg = require('../../assets/image/book-cover.jpg');
 const avatar = require('../../assets/image/default-avatar.png');
 
 class BookDetail extends Component {
@@ -58,13 +58,17 @@ class BookDetail extends Component {
         });
     };
 
+    switchPage = (path) => {
+        this.props.history.push(path);
+    };
+
     render() {
         const { isFold, bookInfo } = this.state;
         const { title, author, score, readers } = bookInfo;
         let { brief = '' } = bookInfo;
         brief = brief || '内容太精彩了，我只能说这么多！';
         const isCache = true;
-        console.log(this.props.history);
+        const pathname = isCache ? '/reader' : '';
 
         return (
             <div className="book-detail-wrapper">
@@ -73,7 +77,7 @@ class BookDetail extends Component {
                 </section>
                 <section className="book-detail-main">
                     <div className="detail-head">
-                        <img src={mockImg} className="book-image" />
+                        <img src={mockImg} className="book-image" alt="" />
                         <div className="detail-head-collection">
                             <h4>{title}</h4>
                             <span>{author}</span>
@@ -162,6 +166,7 @@ class BookDetail extends Component {
                     <Button
                         type="primary"
                         icon={<SvgIcon iconClass="abstract" propClass="icon-borrow" />}
+                        onClick={(e) => { this.switchPage(pathname, e); }}
                     >
                         {!isCache ? '免费借阅' : '开始阅读'}
                     </Button>
