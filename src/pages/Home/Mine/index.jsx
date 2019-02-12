@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { List } from 'antd-mobile';
 import { SvgIcon, PageBar } from '../../../components';
 import TabElement from '../../../components/TabElement';
@@ -42,6 +45,13 @@ const mainList = [
     { text: 'endGap' }
 ];
 
+const MineStateToProps = state => ({
+    userInfo: state.user
+});
+
+@connect(
+    MineStateToProps
+)
 class Mine extends Component {
     constructor(props) {
         super(props);
@@ -55,8 +65,17 @@ class Mine extends Component {
         };
     }
 
+    itemClick = () => {
+        const { userInfo, history } = this.props;
+        if (!userInfo.username) {
+            history.push('/login');
+        }
+    };
+
     render() {
         const { mineInfo } = this.state;
+        const { userInfo } = this.props;
+        const { username, userId } = userInfo;
 
         return (
             <div className="mine-wrapper">
@@ -67,12 +86,20 @@ class Mine extends Component {
                     <List>
                         <Item
                             thumb={svg('my', 'icon-my')}
-                            extra={baseExtra()}
+                            extra={username && baseExtra()}
                             arrow="horizontal"
                             multipleLine
-                            onClick={() => {}}
+                            onClick={this.itemClick}
                         >
-                            Name <Brief>用户编号：001</Brief>
+                            {username ? (
+                                <div>
+                                    {username} <Brief>{`用户编号：${userId}`}</Brief>
+                                </div>
+                            ) : (
+                                <div>
+                                    尚未登录 <Brief>请登录</Brief>
+                                </div>
+                            )}
                         </Item>
                     </List>
                     <div className="mine-base-tab tab-wrapper">
@@ -109,4 +136,9 @@ class Mine extends Component {
     }
 }
 
-export default Mine;
+Mine.propTypes = {
+    userInfo: PropTypes.any,
+    history: PropTypes.any
+};
+
+export default withRouter(Mine);
