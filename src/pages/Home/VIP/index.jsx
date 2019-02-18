@@ -18,11 +18,37 @@ const style = {
 };
 
 class Vip extends Component {
+    constructor() {
+        super();
+        this.state = {
+            needFixed: false
+        };
+    }
+
+    componentDidMount() {
+        // 初始化页面时，滚动条置顶
+        window.scrollTo(0, 0);
+        this.initScrollFuc();
+    }
+
+    initScrollFuc() {
+        const fixedTop = this.openAcount.offsetTop;
+        window.onscroll = () => {
+            const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+            //控制元素块A随鼠标滚动固定在顶部
+            if (scrollTop >= fixedTop) {
+                this.setState({ needFixed: true });
+            } else if (scrollTop < fixedTop) {
+                this.setState({ needFixed: false });
+            }
+        };
+    }
+
     render() {
         return (
             <div className="vip-wrapper">
                 <div>
-                    <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false}>
+                    <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false} swipeable={false}>
                         <div className={style.content}>
                             <div className={style.card}>
                                 <p>藏书馆精读VIP -- 让你成为更好的自己</p>
@@ -49,7 +75,7 @@ class Vip extends Component {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="card-tip">
+                            <div className={`card-tip ${this.state.needFixed ? "fixed" : ""}`} ref={(node) => { this.openAcount = node; }}>
                                 <div>
                                     <p>订阅藏书馆精读VIP</p>
                                     <p><span style={{ textDecoration: 'line-through', color: '#666', paddingRight: '5px' }}>原价365元</span><span style={{ color: 'red' }}>99元</span></p>
@@ -57,6 +83,34 @@ class Vip extends Component {
                                 <div>
                                     <Button size={"small"} inline type={'primary'} style={{ borderRadius: '20px' }}>开通</Button>
                                 </div>
+                            </div>
+                            <div className="reference">
+                                <h3>{`52本精读<持续更新中>`}</h3>
+                                {
+                                    [1, 2, 3].map((i) => {
+                                        return (
+                                            <div key={i}>
+                                                <p className="ref-type">自我管理</p>
+                                                <div className="ref-box">
+                                                    {[1, 2, 3, 4].map((value, index) => {
+                                                        return (
+                                                            <ul className="ref-scroll" key={index}>
+                                                                <li className="ref-des">
+                                                                    <div className="left" />
+                                                                    <div className="right">
+                                                                        <h4 className="ref-title">《微习惯》</h4>
+                                                                        <p className="ref-abs">简单到不可能失败的自我管理法则</p>
+                                                                        <p className="ref-label">会员免费</p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        );
+                                    })
+                                }
                             </div>
                         </div>
                         <div>

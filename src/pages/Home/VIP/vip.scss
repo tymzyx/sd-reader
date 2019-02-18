@@ -1,6 +1,7 @@
 .vip-wrapper{
   background-color: #fff;
-  min-height: 100vh;
+  //min-height: 100vh;
+  margin-bottom: 102px;
   .content-padding{
     padding: 40px;
     .card{
@@ -26,6 +27,62 @@
   }
   .card-title{
     font-size: 20px;
+  }
+  .fixed{
+    width: calc(100% - 80px);
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+  .reference {
+    .ref-type{
+      font-weight: normal;
+      color: #999;
+      font-size: 32px;
+    }
+    .ref-box{
+      display: flex;
+      //width: calc(100% - 80px);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    ul{
+      padding: 0;
+      margin: 0;
+    }
+    .ref-scroll{
+      min-width: 600px;
+      margin-right: 20px;
+      .ref-des{
+        display: flex;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        padding: 0 15px;
+        //box-shadow:8px 8px 12px #999;
+        .left{
+          background: url("../../../assets/image/Micro_habits.jpg") center no-repeat;
+          background-size: 100%;
+          width: 200px;
+          //height: 150px;
+        }
+        .right {
+          .ref-title{
+            font-weight: normal;
+          }
+          .ref-abs{
+            color: #999;
+          }
+          .ref-label{
+            background-color: #ffdba2;
+            display: inline-block;
+            border-radius: 10px;
+            padding: 5px 10px;
+            color: #fff;
+            font-size: 25px;
+          }
+        }
+      }
+    }
   }
   .card-icon-Wrapper{
     display: flex;
