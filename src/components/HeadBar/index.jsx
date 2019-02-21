@@ -26,7 +26,7 @@ class HeadBar extends Component {
 }
 
 HeadBar.defaultProps = {
-    type: 'middle',
+    type: 'ml',
     extra: '',
     isIcon: false
 };

@@ -13,6 +13,7 @@ import Gap from './Gap';
 import CommentInput from './CommentInput';
 import Tag from './Tag';
 import CardItem from './CardItem';
+import BookListItem from './BookListItem';
 
 export {
     SvgIcon,
@@ -29,5 +30,6 @@ export {
     Gap,
     CommentInput,
     Tag,
-    CardItem
+    CardItem,
+    BookListItem
 };

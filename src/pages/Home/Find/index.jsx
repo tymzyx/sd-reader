@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Card } from 'antd-mobile';
-import { SvgIcon, HeadBar, PageBar, Gap, Tag, CardItem } from '../../../components';
+import {
+    SvgIcon,
+    HeadBar,
+    PageBar,
+    Gap,
+    Tag,
+    CardItem,
+    BookTag,
+    BookListItem
+} from '../../../components';
 
 import './Find.scss';
 import TabElement from "../../../components/TabElement";
@@ -34,8 +43,8 @@ class Find extends Component {
         console.log(123);
     };
 
-    hotExtra = () => (
-        <span className="hot-share">由 <strong>大道希音</strong> 分享</span>
+    itemExtra = () => (
+        <span className="item-share">由 <strong>大道希音</strong> 分享</span>
     );
 
     render() {
@@ -98,22 +107,56 @@ class Find extends Component {
                     <div className="find-hot-novel">
                         <HeadBar title="热门小说" isIcon extra="更多" extraClick={this.toPage} />
                         <div className="hot-novel-box">
-                            {new Array(10).fill(1).map((i, index) => (
+                            {new Array(5).fill(1).map((i, index) => (
                                 <CardItem
                                     key={i + index}
                                     title="风雨浓，胭脂乱"
                                     titleAddition="尼罗式的红玫瑰白玫瑰"
-                                    extra={this.hotExtra()}
-                                    style={{ marginBottom: 8 }}
+                                    extra={this.itemExtra()}
+                                    style={{ marginBottom: 12 }}
                                 />
                             ))}
                         </div>
                     </div>
                     <div className="find-analysis">
                         <HeadBar title="好书解读" isIcon extra="更多" extraClick={this.toPage} />
+                        <div className="analysis-box">
+                            <BookTag size="large" isEllipsis={false} />
+                            <BookTag size="large" isEllipsis={false} />
+                            <BookTag size="large" isEllipsis={false} />
+                        </div>
                     </div>
                     <div className="find-hot-book">
                         <HeadBar title="热门图书" isIcon extra="更多" extraClick={this.toPage} />
+                        <div className="hot-book-box">
+                            <BookTag size="large" isEllipsis={false} />
+                            <BookTag size="large" isEllipsis={false} />
+                            <BookTag size="large" isEllipsis={false} />
+                        </div>
+                    </div>
+                    <div className="find-recent-share">
+                        <HeadBar title="最新分享" isIcon extra="更多" extraClick={this.toPage} />
+                        <div className="recent-share-box">
+                            {new Array(5).fill(1).map((i, index) => (
+                                <CardItem
+                                    key={i + index}
+                                    title="风雨浓，胭脂乱"
+                                    titleAddition="尼罗式的红玫瑰白玫瑰"
+                                    extra={this.itemExtra()}
+                                    style={{ marginBottom: 12 }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="find-book-list">
+                        <HeadBar title="书单" isIcon extra="更多" extraClick={this.toPage} />
+                        <div className="book-list-box">
+                            <BookListItem
+                                title="一座城市，一本书"
+                                number={7}
+                                describe="如果让你为自己喜欢的城市写一本书，你会怎么形容你心中的那座城市？"
+                            />
+                        </div>
                     </div>
                 </section>
             </div>

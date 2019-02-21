@@ -1,7 +1,7 @@
 @import '../../../assets/css/baseVar.scss';
 
 .find-wrapper {
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 
   .find-head-section {
     margin-top: 80px;
@@ -95,12 +95,12 @@
       }
     }
 
-    .find-hot-novel {
+    .find-hot-novel, .find-recent-share {
 
-      .hot-novel-box {
+      .hot-novel-box, .recent-share-box {
         margin: 10px 30px 0;
 
-        .hot-share {
+        .item-share {
           color: $inactiveColor;
 
           strong {
@@ -108,6 +108,22 @@
             font-weight: normal;
           }
         }
+      }
+    }
+
+    .find-analysis, .find-hot-book {
+      margin-bottom: 30px;
+    }
+    .analysis-box, .hot-book-box {
+      margin: 10px 30px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .find-book-list {
+
+      .book-list-box {
+        margin: 10px 30px 0;
       }
     }
   }
