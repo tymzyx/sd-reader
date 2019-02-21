@@ -1,6 +1,7 @@
 @import '../../../assets/css/baseVar.scss';
 
 .find-wrapper {
+  padding-bottom: 100px;
 
   .find-head-section {
     margin-top: 80px;
@@ -38,7 +39,76 @@
   }
 
   .find-main-section {
-    margin-top: 18px;
     background: #fff;
+
+    .find-topic {
+      margin-bottom: 40px;
+
+      .topic-card {
+        margin: 20px 30px 0;
+        padding-bottom: 20px;
+        border-radius: 16px;
+        background-color: #f3f3f3;
+        box-shadow: 0 0 10px 4px #f3f3f3;
+        border: 1px solid #f1f1f1;
+
+        .am-card {
+          background-color: #f3f3f3;
+        }
+        .am-card::before {
+          content: '';
+          border: none;
+        }
+      }
+      .topic-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 30px;
+      }
+    }
+
+    .find-category {
+
+      .category-box {
+        margin: 10px 30px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+
+    .find-subject {
+      margin-bottom: 30px;
+
+      .subject-box {
+        margin: 10px 30px 0;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          width: 320px;
+          max-height: 160px;
+          height: auto;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .find-hot-novel {
+
+      .hot-novel-box {
+        margin: 10px 30px 0;
+
+        .hot-share {
+          color: $inactiveColor;
+
+          strong {
+            color: $linkColor;
+            font-weight: normal;
+          }
+        }
+      }
+    }
   }
 }

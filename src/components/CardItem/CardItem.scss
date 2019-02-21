@@ -1,0 +1,29 @@
+@import '../../assets/css/baseVar';
+
+.card-item-wrapper {
+  display: flex;
+
+  .card-left {
+    margin-right: 30px;
+  }
+
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0 32px;
+
+    .card-right-content {
+      display: flex;
+      flex-direction: column;
+
+      .card-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+      .card-title-add {
+        color: $inactiveColor;
+      }
+    }
+  }
+}
