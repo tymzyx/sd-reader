@@ -34,6 +34,13 @@ const categoryTags = [
     { name: '社科', key: 'social', url: '' }
 ];
 
+const rankList = [
+    { name: '借阅榜', color: '#87CEFA', url: '' },
+    { name: '热门榜', color: '#FFC125', url: '' },
+    { name: '好评榜', color: '#F08080', url: '' },
+    { name: '畅销榜', color: '#66CDAA', url: '' }
+];
+
 class Find extends Component {
     topicAvatar = () => (
         <img src={avatar} className="topic-avatar" alt="" />
@@ -150,12 +157,34 @@ class Find extends Component {
                     </div>
                     <div className="find-book-list">
                         <HeadBar title="书单" isIcon extra="更多" extraClick={this.toPage} />
-                        <div className="book-list-box">
-                            <BookListItem
-                                title="一座城市，一本书"
-                                number={7}
-                                describe="如果让你为自己喜欢的城市写一本书，你会怎么形容你心中的那座城市？"
-                            />
+                        {new Array(3).fill(1).map((i, index) => (
+                            <div key={i + index} className="book-list-box">
+                                <BookListItem
+                                    title="一座城市，一本书"
+                                    number={7}
+                                    describe="如果让你为自己喜欢的城市写一本书，你会怎么形容你心中的那座城市？"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className="find-rank">
+                        <HeadBar title="榜单" isIcon extra="更多" extraClick={this.toPage} />
+                        <div className="rank-box">
+                            {rankList.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="rank-type"
+                                    style={{ backgroundColor: item.color }}
+                                >
+                                    <h4>{item.name}</h4>
+                                    <span
+                                        className="rank-go"
+                                        style={{ color: item.color }}
+                                    >
+                                        {'GO>'}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

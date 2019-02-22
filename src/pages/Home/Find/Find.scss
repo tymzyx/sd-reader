@@ -121,9 +121,42 @@
     }
 
     .find-book-list {
+      margin-bottom: 40px;
 
       .book-list-box {
         margin: 10px 30px 0;
+      }
+    }
+
+    .find-rank {
+
+      .rank-box {
+        margin: 10px 30px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .rank-type {
+          width: 330px;
+          height: 180px;
+          border-radius: 12px;
+          box-sizing: border-box;
+          padding: 28px;
+          margin-bottom: 20px;
+
+          h4 {
+            margin: 0 0 40px;
+            color: #fff;
+            font-size: $hugeSize;
+            font-weight: normal;
+          }
+
+          .rank-go {
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+          }
+        }
       }
     }
   }
