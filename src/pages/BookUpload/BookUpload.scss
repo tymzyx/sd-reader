@@ -1,0 +1,33 @@
+@import '../../assets/css/baseVar';
+
+.book-upload-wrapper {
+
+  .book-upload-main {
+
+    .am-list-header {
+      font-size: $largeSize;
+      color: #000;
+      padding-bottom: 30px;
+    }
+
+    .am-textarea-label,
+    .am-list-item .am-list-line .am-list-content,
+    .am-list-item .am-input-label,
+    .am-list-item .am-input-control input,
+    .am-textarea-control textarea {
+      font-size: $mlSize;
+      color: #555;
+    }
+
+    .upload-btn {
+      margin: 40px 40px 0 480px;
+      text-align: right;
+
+      .am-button {
+        height: 70px;
+        line-height: 70px;
+        font-size: $middleSize;
+      }
+    }
+  }
+}
