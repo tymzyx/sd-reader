@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Upload from 'rc-upload';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Modal } from 'antd-mobile';
 import { BookTag, PageBar } from '../../../components';
 
@@ -14,25 +15,8 @@ class Collection extends Component {
         };
     }
 
-    beforeUpload = (file) => {
-        console.log('beforeUpload', file.name);
-    };
-
-    onStart = (file) => {
-        console.log('onStart', file.name);
-        // this.refs.inner.abort(file);
-    };
-
-    onSuccess = (file) => {
-        console.log('onSuccess', file);
-    };
-
-    onProgress = (step, file) => {
-        console.log('onProgress', Math.round(step.percent), file.name);
-    };
-
-    onError = (err) => {
-        console.log('onError', err);
+    toPage = (url) => {
+        this.props.history.push({ pathname: url });
     };
 
     render() {
@@ -86,21 +70,10 @@ class Collection extends Component {
                             <h5>搜索书籍</h5>
                             <span>在百万藏书中找到你心仪的那一本</span>
                         </div>
-                        <Upload
-                            name="book"
-                            action="/api/book/upload"
-                            data={{ author: 'test', name: 'test' }}
-                            beforeUpload={this.beforeUpload}
-                            onStart={this.onStart}
-                            onSuccess={this.onSuccess}
-                            onProgress={this.onProgress}
-                            onError={this.onError}
-                        >
-                            <div className="modal-item">
-                                <h5>上传书籍</h5>
-                                <span>让每一本书籍都汇入私人定制藏书馆</span>
-                            </div>
-                        </Upload>
+                        <div className="modal-item" onClick={() => { this.toPage('/upload'); }}>
+                            <h5>上传书籍</h5>
+                            <span>让每一本书籍都汇入私人定制藏书馆</span>
+                        </div>
                     </div>
                 </Modal>
             </div>
@@ -108,4 +81,8 @@ class Collection extends Component {
     }
 }
 
-export default Collection;
+Collection.propTypes = {
+    history: PropTypes.any
+};
+
+export default withRouter(Collection);

@@ -29,7 +29,7 @@ CardItem.propTypes = {
     extra: PropTypes.node,
     title: PropTypes.string,
     titleAddition: PropTypes.string,
-    style: PropTypes.string
+    style: PropTypes.object
 };
 
 export default CardItem;

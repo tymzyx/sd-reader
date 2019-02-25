@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { List, InputItem, TextareaItem, Picker, Button } from 'antd-mobile';
+import Upload from 'rc-upload';
 import { createForm } from 'rc-form';
 import { PageBar } from '../../components';
 
@@ -20,7 +21,71 @@ const bookType = [
 ];
 
 class BookUpload extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            disabled: true,
+            uploadExtra: {}
+        };
+    }
+
+    formChange = (val, type) => {
+        this.props.form.validateFields((error, value) => {
+            if (error) {
+                if (Object.keys(error).length === 1 && Object.keys(error)[0] === type) {
+                    this.setState({
+                        disabled: false,
+                        uploadExtra: {
+                            ...value,
+                            type: value.type ? value.type[0] : val[0]
+                        }
+                    });
+                } else {
+                    this.setState({
+                        disabled: true
+                    });
+                }
+            } else {
+                if (val === '') {
+                    this.setState({
+                        disabled: true
+                    });
+                } else {
+                    this.setState({
+                        disabled: false,
+                        uploadExtra: {
+                            ...value,
+                            type: value.type[0]
+                        }
+                    });
+                }
+            }
+        });
+    };
+
+    beforeUpload = (file) => {
+        console.log('beforeUpload', file.name);
+    };
+
+    onStart = (file) => {
+        console.log('onStart', file.name);
+        // this.refs.inner.abort(file);
+    };
+
+    onSuccess = (file) => {
+        console.log('onSuccess', file);
+    };
+
+    onProgress = (step, file) => {
+        console.log('onProgress', Math.round(step.percent), file.name);
+    };
+
+    onError = (err) => {
+        console.log('onError', err);
+    };
+
     render() {
+        const { disabled, uploadExtra } = this.state;
         const { getFieldProps } = this.props.form;
 
         return (
@@ -32,19 +97,34 @@ class BookUpload extends Component {
                 <div className="book-upload-main">
                     <List renderHeader={() => '书籍基本信息'}>
                         <InputItem
-                            {...getFieldProps('title')}
+                            {...getFieldProps('title', {
+                                onChange: (val) => { this.formChange(val, 'title'); },
+                                rules: [{ required: true }]
+                            })}
                             placeholder="请输入书名"
                         >
-                            书名
+                            <span><strong>*</strong>书名</span>
                         </InputItem>
                         <InputItem
-                            {...getFieldProps('author')}
+                            {...getFieldProps('author', {
+                                onChange: (val) => { this.formChange(val, 'author'); },
+                                rules: [{ required: true }]
+                            })}
                             placeholder="请输入作者"
                         >
-                            作者
+                            <span><strong>*</strong>作者</span>
                         </InputItem>
-                        <Picker data={bookType} cols={1} {...getFieldProps('type')}>
-                            <List.Item arrow="horizontal">类型</List.Item>
+                        <Picker
+                            data={bookType}
+                            cols={1}
+                            {...getFieldProps('type', {
+                                onChange: (val) => { this.formChange(val, 'type'); },
+                                rules: [{ required: true }]
+                            })}
+                        >
+                            <List.Item arrow="horizontal">
+                                <span><strong>*</strong>类型</span>
+                            </List.Item>
                         </Picker>
                         <TextareaItem
                             rows={3}
@@ -54,9 +134,25 @@ class BookUpload extends Component {
                         />
                     </List>
                     <div className="upload-btn">
-                        <Button type="primary">
-                            上传
-                        </Button>
+                        <Upload
+                            ref="uploader"
+                            name="book"
+                            action="/api/book/upload"
+                            data={{ ...uploadExtra, share: 'sl' }}
+                            beforeUpload={this.beforeUpload}
+                            onStart={this.onStart}
+                            onSuccess={this.onSuccess}
+                            onProgress={this.onProgress}
+                            onError={this.onError}
+                            disabled={disabled}
+                        >
+                            <Button
+                                type="primary"
+                                disabled={disabled}
+                            >
+                                上传
+                            </Button>
+                        </Upload>
                     </div>
                 </div>
             </div>
