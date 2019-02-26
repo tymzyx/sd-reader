@@ -23,7 +23,7 @@ class GradientCreator {
     constructor(colors, vals = [0, 10]) {
         this.vals = vals;
         this.rgbs = [];
-        colors.forEach(color => {
+        colors.forEach((color) => {
             this.rgbs.push(this.colorRgb(color));
         });
         const stepCounts = colors.length - 1;
@@ -43,23 +43,19 @@ class GradientCreator {
         }
     }
 
-    getColor = val => {
+    getColor = (val) => {
         val = val < this.vals[0] ? this.vals[0] : val > this.vals[1] ? this.vals[1] : val;
         let index = this.stepVals.findIndex(num => num > val);
         index = ~index ? index - 1 : this.stepVals.length - 1;
         const realVal = val - this.stepVal * index;
         return this.colorHex(
-            'rgb(' +
-            parseInt(this.stepRs[index] * realVal + this.rgbs[index][0], 10) +
-            ',' +
-            parseInt(this.stepGs[index] * realVal + this.rgbs[index][1], 10) +
-            ',' +
-            parseInt(this.stepBs[index] * realVal + this.rgbs[index][2], 10) +
-            ')'
+            `rgb(${parseInt(this.stepRs[index] * realVal + this.rgbs[index][0], 10)},
+                ${parseInt(this.stepGs[index] * realVal + this.rgbs[index][1], 10)},
+                ${parseInt(this.stepBs[index] * realVal + this.rgbs[index][2], 10)})`
         );
     };
 
-    colorRgb = sColor => {
+    colorRgb = (sColor) => {
         const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
         sColor = sColor.toLowerCase();
         if (sColor && reg.test(sColor)) {
@@ -72,7 +68,7 @@ class GradientCreator {
             }
             const sColorChange = [];
             for (let i = 1; i < 7; i += 2) {
-                sColorChange.push(parseInt('0x' + sColor.slice(i, i + 2), 16));
+                sColorChange.push(parseInt(`0x${sColor.slice(i, i + 2)}`, 16));
             }
             return sColorChange;
         } else {
@@ -80,7 +76,7 @@ class GradientCreator {
         }
     };
 
-    colorHex = rgb => {
+    colorHex = (rgb) => {
         const _this = rgb;
         const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
         if (/^(rgb|RGB)/.test(_this)) {
@@ -88,7 +84,7 @@ class GradientCreator {
             let strHex = '#';
             for (let i = 0; i < aColor.length; i++) {
                 let hex = Number(aColor[i]).toString(16);
-                hex = hex < 10 ? 0 + '' + hex : hex;
+                hex = hex < 10 ? `0${hex}` : hex;
                 if (hex === '0') {
                     hex += hex;
                 }
@@ -115,4 +111,8 @@ class GradientCreator {
     };
 }
 
-export { judgeType };
+const toPage = (history, path) => {
+    history.push({ pathname: path });
+};
+
+export { judgeType, toPage, GradientCreator };

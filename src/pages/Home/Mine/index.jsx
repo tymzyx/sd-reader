@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { List } from 'antd-mobile';
-import { SvgIcon, PageBar } from '../../../components';
+import { SvgIcon, PageBar, Gap } from '../../../components';
 import TabElement from '../../../components/TabElement';
 
 import './Mine.scss';
@@ -83,6 +83,7 @@ class Mine extends Component {
                     <PageBar mode="light" title="我的" />
                 </div>
                 <div className="mine-base">
+                    <Gap />
                     <List>
                         <Item
                             thumb={svg('my', 'icon-my')}
@@ -112,6 +113,7 @@ class Mine extends Component {
                     </div>
                 </div>
                 <div className="mine-main">
+                    <Gap />
                     <List>
                         {mainList.map((item, index) => {
                             if (item.svg) {

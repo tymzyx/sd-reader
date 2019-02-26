@@ -1,0 +1,21 @@
+@import '../../assets/css/baseVar';
+
+.set-wrapper {
+  height: 100vh;
+  background-color: $bgColor;
+
+  .logout-box {
+    font-size: $middleSize;
+    line-height: 80px;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .am-list-item .am-list-line .am-list-content {
+    font-size: $middleSize;
+  }
+
+  .am-list-line::after {
+    height: 0 !important;
+  }
+}

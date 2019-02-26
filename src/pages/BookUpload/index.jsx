@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { List, InputItem, TextareaItem, Picker, Button } from 'antd-mobile';
 import Upload from 'rc-upload';
 import { createForm } from 'rc-form';
-import { PageBar } from '../../components';
+import { PageBar, SvgIcon } from '../../components';
 
 import './BookUpload.scss';
 
@@ -24,6 +24,7 @@ class BookUpload extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            coverImg: '',
             disabled: true,
             uploadExtra: {}
         };
@@ -63,29 +64,72 @@ class BookUpload extends Component {
         });
     };
 
-    beforeUpload = (file) => {
+    beforeUploadBook = (file) => {
         console.log('beforeUpload', file.name);
     };
 
-    onStart = (file) => {
+    onStartBook = (file) => {
         console.log('onStart', file.name);
         // this.refs.inner.abort(file);
     };
 
-    onSuccess = (file) => {
+    onSuccessBook = (file) => {
         console.log('onSuccess', file);
     };
 
-    onProgress = (step, file) => {
+    onProgressBook = (step, file) => {
         console.log('onProgress', Math.round(step.percent), file.name);
     };
 
-    onError = (err) => {
+    onErrorBook = (err) => {
+        console.log('onError', err);
+    };
+
+    uploadImg = () => (
+        <Upload
+            name="cover"
+            action="/api/book/cover"
+            beforeUpload={this.beforeUploadCover}
+            onStart={this.onStartCover}
+            onSuccess={this.onSuccessCover}
+            onProgress={this.onProgressCover}
+            onError={this.onErrorCover}
+        >
+            <span style={{ fontSize: 20 }}>+</span>
+        </Upload>
+    );
+
+    beforeUploadCover = (file) => {
+        console.log('beforeUpload', file.name);
+    };
+
+    onStartCover = (file) => {
+        console.log('onStart', file.name);
+        // this.refs.inner.abort(file);
+    };
+
+    onSuccessCover = (file) => {
+        console.log('onSuccess', file);
+        const { uploadExtra } = this.state;
+        this.setState({
+            coverImg: `data:image/jpeg;base64,${file.message.img}`,
+            uploadExtra: {
+                ...uploadExtra,
+                image: `data:image/jpeg;base64,${file.message.img}`
+            }
+        });
+    };
+
+    onProgressCover = (step, file) => {
+        console.log('onProgress', Math.round(step.percent), file.name);
+    };
+
+    onErrorCover = (err) => {
         console.log('onError', err);
     };
 
     render() {
-        const { disabled, uploadExtra } = this.state;
+        const { disabled, uploadExtra, coverImg } = this.state;
         const { getFieldProps } = this.props.form;
 
         return (
@@ -132,18 +176,39 @@ class BookUpload extends Component {
                             title="简介"
                             placeholder="简介，100个字以内"
                         />
+                        <List.Item extra={this.uploadImg()}>
+                            <span>封面</span>
+                        </List.Item>
                     </List>
+                    {coverImg ? (
+                        <div className="book-cover">
+                            <img src={coverImg} alt="" />
+                            <div
+                                className="book-cover-cancel"
+                                onClick={() => {
+                                    this.setState({
+                                        coverImg: '',
+                                        uploadExtra: {
+                                            ...uploadExtra,
+                                            image: ''
+                                        }
+                                    });
+                                }}
+                            >
+                                <SvgIcon iconClass="cross" propClass="icon-cross" />
+                            </div>
+                        </div>
+                    ) : ''}
                     <div className="upload-btn">
                         <Upload
-                            ref="uploader"
                             name="book"
                             action="/api/book/upload"
                             data={{ ...uploadExtra, share: 'sl' }}
-                            beforeUpload={this.beforeUpload}
-                            onStart={this.onStart}
-                            onSuccess={this.onSuccess}
-                            onProgress={this.onProgress}
-                            onError={this.onError}
+                            beforeUpload={this.beforeUploadBook}
+                            onStart={this.onStartBook}
+                            onSuccess={this.onSuccessBook}
+                            onProgress={this.onProgressBook}
+                            onError={this.onErrorBook}
                             disabled={disabled}
                         >
                             <Button

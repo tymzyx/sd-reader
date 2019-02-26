@@ -24,8 +24,38 @@
       color: #555;
     }
 
+    .book-cover {
+      text-align: right;
+      padding: 30px 50px 0 20px;
+      position: relative;
+
+      img {
+        width: 200px;
+        max-height: 280px;
+        border-radius: 8px;
+      }
+
+      .book-cover-cancel {
+        position: absolute;
+        right: 58px;
+        top: 36px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .icon-cross {
+        width: 24px;
+        height: 24px;
+        fill: #fff;
+      }
+    }
+
     .upload-btn {
-      margin: 40px 40px 0 480px;
+      margin: 30px 40px 0 480px;
       text-align: right;
 
       .am-button {
