@@ -11,6 +11,16 @@ const headTabs = [
 ];
 
 class Find extends Component {
+    constructor(props) {
+        super(props);
+        this.searchBook = this.searchBook.bind(this);
+    }
+
+    searchBook() {
+        console.log(this.props);
+        this.props.history.push("/search");
+    }
+
     render() {
         return (
             <div className="find-wrapper">
@@ -18,7 +28,7 @@ class Find extends Component {
                     <PageBar mode="light" title="找书" />
                 </section>
                 <section className="find-head-section">
-                    <div className="find-search-bar">
+                    <div className="find-search-bar" onClick={this.searchBook}>
                         <SvgIcon iconClass="search" propClass="icon-search" />
                         <div className="search-bar-text">
                             共有360153本书

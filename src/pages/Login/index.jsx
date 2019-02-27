@@ -32,7 +32,6 @@ class Login extends Component {
         } else {
             // 请求接口
             try {
-                console.log('this', this);
                 const res = await loginApi({ account: this.state.account, password: this.state.password });
                 if (res.status === 200) {
                     Toast.success('登陆成功 !!!', 1);
