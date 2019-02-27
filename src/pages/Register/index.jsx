@@ -5,6 +5,7 @@ import { InputItem, Button, Radio, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { SvgIcon, PageBar } from '../../components';
 import { registerApi } from '../../api/request';
+import cookies from 'js-cookies';
 
 import './Register.scss';
 
@@ -16,6 +17,12 @@ class Register extends Component {
             eyeOpen: false,
             isAgreement: true
         };
+    }
+
+    componentWillMount() {
+        if (cookies.getItem('username')) {
+            this.props.history.push('/home');
+        }
     }
 
     submit = () => {
@@ -33,8 +40,10 @@ class Register extends Component {
                 try {
                     const data = await registerApi(value);
                     console.log('data', data);
+                    this.props.history.push('/login');
                 } catch (err) {
                     console.log('err', err);
+                    Toast.info(err);
                 }
             }
         });

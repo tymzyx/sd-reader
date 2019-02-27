@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 import { InputItem, NavBar, Icon, Button, WhiteSpace, Radio, Toast } from 'antd-mobile';
 import { SvgIcon } from '../../components';
 import { loginApi } from '@/api/request';
+import cookies from 'js-cookies';
 import './Login.scss';
 
 class Login extends Component {
@@ -11,18 +12,18 @@ class Login extends Component {
         this.state = {
             account: '',
             password: '',
-            eye: true,
+            eye: false,
             agree: true
         };
     }
 
     changeAccount = (e) => {
         this.setState({ account: e });
-    }
+    };
 
     changePassword = (e) => {
         this.setState({ password: e });
-    }
+    };
 
     login = async () => {
         if (!this.state.account) {
@@ -32,17 +33,24 @@ class Login extends Component {
         } else {
             // 请求接口
             try {
-                const res = await loginApi({ account: this.state.account, password: this.state.password });
-                if (res.status === 200) {
-                    Toast.success('登陆成功 !!!', 1);
-                    this.props.history.push('/register');
-                    // return (<Redirect to={'chat'} />);
-                }
+                const res = await loginApi({
+                    username: this.state.account,
+                    password: this.state.password
+                });
+                Toast.success('登录成功', 1);
+                this.props.history.goBack();
+                cookies.setItem('username', res.username);
+                // if (res.status === 200) {
+                //     Toast.success('登录成功 !!!', 1);
+                //     this.props.history.push('/register');
+                //     // return (<Redirect to={'chat'} />);
+                // }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
+                Toast.info(e, 1);
             }
         }
-    }
+    };
 
     render() {
         return (
@@ -86,5 +94,9 @@ class Login extends Component {
         );
     }
 }
+
+Login.propTypes = {
+    history: PropTypes.any
+};
 
 export default Login;

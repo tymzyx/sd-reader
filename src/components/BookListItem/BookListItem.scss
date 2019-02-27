@@ -1,0 +1,32 @@
+@import '../../assets/css/baseVar';
+
+.book-list-item {
+  padding: 30px 20px;
+  border-radius: 16px;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0 0 10px 4px #f1f1f1;
+
+  .list-item-head {
+    margin-bottom: 50px;
+
+    h4 {
+      margin: 20px 0;
+      font-size: 32px;
+    }
+    span {
+      color: $inactiveColor;
+    }
+  }
+
+  .list-item-body {
+    width: 100%;
+    white-space: nowrap;
+    overflow: auto;
+
+    .list-item-book {
+      display: inline-block;
+      white-space: normal;
+      margin: 0 6px;
+    }
+  }
+}

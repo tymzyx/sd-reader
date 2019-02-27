@@ -1,0 +1,2 @@
+
+export const COMMON_ACTIVE_TAB_SET = 'COMMON_ACTIVE_TAB_SET';

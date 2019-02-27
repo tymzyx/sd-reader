@@ -1,0 +1,69 @@
+@import '../../../assets/css/baseVar';
+
+.collection-wrapper {
+
+  .collection-main {
+    margin-top: 80px;
+    padding: 30px 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .collection-book {
+      margin: 0 46px 60px;
+    }
+
+    .collection-operation {
+      width: 150px;
+      height: 210px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      position: relative;
+      margin: 0 46px 60px;
+    }
+    .operation-column {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1px;
+      height: 50px;
+      background-color: #aaa;
+    }
+    .operation-row {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 1px;
+      background-color: #aaa;
+    }
+  }
+}
+
+.collection-modal {
+  width: 560px;
+}
+.collection-modal-box {
+  padding: 24px 24px 0;
+  text-align: left;
+
+  .modal-item {
+    padding-bottom: 40px;
+
+    h5 {
+      margin: 0;
+      font-size: $mlSize;
+      color: #000;
+      font-weight: normal;
+    }
+    span {
+      color: $inactiveColor;
+      font-size: $middleSize;
+    }
+  }
+  .modal-item-border {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+  }
+}

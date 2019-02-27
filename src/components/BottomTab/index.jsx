@@ -20,6 +20,14 @@ class BottomTab extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.defaultIndex !== this.state.activeIndex) {
+            this.setState({
+                activeIndex: nextProps.defaultIndex
+            });
+        }
+    }
+
     tabClick = (index, tab) => {
         this.setState({
             activeIndex: index

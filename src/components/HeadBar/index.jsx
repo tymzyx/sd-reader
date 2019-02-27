@@ -7,7 +7,7 @@ import './HeadBar.scss';
 
 class HeadBar extends Component {
     render() {
-        const { type, title, extra, isIcon } = this.props;
+        const { type, title, extra, isIcon, extraClick } = this.props;
 
         return (
             <div className="head-bar-wrapper">
@@ -15,7 +15,7 @@ class HeadBar extends Component {
                     {title}
                 </div>
                 {judgeType(extra) === 'string' ? (
-                    <div className="head-right">
+                    <div className="head-right" onClick={(e) => { extraClick && extraClick(e); }}>
                         {extra && <span>{extra}</span>}
                         {isIcon && <SvgIcon iconClass="arrow" propClass="icon-arrow-right" />}
                     </div>
@@ -26,7 +26,7 @@ class HeadBar extends Component {
 }
 
 HeadBar.defaultProps = {
-    type: 'middle',
+    type: 'ml',
     extra: '',
     isIcon: false
 };
@@ -38,7 +38,8 @@ HeadBar.propTypes = {
         PropTypes.string,
         PropTypes.element
     ]),
-    isIcon: PropTypes.bool
+    isIcon: PropTypes.bool,
+    extraClick: PropTypes.func
 };
 
 export default HeadBar;

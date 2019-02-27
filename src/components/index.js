@@ -11,6 +11,9 @@ import NoData from './NoData';
 import Range from './Range';
 import Gap from './Gap';
 import CommentInput from './CommentInput';
+import Tag from './Tag';
+import CardItem from './CardItem';
+import BookListItem from './BookListItem';
 
 export {
     SvgIcon,
@@ -25,5 +28,8 @@ export {
     NoData,
     Range,
     Gap,
-    CommentInput
+    CommentInput,
+    Tag,
+    CardItem,
+    BookListItem
 };
