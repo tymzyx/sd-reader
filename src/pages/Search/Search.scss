@@ -1,0 +1,73 @@
+.search-page{
+  .am-navbar-light .am-navbar-title{
+    flex: 7;
+  }
+  .am-search{
+    background-color: #fff;
+    width: 100%;
+  }
+  .am-search-input{
+    background-color: #eee;
+  }
+  .search-box{
+    width: 80%;
+    .icon-search{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .search-content{
+    padding: 0 40px;
+    h5{
+      font-weight: normal;
+    }
+    .tag-title{
+      .change-tag{
+        color: #aaa;
+        font-size: 12px;
+      }
+      display: flex;
+      justify-content: space-between;
+    }
+    .tag-container{
+      display: flex;
+      .tag{
+        padding: 10px 20px;
+        font-size: 13px;
+        border: 0.5px solid darkred;
+        color: darkred;
+        border-radius: 10px;
+      }
+      .margin-right{
+        margin-right: 10px;
+      }
+    }
+    .search-history{
+      font-size: 14px;
+      color: #aaa;
+    }
+    .delete-color{
+      fill: #aaa;
+    }
+    .des{
+      display: flex;
+      .detail {
+        img{
+          width: 120px;
+          height: 150px;
+        }
+        .book-title{
+          font-size: 10px;
+          color: #bbb;
+          padding: 0;
+          margin: 0;
+          width: 120px;
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
