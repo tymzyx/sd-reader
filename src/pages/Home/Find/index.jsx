@@ -42,8 +42,8 @@ class Find extends Component {
         <img src={avatar} className="topic-avatar" alt="" />
     );
 
-    toPage = () => {
-        console.log(123);
+    toPage = (url, params) => {
+        url && this.props.history.push({ pathname: url, params });
     };
 
     itemExtra = () => (
@@ -113,7 +113,12 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-hot-novel">
-                        <HeadBar title="热门小说" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar
+                            title="热门小说"
+                            isIcon
+                            extra="更多"
+                            extraClick={() => { this.toPage('/hots', 'novel'); }}
+                        />
                         <div className="hot-novel-box">
                             {new Array(5).fill(1).map((i, index) => (
                                 <CardItem

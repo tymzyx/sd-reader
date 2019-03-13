@@ -11,7 +11,8 @@ import {
     BookUpload,
     Set,
     Search,
-    Categories
+    Categories,
+    Hots
 } from './pages';
 import Entry from './components/Entry';
 
@@ -34,6 +35,7 @@ class App extends Component {
                             <Route path="/set" component={Set} />
                             <Route path="/search" component={Search} />
                             <Route path="/categories" component={Categories} />
+                            <Route path="/hots" component={Hots} />
                         </Switch>
                     </div>
                 </BrowserRouter>

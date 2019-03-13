@@ -8,6 +8,7 @@ import BookUpload from './BookUpload';
 import Set from './Set';
 import Search from './Search';
 import Categories from './Categories';
+import Hots from './Hots';
 
 export {
     Home,
@@ -19,5 +20,6 @@ export {
     BookUpload,
     Set,
     Search,
-    Categories
+    Categories,
+    Hots
 };
