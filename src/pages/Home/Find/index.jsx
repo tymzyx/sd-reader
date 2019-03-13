@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'antd-mobile';
 import {
+    TabElement,
     SvgIcon,
     HeadBar,
     PageBar,
@@ -10,9 +12,9 @@ import {
     BookTag,
     BookListItem
 } from '../../../components';
+import { categoryTags } from '../../../utils/variables';
 
 import './Find.scss';
-import TabElement from "../../../components/TabElement";
 
 const avatar = require('../../../assets/image/default-avatar.png');
 const subjectImg = require('../../../assets/image/subject.jpg');
@@ -21,17 +23,6 @@ const headTabs = [
     { name: '书摘', svg: 'abstract', url: '' },
     { name: '广场', svg: 'talk', url: '' },
     { name: '书店', svg: 'building', url: '' }
-];
-
-const categoryTags = [
-    { name: '小说', key: 'novel', url: '' },
-    { name: '文学', key: 'literature', url: '' },
-    { name: '成功', key: 'success', url: '' },
-    { name: '营销管理', key: 'marketing', url: '' },
-    { name: '经济', key: 'economy', url: '' },
-    { name: '计算机', key: 'computer', url: '' },
-    { name: '科普', key: 'science', url: '' },
-    { name: '社科', key: 'social', url: '' }
 ];
 
 const rankList = [
@@ -202,5 +193,9 @@ class Find extends Component {
         );
     }
 }
+
+Find.propTypes = {
+    history: PropTypes.any
+};
 
 export default Find;

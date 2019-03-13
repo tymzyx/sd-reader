@@ -1,0 +1,25 @@
+.categories-wrapper {
+  overflow: hidden;
+
+  .categories-body {
+    margin-top: 80px;
+
+    .categories-tab-header {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100vw;
+      z-index: 999;
+    }
+
+    .categories-tab-content {
+      padding: 30px 10px;
+      display: flex;
+      flex-wrap: wrap;
+
+      .categories-book {
+        margin: 0 20px 60px;
+      }
+    }
+  }
+}

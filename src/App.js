@@ -10,7 +10,8 @@ import {
     CommentDetail,
     BookUpload,
     Set,
-    Search
+    Search,
+    Categories
 } from './pages';
 import Entry from './components/Entry';
 
@@ -32,6 +33,7 @@ class App extends Component {
                             <Route path="/upload" component={BookUpload} />
                             <Route path="/set" component={Set} />
                             <Route path="/search" component={Search} />
+                            <Route path="/categories" component={Categories} />
                         </Switch>
                     </div>
                 </BrowserRouter>

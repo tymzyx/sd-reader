@@ -7,5 +7,17 @@ import CommentDetail from './CommentDetail';
 import BookUpload from './BookUpload';
 import Set from './Set';
 import Search from './Search';
+import Categories from './Categories';
 
-export { Home, BookDetail, Login, Register, Reader, CommentDetail, BookUpload, Set, Search };
+export {
+    Home,
+    BookDetail,
+    Login,
+    Register,
+    Reader,
+    CommentDetail,
+    BookUpload,
+    Set,
+    Search,
+    Categories
+};
