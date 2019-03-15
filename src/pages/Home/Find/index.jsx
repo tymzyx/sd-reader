@@ -12,7 +12,7 @@ import {
     BookTag,
     BookListItem
 } from '../../../components';
-import { categoryTags } from '../../../utils/variables';
+import { categoryTags, rankList } from '../../../utils/variables';
 
 import './Find.scss';
 
@@ -23,13 +23,6 @@ const headTabs = [
     { name: '书摘', svg: 'abstract', url: '' },
     { name: '广场', svg: 'talk', url: '' },
     { name: '书店', svg: 'building', url: '' }
-];
-
-const rankList = [
-    { name: '借阅榜', color: '#87CEFA', url: '' },
-    { name: '热门榜', color: '#FFC125', url: '' },
-    { name: '好评榜', color: '#F08080', url: '' },
-    { name: '畅销榜', color: '#66CDAA', url: '' }
 ];
 
 class Find extends Component {
