@@ -9,6 +9,7 @@ import Set from './Set';
 import Search from './Search';
 import Categories from './Categories';
 import Hots from './Hots';
+import Ranks from './Ranks';
 
 export {
     Home,
@@ -21,5 +22,6 @@ export {
     Set,
     Search,
     Categories,
-    Hots
+    Hots,
+    Ranks
 };

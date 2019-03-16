@@ -12,7 +12,8 @@ import {
     Set,
     Search,
     Categories,
-    Hots
+    Hots,
+    Ranks
 } from './pages';
 import Entry from './components/Entry';
 
@@ -36,6 +37,7 @@ class App extends Component {
                             <Route path="/search" component={Search} />
                             <Route path="/categories" component={Categories} />
                             <Route path="/hots" component={Hots} />
+                            <Route path="/ranks" component={Ranks} />
                         </Switch>
                     </div>
                 </BrowserRouter>

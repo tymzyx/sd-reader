@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd-mobile';
-import { PageBar } from '../../components';
+import { PageBar, CardItem } from '../../components';
 import { rankList } from '../../utils/variables';
 
 import './Ranks.scss';
@@ -24,9 +24,13 @@ class Ranks extends Component {
                 marginTop: 43.5
             }}
         >
-            {new Array(14).fill(1).map((item, index) => (
+            {new Array(10).fill(1).map((item, index) => (
                 <div key={tab.key + item + index} className="ranks-book">
-                    123
+                    <CardItem
+                        title={`${index < 3 ? `top${index + 1} ` : ''}风雨浓，胭脂乱`}
+                        titleAddition="尼罗式的红玫瑰白玫瑰尼罗式的红玫瑰白玫瑰尼罗式的红玫瑰白玫瑰尼罗式的红玫瑰白玫瑰尼罗式的红玫瑰白玫瑰"
+                        style={{ marginBottom: 12 }}
+                    />
                 </div>
             ))}
         </div>
@@ -38,7 +42,7 @@ class Ranks extends Component {
                 <section className="ranks-title common-title">
                     <PageBar
                         mode="light"
-                        title="图书分类"
+                        title="榜单"
                         isLeft
                     />
                 </section>
