@@ -6,14 +6,15 @@ import './Hots.scss';
 import BookTag from "../../components/BookTag";
 
 const mapTypes = {
-    book: '图书',
-    novel: '小说'
+    book: '热门图书',
+    novel: '热门小说',
+    share: '最新分享'
 };
 
 class Hots extends Component {
     componentWillMount() {
         const pageType = this.props.location.params || 'novel';
-        this.title = `热门${mapTypes[pageType]}`;
+        this.title = mapTypes[pageType];
     }
 
     render() {

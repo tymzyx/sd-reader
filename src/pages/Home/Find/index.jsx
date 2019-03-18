@@ -74,7 +74,7 @@ class Find extends Component {
                 <Gap />
                 <section className="find-main-section">
                     <div className="find-topic">
-                        <HeadBar title="话题" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="话题" isIcon extra="更多" extraClick={() => { this.toPage(''); }} />
                         <div className="topic-card">
                             <Card>
                                 <Card.Header
@@ -89,7 +89,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-category">
-                        <HeadBar title="分类" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="分类" isIcon extra="更多" extraClick={() => { this.toPage('/categories'); }} />
                         <div className="category-box">
                             {categoryTags.map((item, index) => (
                                 <Tag key={index} style={{ marginBottom: 14 }}>
@@ -99,7 +99,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-subject">
-                        <HeadBar title="专题" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="专题" isIcon extra="更多" extraClick={() => { this.toPage(''); }} />
                         <div className="subject-box">
                             <img src={subjectImg} alt="" />
                             <img src={subjectImg} alt="" />
@@ -125,7 +125,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-analysis">
-                        <HeadBar title="好书解读" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="好书解读" isIcon extra="更多" extraClick={() => { this.toPage('/analysis'); }} />
                         <div className="analysis-box">
                             <BookTag size="large" isEllipsis={false} />
                             <BookTag size="large" isEllipsis={false} />
@@ -133,7 +133,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-hot-book">
-                        <HeadBar title="热门图书" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="热门图书" isIcon extra="更多" extraClick={() => { this.toPage('/hots', 'book'); }} />
                         <div className="hot-book-box">
                             <BookTag size="large" isEllipsis={false} />
                             <BookTag size="large" isEllipsis={false} />
@@ -141,7 +141,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-recent-share">
-                        <HeadBar title="最新分享" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="最新分享" isIcon extra="更多" extraClick={() => { this.toPage('/hots', 'share'); }} />
                         <div className="recent-share-box">
                             {new Array(5).fill(1).map((i, index) => (
                                 <CardItem
@@ -155,7 +155,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-book-list">
-                        <HeadBar title="书单" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="书单" isIcon extra="更多" extraClick={() => { this.toPage('/lists'); }} />
                         {new Array(3).fill(1).map((i, index) => (
                             <div key={i + index} className="book-list-box">
                                 <BookListItem

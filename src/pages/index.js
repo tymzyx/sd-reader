@@ -9,7 +9,9 @@ import Set from './Set';
 import Search from './Search';
 import Categories from './Categories';
 import Hots from './Hots';
-import Ranks from './Ranks';
+import Ranks from './Ranks'; // 榜单
+import BookList from './BookList'; // 书单
+import BookAnalysis from './BookAnalysis'; //好书解读
 
 export {
     Home,
@@ -23,5 +25,7 @@ export {
     Search,
     Categories,
     Hots,
-    Ranks
+    Ranks,
+    BookList,
+    BookAnalysis
 };

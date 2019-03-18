@@ -10,7 +10,7 @@ const tabs = rankList.map(item => ({ title: item.name, key: item.key }));
 const colors = ['gold', 'silver', '#BA6E40'];
 
 class Ranks extends Component {
-    renderTabBar = props => {
+    renderTabBar = (props) => {
         let activeTab = this.props.location.params;
         if (!activeTab && activeTab !== 0) {
             activeTab = 0;
