@@ -167,13 +167,14 @@ class Find extends Component {
                         ))}
                     </div>
                     <div className="find-rank">
-                        <HeadBar title="榜单" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="榜单" isIcon extra="更多" extraClick={() => { this.toPage('/ranks', 0); }} />
                         <div className="rank-box">
                             {rankList.map((item, index) => (
                                 <div
                                     key={index}
                                     className="rank-type"
                                     style={{ backgroundColor: item.color }}
+                                    onClick={() => { this.toPage('/ranks', index); }}
                                 >
                                     <h4>{item.name}</h4>
                                     <span
