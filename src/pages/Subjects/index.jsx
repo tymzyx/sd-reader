@@ -14,7 +14,7 @@ class Subjects extends Component {
                 </section>
                 <section className="subjects-body">
                     {new Array(7).fill(1).map((num, index) => (
-                        <div className="subjects-item">
+                        <div className="subjects-item" key={num + index}>
                             <img src={subjectImg} alt="" />
                         </div>
                     ))}
