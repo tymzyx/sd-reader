@@ -12,6 +12,7 @@ import Hots from './Hots';
 import Ranks from './Ranks'; // 榜单
 import BookList from './BookList'; // 书单
 import BookAnalysis from './BookAnalysis'; //好书解读
+import Subjects from './Subjects'; // 专题
 
 export {
     Home,
@@ -27,5 +28,6 @@ export {
     Hots,
     Ranks,
     BookList,
-    BookAnalysis
+    BookAnalysis,
+    Subjects
 };

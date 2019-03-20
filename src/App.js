@@ -15,7 +15,8 @@ import {
     Hots,
     Ranks,
     BookList,
-    BookAnalysis
+    BookAnalysis,
+    Subjects
 } from './pages';
 import Entry from './components/Entry';
 
@@ -42,6 +43,7 @@ class App extends Component {
                             <Route path="/ranks" component={Ranks} />
                             <Route path="/lists" component={BookList} />
                             <Route path="/analysis" component={BookAnalysis} />
+                            <Route path="/subjects" component={Subjects} />
                         </Switch>
                     </div>
                 </BrowserRouter>

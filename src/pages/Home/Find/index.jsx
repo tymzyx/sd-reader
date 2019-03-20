@@ -92,14 +92,18 @@ class Find extends Component {
                         <HeadBar title="分类" isIcon extra="更多" extraClick={() => { this.toPage('/categories'); }} />
                         <div className="category-box">
                             {categoryTags.map((item, index) => (
-                                <Tag key={index} style={{ marginBottom: 14 }}>
+                                <Tag
+                                    key={index}
+                                    style={{ marginBottom: 14 }}
+                                    click={() => { this.toPage('/categories', index); }}
+                                >
                                     {item.name}
                                 </Tag>
                             ))}
                         </div>
                     </div>
                     <div className="find-subject">
-                        <HeadBar title="专题" isIcon extra="更多" extraClick={() => { this.toPage(''); }} />
+                        <HeadBar title="专题" isIcon extra="更多" extraClick={() => { this.toPage('/subjects'); }} />
                         <div className="subject-box">
                             <img src={subjectImg} alt="" />
                             <img src={subjectImg} alt="" />

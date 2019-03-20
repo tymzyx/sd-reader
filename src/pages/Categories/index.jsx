@@ -8,14 +8,21 @@ import './Categories.scss';
 const tabs = categoryTags.map(item => ({ title: item.name, key: item.key }));
 
 class Categories extends Component {
-    renderTabBar = props => (
-        <div className="categories-tab-header">
-            <Tabs.DefaultTabBar
-                {...props}
-                page={5}
-            />
-        </div>
-    );
+    renderTabBar = (props) => {
+        let activeTab = this.props.location.params;
+        if (!activeTab && activeTab !== 0) {
+            activeTab = 0;
+        }
+        return (
+            <div className="categories-tab-header">
+                <Tabs.DefaultTabBar
+                    {...props}
+                    activeTab={activeTab}
+                    page={5}
+                />
+            </div>
+        );
+    };
 
     renderContent = tab => (
         <div
