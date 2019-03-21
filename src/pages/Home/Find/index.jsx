@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'antd-mobile';
 import {
+    TabElement,
     SvgIcon,
     HeadBar,
     PageBar,
@@ -10,9 +12,9 @@ import {
     BookTag,
     BookListItem
 } from '../../../components';
+import { categoryTags, rankList } from '../../../utils/variables';
 
 import './Find.scss';
-import TabElement from "../../../components/TabElement";
 
 const avatar = require('../../../assets/image/default-avatar.png');
 const subjectImg = require('../../../assets/image/subject.jpg');
@@ -21,24 +23,6 @@ const headTabs = [
     { name: '书摘', svg: 'abstract', url: '' },
     { name: '广场', svg: 'talk', url: '' },
     { name: '书店', svg: 'building', url: '' }
-];
-
-const categoryTags = [
-    { name: '小说', key: 'novel', url: '' },
-    { name: '文学', key: 'literature', url: '' },
-    { name: '成功', key: 'success', url: '' },
-    { name: '营销管理', key: 'marketing', url: '' },
-    { name: '经济', key: 'economy', url: '' },
-    { name: '计算机', key: 'computer', url: '' },
-    { name: '科普', key: 'science', url: '' },
-    { name: '社科', key: 'social', url: '' }
-];
-
-const rankList = [
-    { name: '借阅榜', color: '#87CEFA', url: '' },
-    { name: '热门榜', color: '#FFC125', url: '' },
-    { name: '好评榜', color: '#F08080', url: '' },
-    { name: '畅销榜', color: '#66CDAA', url: '' }
 ];
 
 class Find extends Component {
@@ -51,8 +35,8 @@ class Find extends Component {
         <img src={avatar} className="topic-avatar" alt="" />
     );
 
-    toPage = () => {
-        console.log(123);
+    toPage = (url, params) => {
+        url && this.props.history.push({ pathname: url, params });
     };
 
     itemExtra = () => (
@@ -90,7 +74,7 @@ class Find extends Component {
                 <Gap />
                 <section className="find-main-section">
                     <div className="find-topic">
-                        <HeadBar title="话题" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="话题" isIcon extra="更多" extraClick={() => { this.toPage(''); }} />
                         <div className="topic-card">
                             <Card>
                                 <Card.Header
@@ -105,24 +89,33 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-category">
-                        <HeadBar title="分类" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="分类" isIcon extra="更多" extraClick={() => { this.toPage('/categories'); }} />
                         <div className="category-box">
                             {categoryTags.map((item, index) => (
-                                <Tag key={index} style={{ marginBottom: 14 }}>
+                                <Tag
+                                    key={index}
+                                    style={{ marginBottom: 14 }}
+                                    click={() => { this.toPage('/categories', index); }}
+                                >
                                     {item.name}
                                 </Tag>
                             ))}
                         </div>
                     </div>
                     <div className="find-subject">
-                        <HeadBar title="专题" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="专题" isIcon extra="更多" extraClick={() => { this.toPage('/subjects'); }} />
                         <div className="subject-box">
                             <img src={subjectImg} alt="" />
                             <img src={subjectImg} alt="" />
                         </div>
                     </div>
                     <div className="find-hot-novel">
-                        <HeadBar title="热门小说" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar
+                            title="热门小说"
+                            isIcon
+                            extra="更多"
+                            extraClick={() => { this.toPage('/hots', 'novel'); }}
+                        />
                         <div className="hot-novel-box">
                             {new Array(5).fill(1).map((i, index) => (
                                 <CardItem
@@ -136,7 +129,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-analysis">
-                        <HeadBar title="好书解读" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="好书解读" isIcon extra="更多" extraClick={() => { this.toPage('/analysis'); }} />
                         <div className="analysis-box">
                             <BookTag size="large" isEllipsis={false} />
                             <BookTag size="large" isEllipsis={false} />
@@ -144,7 +137,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-hot-book">
-                        <HeadBar title="热门图书" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="热门图书" isIcon extra="更多" extraClick={() => { this.toPage('/hots', 'book'); }} />
                         <div className="hot-book-box">
                             <BookTag size="large" isEllipsis={false} />
                             <BookTag size="large" isEllipsis={false} />
@@ -152,7 +145,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-recent-share">
-                        <HeadBar title="最新分享" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="最新分享" isIcon extra="更多" extraClick={() => { this.toPage('/hots', 'share'); }} />
                         <div className="recent-share-box">
                             {new Array(5).fill(1).map((i, index) => (
                                 <CardItem
@@ -166,7 +159,7 @@ class Find extends Component {
                         </div>
                     </div>
                     <div className="find-book-list">
-                        <HeadBar title="书单" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="书单" isIcon extra="更多" extraClick={() => { this.toPage('/lists'); }} />
                         {new Array(3).fill(1).map((i, index) => (
                             <div key={i + index} className="book-list-box">
                                 <BookListItem
@@ -178,13 +171,14 @@ class Find extends Component {
                         ))}
                     </div>
                     <div className="find-rank">
-                        <HeadBar title="榜单" isIcon extra="更多" extraClick={this.toPage} />
+                        <HeadBar title="榜单" isIcon extra="更多" extraClick={() => { this.toPage('/ranks', 0); }} />
                         <div className="rank-box">
                             {rankList.map((item, index) => (
                                 <div
                                     key={index}
                                     className="rank-type"
                                     style={{ backgroundColor: item.color }}
+                                    onClick={() => { this.toPage('/ranks', index); }}
                                 >
                                     <h4>{item.name}</h4>
                                     <span
@@ -202,5 +196,9 @@ class Find extends Component {
         );
     }
 }
+
+Find.propTypes = {
+    history: PropTypes.any
+};
 
 export default Find;

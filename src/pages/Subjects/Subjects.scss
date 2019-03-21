@@ -1,0 +1,19 @@
+.subjects-wrapper {
+
+  .subjects-body {
+    padding-top: 80px;
+
+    .subjects-item {
+      margin-top: 40px;
+      text-align: center;
+
+      img {
+        width: 660px;
+        max-height: 320px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 4px 16px 6px #ccc;
+      }
+    }
+  }
+}

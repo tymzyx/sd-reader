@@ -1,0 +1,32 @@
+@import '../../assets/css/baseVar';
+
+.categories-wrapper {
+
+  .categories-body {
+    padding-top: 80px;
+
+    .categories-tab-header {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100vw;
+      z-index: 999;
+    }
+
+    .categories-tab-content {
+      padding: 30px 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      .categories-book {
+        margin: 0 20px 60px;
+      }
+    }
+  }
+
+  .icon-search {
+    width: 32px;
+    height: 32px;
+    fill: $inactiveColor;
+  }
+}

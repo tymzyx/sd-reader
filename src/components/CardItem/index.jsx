@@ -27,7 +27,7 @@ class CardItem extends Component {
 CardItem.propTypes = {
     image: PropTypes.string,
     extra: PropTypes.node,
-    title: PropTypes.string,
+    title: PropTypes.node,
     titleAddition: PropTypes.string,
     style: PropTypes.object
 };

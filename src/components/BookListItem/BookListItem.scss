@@ -7,10 +7,10 @@
   box-shadow: 0 0 10px 4px #f1f1f1;
 
   .list-item-head {
-    margin-bottom: 50px;
+    margin-bottom: 32px;
 
     h4 {
-      margin: 20px 0;
+      margin: 10px 0 20px;
       font-size: 32px;
     }
     span {
@@ -21,7 +21,9 @@
   .list-item-body {
     width: 100%;
     white-space: nowrap;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
     .list-item-book {
       display: inline-block;
