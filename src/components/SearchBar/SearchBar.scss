@@ -1,0 +1,41 @@
+@import '../../assets/css/baseVar';
+
+.search-bar-wrapper {
+  width: 100%;
+  line-height: 50px;
+  position: relative;
+
+  input {
+    background-color: #fafafa;
+    width: 100%;
+    line-height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding-left: 60px;
+    font-size: $middleSize;
+  }
+
+  .search-bar-left {
+    position: absolute;
+    left: 12px;
+    top: 8px;
+
+    .icon-search {
+      width: 36px;
+      height: 36px;
+      fill: $inactiveColor;
+    }
+  }
+  .search-bar-right {
+    position: absolute;
+    right: 20px;
+    top: 4px;
+
+    .icon-cross {
+      width: 30px;
+      height: 30px;
+      fill: $inactiveColor;
+    }
+  }
+}

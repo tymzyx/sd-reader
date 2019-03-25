@@ -14,6 +14,7 @@ import CommentInput from './CommentInput';
 import Tag from './Tag';
 import CardItem from './CardItem';
 import BookListItem from './BookListItem';
+import SearchBar from './SearchBar';
 
 export {
     SvgIcon,
@@ -31,5 +32,6 @@ export {
     CommentInput,
     Tag,
     CardItem,
-    BookListItem
+    BookListItem,
+    SearchBar
 };

@@ -1,0 +1,31 @@
+@import '../../../assets/css/baseVar';
+
+.search-result-wrapper {
+
+  .search-result-head {
+    text-align: center;
+    padding: 50px 0;
+
+    h4 {
+      margin: 0 0 20px;
+      font-size: $largeSize;
+      font-weight: normal;
+    }
+
+    span {
+      color: $inactiveColor;
+    }
+  }
+
+  .search-result-list {
+
+    .list-title {
+      line-height: 60px;
+      background-color: $bgColor;
+      padding-left: 20px;
+    }
+    .list-items {
+      padding: 30px;
+    }
+  }
+}

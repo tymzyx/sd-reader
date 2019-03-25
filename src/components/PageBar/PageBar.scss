@@ -15,6 +15,9 @@
   .am-navbar-title {
     font-size: $hugeSize;
   }
+  .am-navbar-light {
+    color: $activeColor;
+  }
 }
 
 .nav-bar-opacity {

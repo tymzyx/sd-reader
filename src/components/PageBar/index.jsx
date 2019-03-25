@@ -33,7 +33,9 @@ class PageBar extends Component {
                     rightContent={right}
                     mode={mode}
                 >
-                    {title}
+                    {title ? <>title</> : (
+                        this.props.children
+                    )}
                 </NavBar>
             </div>
         );
@@ -45,9 +47,10 @@ PageBar.propTypes = {
     left: PropTypes.node,
     isLeft: PropTypes.bool,
     right: PropTypes.node,
-    title: PropTypes.string,
+    title: PropTypes.node,
     history: PropTypes.any,
-    isOpacity: PropTypes.bool
+    isOpacity: PropTypes.bool,
+    children: PropTypes.any
 };
 
 export default withRouter(PageBar);
