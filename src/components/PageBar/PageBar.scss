@@ -15,8 +15,9 @@
   .am-navbar-title {
     font-size: $hugeSize;
   }
-  .am-navbar-light {
+  .am-navbar-right, .am-navbar-light {
     color: $activeColor;
+    font-size: $middleSize;
   }
 }
 

@@ -28,4 +28,19 @@
       padding: 30px;
     }
   }
+
+  .search-no-result {
+    padding-top: 200px;
+
+    .no-result-wish {
+      margin: 0 auto;
+      width: 260px;
+      line-height: 260px;
+      border-radius: 50%;
+      box-shadow: 0 0 8px 8px #ddd;
+      text-align: center;
+      font-size: $hugeSize;
+      color: $activeColor;
+    }
+  }
 }

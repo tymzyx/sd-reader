@@ -64,6 +64,17 @@ class BookUpload extends Component {
         });
     };
 
+    noRequiredChange = (val, type) => {
+        const { uploadExtra } = this.state;
+        this.setState({
+            disabled: false,
+            uploadExtra: {
+                ...uploadExtra,
+                [type]: val
+            }
+        });
+    };
+
     beforeUploadBook = (file) => {
         console.log('beforeUpload', file.name);
     };
@@ -131,6 +142,10 @@ class BookUpload extends Component {
     render() {
         const { disabled, uploadExtra, coverImg } = this.state;
         const { getFieldProps } = this.props.form;
+        const uploadParams = {};
+        Object.keys(uploadExtra).forEach((key) => {
+            if (uploadExtra[key]) uploadParams[key] = uploadExtra[key];
+        });
 
         return (
             <div className="book-upload-wrapper">
@@ -172,7 +187,9 @@ class BookUpload extends Component {
                         </Picker>
                         <TextareaItem
                             rows={3}
-                            {...getFieldProps('brief')}
+                            {...getFieldProps('brief', {
+                                onChange: (val) => { this.noRequiredChange(val, 'brief'); }
+                            })}
                             title="简介"
                             placeholder="简介，100个字以内"
                         />
@@ -203,7 +220,7 @@ class BookUpload extends Component {
                         <Upload
                             name="book"
                             action="/api/book/upload"
-                            data={{ ...uploadExtra, share: 'sl' }}
+                            data={{ ...uploadParams, share: 'sl' }}
                             beforeUpload={this.beforeUploadBook}
                             onStart={this.onStartBook}
                             onSuccess={this.onSuccessBook}

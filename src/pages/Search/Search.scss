@@ -1,3 +1,5 @@
+@import '../../assets/css/baseVar';
+
 .search-page{
   .am-navbar-light .am-navbar-title{
     flex: 7;
@@ -19,59 +21,78 @@
 
   .search-page-body {
     padding-top: 80px;
-  }
+    position: relative;
 
-  .search-content{
-    padding: 0 40px;
-    h5{
-      font-weight: normal;
-    }
-    .tag-title{
-      .change-tag{
+    .search-content{
+      padding: 0 40px;
+      h5{
+        font-weight: normal;
+      }
+      .tag-title{
+        .change-tag{
+          color: #aaa;
+          font-size: 12px;
+        }
+        display: flex;
+        justify-content: space-between;
+      }
+      .tag-container{
+        display: flex;
+        .tag{
+          padding: 10px 20px;
+          font-size: 13px;
+          border: 0.5px solid darkred;
+          color: darkred;
+          border-radius: 10px;
+        }
+        .margin-right{
+          margin-right: 10px;
+        }
+      }
+      .search-history{
+        font-size: 14px;
         color: #aaa;
-        font-size: 12px;
       }
-      display: flex;
-      justify-content: space-between;
-    }
-    .tag-container{
-      display: flex;
-      .tag{
-        padding: 10px 20px;
-        font-size: 13px;
-        border: 0.5px solid darkred;
-        color: darkred;
-        border-radius: 10px;
+      .delete-color{
+        fill: #aaa;
       }
-      .margin-right{
-        margin-right: 10px;
-      }
-    }
-    .search-history{
-      font-size: 14px;
-      color: #aaa;
-    }
-    .delete-color{
-      fill: #aaa;
-    }
-    .des{
-      display: flex;
-      .detail {
-        img{
-          width: 120px;
-          height: 150px;
+      .des{
+        display: flex;
+        .detail {
+          img{
+            width: 120px;
+            height: 150px;
+          }
+          .book-title{
+            font-size: 10px;
+            color: #bbb;
+            padding: 0;
+            margin: 0;
+            width: 120px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
-        .book-title{
-          font-size: 10px;
-          color: #bbb;
-          padding: 0;
-          margin: 0;
-          width: 120px;
-          text-align: center;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+      }
+    }
+
+    .search-val-items {
+      width: 750px;
+      height: calc(100vh - 80px);
+      padding: 20px 0;
+      background-color: #fff;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      overflow-y: scroll;
+      box-sizing: border-box;
+
+      .search-val-item {
+        line-height: 68px;
+        padding-left: 100px;
+        color: $inactiveColor;
       }
     }
   }
