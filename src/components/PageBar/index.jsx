@@ -33,7 +33,7 @@ class PageBar extends Component {
                     rightContent={right}
                     mode={mode}
                 >
-                    {title ? <>title</> : (
+                    {title ? <>{title}</> : (
                         this.props.children
                     )}
                 </NavBar>

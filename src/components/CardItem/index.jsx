@@ -15,7 +15,9 @@ class CardItem extends Component {
                 <div className="card-right">
                     <div className="card-right-content">
                         <span className="card-title">{title}</span>
-                        <span className="card-title-add">{titleAddition}</span>
+                        <span className="card-title-add">
+                            {titleAddition.length > 50 ? `${titleAddition.substring(0, 50)}...` : titleAddition}
+                        </span>
                     </div>
                     {extra}
                 </div>

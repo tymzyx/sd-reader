@@ -20,12 +20,14 @@ class BookDetail extends Component {
     }
 
     componentWillMount() {
-        this.getBookInfo();
+        let bookId = this.props.location.id;
+        bookId = bookId || 'c4ec5791-506a-11e9-8465-38c9861033db';
+        this.fetchBookInfo(bookId);
     }
 
-    getBookInfo = async () => {
+    fetchBookInfo = async (bookId) => {
         try {
-            const data = await bookDetail({ bookId: '1' });
+            const data = await bookDetail({ bookId });
             this.setState({
                 bookInfo: data
             });
@@ -43,6 +45,13 @@ class BookDetail extends Component {
 
     shareAvatar = () => (
         <img src={avatar} className="share-avatar" alt="" />
+    );
+
+    headRightNode = () => (
+        <div className="head-right-content">
+            <SvgIcon iconClass="edit" propClass="icon-edit" />
+            <SvgIcon iconClass="error-msg" propClass="icon-error" />
+        </div>
     );
 
     commentNode = () => (
@@ -73,7 +82,12 @@ class BookDetail extends Component {
         return (
             <div className="book-detail-wrapper">
                 <section className="book-detail-head common-title">
-                    <PageBar mode="light" title="图书详情" />
+                    <PageBar
+                        mode="light"
+                        title="图书详情"
+                        isLeft
+                        right={this.headRightNode()}
+                    />
                 </section>
                 <section className="book-detail-main">
                     <div className="detail-head">
@@ -181,7 +195,8 @@ class BookDetail extends Component {
 }
 
 BookDetail.propTypes = {
-    history: PropTypes.any
+    history: PropTypes.any,
+    location: PropTypes.any
 };
 
 export default BookDetail;

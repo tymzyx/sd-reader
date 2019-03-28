@@ -2,27 +2,60 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd-mobile';
 import { PageBar, BookTag, SvgIcon } from '../../components';
 import { categoryTags } from '../../utils/variables';
+import { bookCategoryList } from '../../api/request/book';
 
 import './Categories.scss';
 
 const tabs = categoryTags.map(item => ({ title: item.name, key: item.key }));
 
 class Categories extends Component {
-    renderTabBar = (props) => {
+    constructor(props) {
+        super(props);
+
         let activeTab = this.props.location.params;
         if (!activeTab && activeTab !== 0) {
             activeTab = 0;
         }
-        return (
-            <div className="categories-tab-header">
-                <Tabs.DefaultTabBar
-                    {...props}
-                    activeTab={activeTab}
-                    page={5}
-                />
-            </div>
-        );
+
+        this.state = {
+            dataLists: {
+                novel: [],
+                literature: [],
+                success: [],
+                marketing: [],
+                economy: [],
+                computer: [],
+                science: [],
+                social: []
+            },
+            activeTabNum: activeTab
+        };
+    }
+
+    componentWillMount() {
+        this.fetchAll();
+    }
+
+    fetchAll = async () => {
+        const promiseList = [];
+        tabs.forEach((item) => {
+            promiseList.push(this.fetchList(item.key, 0));
+        });
+        try {
+            await Promise.all(promiseList);
+        } catch (err) {
+            console.log(err);
+        }
     };
+
+    renderTabBar = props => (
+        <div className="categories-tab-header">
+            <Tabs.DefaultTabBar
+                {...props}
+                page={5}
+            />
+        </div>
+    );
 
     renderContent = tab => (
         <div
@@ -31,15 +64,34 @@ class Categories extends Component {
                 marginTop: 43.5
             }}
         >
-            {new Array(14).fill(1).map((item, index) => (
-                <div key={tab.key + item + index} className="categories-book">
-                    <BookTag size="large" isEllipsis={false} />
+            {this.state.dataLists[tab.key].map((item, index) => (
+                <div key={index} className="categories-book">
+                    <BookTag
+                        size="large"
+                        isEllipsis={false}
+                        title={item.title}
+                        image={item.image}
+                    />
                 </div>
             ))}
         </div>
     );
 
+    fetchList = async (type, startNum) => {
+        try {
+            const ret = await bookCategoryList({ type, startNum, limit: 18 });
+            const { dataLists } = this.state;
+            dataLists[type] = ret.list;
+            this.setState({
+                dataLists: { ...dataLists }
+            });
+        } catch (err) {
+            console.log('error', err);
+        }
+    };
+
     render() {
+        const { activeTabNum } = this.state;
         return (
             <div className="categories-wrapper">
                 <section className="categories-title common-title">
@@ -64,7 +116,10 @@ class Categories extends Component {
                         }}
                         tabBarActiveTextColor="#333"
                         tabBarInactiveTextColor="#aaa"
-                        renderTabBar={this.renderTabBar}
+                        renderTabBar={props => (
+                            this.renderTabBar({ ...props, activeTab: activeTabNum })
+                        )}
+                        onChange={(tab) => { this.setState({ activeTabNum: tabs.indexOf(tab) }); }}
                     >
                         {this.renderContent}
                     </Tabs>

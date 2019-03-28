@@ -23,6 +23,7 @@ class SearchResult extends Component {
                                     title={item.title}
                                     titleAddition={item.brief}
                                     style={{ marginBottom: 12 }}
+                                    image={item.image}
                                 />
                             ))}
                         </div>

@@ -4,33 +4,39 @@
   width: 100%;
   line-height: 50px;
   position: relative;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #fafafa;
 
   input {
-    background-color: #fafafa;
+    background: transparent;
     width: 100%;
     line-height: 50px;
-    border: 1px solid #ddd;
+    border: 0 none;
     border-radius: 8px;
     box-sizing: border-box;
     padding-left: 60px;
     font-size: $middleSize;
+    outline: none;
+    -webkit-appearance: none;
   }
 
   .search-bar-left {
     position: absolute;
     left: 12px;
-    top: 8px;
+    top: 6px;
 
     .icon-search {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       fill: $inactiveColor;
     }
   }
   .search-bar-right {
     position: absolute;
     right: 20px;
-    top: 4px;
+    top: 5px;
 
     .icon-cross {
       width: 30px;
