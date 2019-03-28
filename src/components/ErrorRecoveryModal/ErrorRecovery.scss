@@ -1,0 +1,42 @@
+@import '../../assets/css/baseVar';
+
+.recovery-error-modal {
+
+  .am-modal-content {
+    padding-top: 10px;
+
+    .am-modal-header {
+      border-bottom: 1px solid #eee;
+    }
+    .am-modal-body {
+      padding: 0;
+    }
+
+    .checkbox-form {
+      height: 490px;
+      overflow-y: scroll;
+      color: $activeColor;
+    }
+    .label-option {
+      display: flex;
+      padding: 18px 0;
+      margin: 0 36px;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .recovery-modal-submit {
+    display: flex;
+    border-top: 1px solid #eee;
+
+    .modal-cancel, .modal-submit {
+      flex: 1;
+      text-align: center;
+      line-height: 80px;
+    }
+    .modal-cancel {
+      border-right: 1px solid #eee;
+    }
+  }
+}

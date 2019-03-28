@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'antd-mobile';
-import { Rate, SvgIcon, BookTag, HeadBar, BriefComment, PageBar } from '../../components';
+import { Rate, SvgIcon, BookTag, HeadBar, BriefComment, PageBar, ErrorRecovery } from '../../components';
 import { bookDetail } from '../../api/request';
 
 import './BookDetail.scss';
@@ -15,7 +15,8 @@ class BookDetail extends Component {
 
         this.state = {
             isFold: true,
-            bookInfo: {}
+            bookInfo: {},
+            recoveryVisible: false
         };
     }
 
@@ -50,7 +51,11 @@ class BookDetail extends Component {
     headRightNode = () => (
         <div className="head-right-content">
             <SvgIcon iconClass="edit" propClass="icon-edit" />
-            <SvgIcon iconClass="error-msg" propClass="icon-error" />
+            <SvgIcon
+                iconClass="error-msg"
+                propClass="icon-error"
+                click={() => { this.setState({ recoveryVisible: true }); }}
+            />
         </div>
     );
 
@@ -72,8 +77,8 @@ class BookDetail extends Component {
     };
 
     render() {
-        const { isFold, bookInfo } = this.state;
-        const { title, author, score, readers } = bookInfo;
+        const { isFold, bookInfo, recoveryVisible } = this.state;
+        const { title, author, score, readers, comments, image } = bookInfo;
         let { brief = '' } = bookInfo;
         brief = brief || '内容太精彩了，我只能说这么多！';
         const isCache = true;
@@ -91,7 +96,7 @@ class BookDetail extends Component {
                 </section>
                 <section className="book-detail-main">
                     <div className="detail-head">
-                        <img src={mockImg} className="book-image" alt="" />
+                        <img src={image || mockImg} className="book-image" alt="" />
                         <div className="detail-head-collection">
                             <h4>{title}</h4>
                             <span>{author}</span>
@@ -100,7 +105,7 @@ class BookDetail extends Component {
                         <div className="detail-head-foot">
                             <div>
                                 <SvgIcon iconClass="envelope" propClass="icon-comment" />
-                                <span>29</span>
+                                <span>{comments || 0}</span>
                             </div>
                             <div>
                                 <SvgIcon iconClass="eye" propClass="icon-eye" />
@@ -189,6 +194,19 @@ class BookDetail extends Component {
                     <span>支持SD平台</span>
                     <span>变身VIP</span>
                 </section>
+                <ErrorRecovery
+                    visible={recoveryVisible}
+                    onClose={() => {
+                        this.setState({
+                            recoveryVisible: false
+                        });
+                    }}
+                    close={() => {
+                        this.setState({
+                            recoveryVisible: false
+                        });
+                    }}
+                />
             </div>
         );
     }

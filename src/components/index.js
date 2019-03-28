@@ -15,6 +15,7 @@ import Tag from './Tag';
 import CardItem from './CardItem';
 import BookListItem from './BookListItem';
 import SearchBar from './SearchBar';
+import ErrorRecovery from './ErrorRecoveryModal';
 
 export {
     SvgIcon,
@@ -33,5 +34,6 @@ export {
     Tag,
     CardItem,
     BookListItem,
-    SearchBar
+    SearchBar,
+    ErrorRecovery
 };
