@@ -50,7 +50,15 @@ class BookDetail extends Component {
 
     headRightNode = () => (
         <div className="head-right-content">
-            <SvgIcon iconClass="edit" propClass="icon-edit" />
+            <SvgIcon
+                iconClass="edit"
+                propClass="icon-edit"
+                click={() => {
+                    this.switchPage(
+                    '/upload', { bookInfo: this.state.bookInfo }
+                    );
+                }}
+            />
             <SvgIcon
                 iconClass="error-msg"
                 propClass="icon-error"
@@ -72,8 +80,8 @@ class BookDetail extends Component {
         });
     };
 
-    switchPage = (path) => {
-        this.props.history.push(path);
+    switchPage = (path, params = {}) => {
+        this.props.history.push({ pathname: path, ...params });
     };
 
     render() {
@@ -185,7 +193,7 @@ class BookDetail extends Component {
                     <Button
                         type="primary"
                         icon={<SvgIcon iconClass="abstract" propClass="icon-borrow" />}
-                        onClick={(e) => { this.switchPage(pathname, e); }}
+                        onClick={() => { this.switchPage(pathname); }}
                     >
                         {!isCache ? '免费借阅' : '开始阅读'}
                     </Button>

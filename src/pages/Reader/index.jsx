@@ -127,7 +127,7 @@ class Reader extends Component {
     getContent = async (pageNum) => {
         try {
             const params = {
-                bookId: '1',
+                bookId: 'c4ec5791-506a-11e9-8465-38c9861033db',
                 wordNum: this.numConfig[this.wordType].wordNum,
                 rowNum: this.numConfig[this.wordType].rowNum,
                 pageNum
@@ -227,6 +227,7 @@ class Reader extends Component {
     };
 
     switchConfig = () => {
+        console.log('clicked page');
         const { isLeftHelper } = this.state;
         if (isLeftHelper) {
             this.setState({
@@ -357,6 +358,7 @@ class Reader extends Component {
             isAddComment
         } = this.state;
         const displays = contents;
+        console.log('displays', displays, this.pages);
 
         return (
             <div className="reader-wrapper">

@@ -23,12 +23,38 @@ const bookType = [
 class BookUpload extends Component {
     constructor(props) {
         super(props);
+
+        this.headTitle = '上传';
+
         this.state = {
             coverImg: '',
             disabled: true,
             uploadExtra: {}
         };
     }
+
+    componentWillMount() {
+        this.init();
+    }
+
+    init = () => {
+        const info = this.props.location.bookInfo;
+        if (info) {
+            console.log(info);
+            this.setState({
+                uploadExtra: {
+                    id: info.id,
+                    title: info.title,
+                    author: info.author,
+                    type: info.type,
+                    brief: info.brief
+                },
+                coverImg: info.image,
+                disabled: false
+            });
+            this.headTitle = '更新书籍信息';
+        }
+    };
 
     formChange = (val, type) => {
         this.props.form.validateFields((error, value) => {
@@ -37,6 +63,7 @@ class BookUpload extends Component {
                     this.setState({
                         disabled: false,
                         uploadExtra: {
+                            ...this.state.uploadExtra,
                             ...value,
                             type: value.type ? value.type[0] : val[0]
                         }
@@ -55,6 +82,7 @@ class BookUpload extends Component {
                     this.setState({
                         disabled: false,
                         uploadExtra: {
+                            ...this.state.uploadExtra,
                             ...value,
                             type: value.type[0]
                         }
@@ -80,7 +108,7 @@ class BookUpload extends Component {
     };
 
     onStartBook = (file) => {
-        console.log('onStart', file.name);
+        console.log('onStart', file.name, file);
         // this.refs.inner.abort(file);
     };
 
@@ -115,7 +143,7 @@ class BookUpload extends Component {
     };
 
     onStartCover = (file) => {
-        console.log('onStart', file.name);
+        console.log('onStart', file.name, file);
         // this.refs.inner.abort(file);
     };
 
@@ -152,13 +180,15 @@ class BookUpload extends Component {
                 <PageBar
                     mode="light"
                     isLeft
+                    title={this.headTitle}
                 />
                 <div className="book-upload-main">
                     <List renderHeader={() => '书籍基本信息'}>
                         <InputItem
                             {...getFieldProps('title', {
                                 onChange: (val) => { this.formChange(val, 'title'); },
-                                rules: [{ required: true }]
+                                rules: [{ required: true }],
+                                initialValue: uploadExtra.title
                             })}
                             placeholder="请输入书名"
                         >
@@ -167,7 +197,8 @@ class BookUpload extends Component {
                         <InputItem
                             {...getFieldProps('author', {
                                 onChange: (val) => { this.formChange(val, 'author'); },
-                                rules: [{ required: true }]
+                                rules: [{ required: true }],
+                                initialValue: uploadExtra.author
                             })}
                             placeholder="请输入作者"
                         >
@@ -178,7 +209,8 @@ class BookUpload extends Component {
                             cols={1}
                             {...getFieldProps('type', {
                                 onChange: (val) => { this.formChange(val, 'type'); },
-                                rules: [{ required: true }]
+                                rules: [{ required: true }],
+                                initialValue: [uploadExtra.type]
                             })}
                         >
                             <List.Item arrow="horizontal">
@@ -188,10 +220,12 @@ class BookUpload extends Component {
                         <TextareaItem
                             rows={3}
                             {...getFieldProps('brief', {
-                                onChange: (val) => { this.noRequiredChange(val, 'brief'); }
+                                onChange: (val) => { this.noRequiredChange(val, 'brief'); },
+                                initialValue: uploadExtra.brief
                             })}
                             title="简介"
                             placeholder="简介，100个字以内"
+                            // defaultValue={uploadExtra.brief}
                         />
                         <List.Item extra={this.uploadImg()}>
                             <span>封面</span>
@@ -220,7 +254,7 @@ class BookUpload extends Component {
                         <Upload
                             name="book"
                             action="/api/book/upload"
-                            data={{ ...uploadParams, share: 'sl' }}
+                            data={{ ...uploadParams, share: 'admin' }}
                             beforeUpload={this.beforeUploadBook}
                             onStart={this.onStartBook}
                             onSuccess={this.onSuccessBook}
