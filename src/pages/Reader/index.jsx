@@ -227,7 +227,6 @@ class Reader extends Component {
     };
 
     switchConfig = () => {
-        console.log('clicked page');
         const { isLeftHelper } = this.state;
         if (isLeftHelper) {
             this.setState({
@@ -358,7 +357,6 @@ class Reader extends Component {
             isAddComment
         } = this.state;
         const displays = contents;
-        console.log('displays', displays, this.pages);
 
         return (
             <div className="reader-wrapper">
@@ -387,7 +385,7 @@ class Reader extends Component {
                             }
                         ])}
                         ref={(node) => { this.pages[i] = node; }}
-                        style={{ ...pageBoxStyle[this.wordType], ...pageBoxStyle[bgType], zIndex: `${100 - i}` }}
+                        style={{ ...pageBoxStyle[this.wordType], ...pageBoxStyle[bgType], zIndex: `${totalPage + 1 - i}` }}
                         onTouchStart={(e) => { this.touchStart(i, e); }}
                         onTouchMove={(e) => {
                             this.touchMove(i === 0, i === displays.length - 1, i, e);
