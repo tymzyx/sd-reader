@@ -13,6 +13,7 @@ import Ranks from './Ranks'; // 榜单
 import BookList from './BookList'; // 书单
 import BookAnalysis from './BookAnalysis'; //好书解读
 import Subjects from './Subjects'; // 专题
+import Topic from './Topic'; // 话题
 import Test from './Test';
 
 export {
@@ -31,5 +32,6 @@ export {
     BookList,
     BookAnalysis,
     Subjects,
+    Topic,
     Test
 };

@@ -1,0 +1,42 @@
+@import '../../assets/css/baseVar';
+
+.topic-wrapper {
+
+  .topic-body {
+    padding: 110px 36px 0;
+
+    .topic-card {
+      min-height: 400px;
+      padding: 34px 42px 40px;
+      box-sizing: border-box;
+      color: #fff;
+      border-radius: 10px;
+      margin-bottom: 30px;
+
+      .topic-card-head {
+        text-align: center;
+
+        .icon-cup {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .topic-card-title {
+        margin: 40px 6px 28px;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      .topic-card-word {
+        font-size: $middleSize;
+        margin-bottom: 48px;
+      }
+
+      .topic-card-foot {
+        text-align: center;
+        font-size: 24px;
+      }
+    }
+  }
+}
