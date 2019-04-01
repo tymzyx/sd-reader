@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, WhiteSpace, Button } from 'antd-mobile';
+import { Tabs, Button } from 'antd-mobile';
 import './vip.scss';
 import SvgIcon from "../../../components/SvgIcon";
 
@@ -48,7 +48,13 @@ class Vip extends Component {
         return (
             <div className="vip-wrapper">
                 <div>
-                    <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false} swipeable={false}>
+                    <Tabs
+                        tabs={tabs}
+                        initialPage={0}
+                        animated={false}
+                        useOnPan={false}
+                        swipeable={false}
+                    >
                         <div className={style.content}>
                             <div className={style.card}>
                                 <p>藏书馆精读VIP -- 让你成为更好的自己</p>
@@ -87,29 +93,25 @@ class Vip extends Component {
                             <div className="reference">
                                 <h3>{`52本精读<持续更新中>`}</h3>
                                 {
-                                    [1, 2, 3].map((i) => {
-                                        return (
-                                            <div key={i}>
-                                                <p className="ref-type">自我管理</p>
-                                                <div className="ref-box">
-                                                    {[1, 2, 3, 4].map((value, index) => {
-                                                        return (
-                                                            <ul className="ref-scroll" key={index}>
-                                                                <li className="ref-des">
-                                                                    <div className="left" />
-                                                                    <div className="right">
-                                                                        <h4 className="ref-title">《微习惯》</h4>
-                                                                        <p className="ref-abs">简单到不可能失败的自我管理法则</p>
-                                                                        <p className="ref-label">会员免费</p>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        );
-                                                    })}
-                                                </div>
+                                    [1, 2, 3].map(i => (
+                                        <div key={i}>
+                                            <p className="ref-type">自我管理</p>
+                                            <div className="ref-box">
+                                                {[1, 2, 3, 4].map((value, index) => (
+                                                    <ul className="ref-scroll" key={index}>
+                                                        <li className="ref-des">
+                                                            <div className="left" />
+                                                            <div className="right">
+                                                                <h4 className="ref-title">《微习惯》</h4>
+                                                                <p className="ref-abs">简单到不可能失败的自我管理法则</p>
+                                                                <p className="ref-label">会员免费</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                ))}
                                             </div>
-                                        );
-                                    })
+                                        </div>
+                                    ))
                                 }
                             </div>
                         </div>
