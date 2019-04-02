@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd-mobile';
 import { PageBar, BookTag, SvgIcon } from '../../components';
 import { categoryTags } from '../../utils/variables';
-import { bookCategoryList } from '../../api/request/book';
+import { bookCategoryList } from '../../api/request';
 
 import './Categories.scss';
 

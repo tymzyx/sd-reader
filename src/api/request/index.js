@@ -1,10 +1,16 @@
 import registerApi from './register';
 import loginApi from './login';
-import { bookDetail, bookContent } from './book';
+import { bookDetail, bookContent, bookSearch, bookCategoryList, keywords } from './book';
+import { topicList, topicOperate } from './topic';
 
 export {
     registerApi,
     loginApi,
     bookDetail,
-    bookContent
+    bookContent,
+    bookSearch,
+    bookCategoryList,
+    keywords,
+    topicList,
+    topicOperate
 };

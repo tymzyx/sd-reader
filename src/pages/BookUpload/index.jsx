@@ -210,7 +210,7 @@ class BookUpload extends Component {
                             {...getFieldProps('type', {
                                 onChange: (val) => { this.formChange(val, 'type'); },
                                 rules: [{ required: true }],
-                                initialValue: [uploadExtra.type]
+                                initialValue: uploadExtra.type ? [uploadExtra.type] : undefined
                             })}
                         >
                             <List.Item arrow="horizontal">

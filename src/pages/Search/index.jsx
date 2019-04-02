@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { PageBar, SvgIcon, SearchBar } from '../../components';
 import SearchResult from './SearchResult';
 import _ from 'lodash';
-import { keywords, bookSearch } from '../../api/request/book';
+import { keywords, bookSearch } from '../../api/request';
 
 import './Search.scss';
 

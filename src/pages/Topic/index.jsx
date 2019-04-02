@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PageBar, SvgIcon } from '../../components';
+import { topicList } from '../../api/request';
 
 import './Topic.scss';
 
@@ -12,7 +13,32 @@ const bgColors = [
 ];
 
 class Topic extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            list: []
+        };
+    }
+
+    componentWillMount() {
+        this.fetchList(0);
+    }
+
+    fetchList = async (startNum) => {
+        try {
+            const res = await topicList({ startNum, limit: 10 });
+            this.setState({
+                list: res.list
+            });
+        } catch (err) {
+            console.log('error', err);
+        }
+    };
+
     render() {
+        const { list } = this.state;
+        console.log(list);
         return (
             <div className="topic-wrapper">
                 <section className="topic-title common-title">
