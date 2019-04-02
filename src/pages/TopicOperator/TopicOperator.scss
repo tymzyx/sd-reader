@@ -1,3 +1,41 @@
+@import '../../assets/css/baseVar';
+
 .topic-operator-wrapper {
 
+  .topic-operator-main {
+
+    .am-list-header {
+      font-size: $largeSize;
+      color: #000;
+      padding-bottom: 30px;
+    }
+
+    strong {
+      color: #f5222d;
+      margin-right: 8px;
+    }
+
+    .am-textarea-label,
+    .am-list-item .am-list-line .am-list-content,
+    .am-list-item .am-input-label,
+    .am-list-item .am-input-control input,
+    .am-textarea-control textarea {
+      font-size: $mlSize;
+      color: #555;
+    }
+
+    .topic-operator-submit {
+      display: flex;
+      justify-content: flex-end;
+      margin: 40px 30px;
+
+      .am-button {
+        height: 70px;
+        width: 140px;
+        line-height: 70px;
+        font-size: $middleSize;
+        margin-left: 20px;
+      }
+    }
+  }
 }

@@ -224,7 +224,7 @@ class BookUpload extends Component {
                                 initialValue: uploadExtra.brief
                             })}
                             title="简介"
-                            placeholder="简介，100个字以内"
+                            placeholder="简介，500个字以内"
                             // defaultValue={uploadExtra.brief}
                         />
                         <List.Item extra={this.uploadImg()}>
