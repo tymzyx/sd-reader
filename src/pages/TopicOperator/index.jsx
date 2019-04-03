@@ -50,7 +50,8 @@ class TopicOperator extends Component {
                         disabled: false,
                         topicInfo: {
                             ...this.state.topicInfo,
-                            ...value
+                            ...value,
+                            [type]: val
                         }
                     });
                 } else {

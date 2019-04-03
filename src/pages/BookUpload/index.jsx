@@ -65,7 +65,8 @@ class BookUpload extends Component {
                         uploadExtra: {
                             ...this.state.uploadExtra,
                             ...value,
-                            type: value.type ? value.type[0] : val[0]
+                            type: value.type ? value.type[0] : val[0],
+                            [type]: type === 'type' ? val[0] : val
                         }
                     });
                 } else {

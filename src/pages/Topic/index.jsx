@@ -45,17 +45,17 @@ class Topic extends Component {
                     <PageBar title="话题" isLeft mode="light" />
                 </section>
                 <section className="topic-body">
-                    {new Array(10).fill(1).map((num, index) => (
+                    {list.map((item, index) => (
                         <div
-                            key={num + index}
+                            key={index}
                             className="topic-card"
                             style={{ backgroundColor: bgColors[index % 5] }}
                         >
                             <div className="topic-card-head">
                                 <SvgIcon iconClass="cup" propClass="icon-cup" />
                             </div>
-                            <h4 className="topic-card-title">如果人的一天就是一本书，那你的今天是那本书？</h4>
-                            <div className="topic-card-word">首先，我《活着》...</div>
+                            <h4 className="topic-card-title">{item.title}</h4>
+                            <div className="topic-card-word">{item.content}</div>
                             <div className="topic-card-foot">
                                 {`火热讨论中 >`}
                             </div>
