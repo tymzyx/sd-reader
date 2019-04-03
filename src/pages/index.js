@@ -11,10 +11,11 @@ import Categories from './Categories';
 import Hots from './Hots';
 import Ranks from './Ranks'; // 榜单
 import BookList from './BookList'; // 书单
-import BookAnalysis from './BookAnalysis'; //好书解读
+import BookAnalysis from './BookAnalysis'; // 好书解读
 import Subjects from './Subjects'; // 专题
 import Topic from './Topic'; // 话题
 import TopicOperator from './TopicOperator'; // 话题增删改
+import TopicDetail from './TopicDetail'; // 话题详情
 import Test from './Test';
 
 export {
@@ -35,5 +36,6 @@ export {
     Subjects,
     Topic,
     TopicOperator,
+    TopicDetail,
     Test
 };

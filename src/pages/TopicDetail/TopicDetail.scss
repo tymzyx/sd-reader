@@ -1,0 +1,52 @@
+@import '../../assets/css/baseVar';
+
+.topic-detail-wrapper {
+  background: url('../../assets/image/topic.jpg') no-repeat;
+  background-size: contain;
+  min-height: 100vh;
+
+  .topic-detail-title {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .topic-detail-body {
+    padding: 120px 46px;
+
+    .topic-card {
+      padding: 50px 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px 2px #eee;
+      background: #fff;
+
+      h4 {
+        margin: 0;
+        font-size: $mlSize;
+      }
+
+      .topic-content {
+        padding: 40px 30px;
+        line-height: 20px;
+        font-size: $middleSize;
+        border-bottom: 1px solid #eee;
+      }
+
+      .topic-card-foot {
+        margin-top: 30px;
+        text-align: right;
+        font-size: $middleSize;
+      }
+    }
+  }
+
+  .icon-arrow-back {
+    width: 40px;
+    height: 40px;
+    fill: $inactiveColor;
+  }
+}

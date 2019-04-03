@@ -19,6 +19,7 @@ import {
     Subjects,
     Topic,
     TopicOperator,
+    TopicDetail,
     Test
 } from './pages';
 import Entry from './components/Entry';
@@ -49,6 +50,7 @@ class App extends Component {
                             <Route path="/subjects" component={Subjects} />
                             <Route path="/topic" component={Topic} />
                             <Route path="/topicOperator" component={TopicOperator} />
+                            <Route path="/topicDetail" component={TopicDetail} />
                             <Route path="/test" component={Test} />
                         </Switch>
                     </div>
