@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { PageBar, SvgIcon } from '../../components';
 import { topicList } from '../../api/request';
 
@@ -36,13 +37,30 @@ class Topic extends Component {
         }
     };
 
+    switchPage = (path, params = {}) => {
+        this.props.history.push({ pathname: path, ...params });
+    };
+
     render() {
         const { list } = this.state;
         console.log(list);
         return (
             <div className="topic-wrapper">
                 <section className="topic-title common-title">
-                    <PageBar title="话题" isLeft mode="light" />
+                    <PageBar
+                        title="话题"
+                        isLeft
+                        mode="light"
+                        right={(
+                            <SvgIcon
+                                iconClass="edit"
+                                propClass="icon-edit"
+                                click={() => {
+                                    this.switchPage('/topicOperator');
+                                }}
+                            />
+                        )}
+                    />
                 </section>
                 <section className="topic-body">
                     {list.map((item, index) => (
@@ -50,6 +68,9 @@ class Topic extends Component {
                             key={index}
                             className="topic-card"
                             style={{ backgroundColor: bgColors[index % 5] }}
+                            onClick={() => {
+                                this.switchPage('/topicDetail', { id: item.id });
+                            }}
                         >
                             <div className="topic-card-head">
                                 <SvgIcon iconClass="cup" propClass="icon-cup" />
@@ -66,5 +87,9 @@ class Topic extends Component {
         );
     }
 }
+
+Topic.propTypes = {
+    history: PropTypes.any
+};
 
 export default Topic;

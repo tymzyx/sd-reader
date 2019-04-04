@@ -2,11 +2,17 @@
 
 .topic-wrapper {
 
+  .icon-edit {
+    width: 36px;
+    height: 36px;
+    fill: $inactiveColor;
+  }
+
   .topic-body {
     padding: 110px 36px 0;
 
     .topic-card {
-      min-height: 400px;
+      min-height: 420px;
       padding: 30px 42px 40px;
       box-sizing: border-box;
       color: #fff;
@@ -23,9 +29,9 @@
       }
 
       .topic-card-title {
-        margin: 30px 6px 28px;
+        margin: 30px 6px 36px;
         text-align: center;
-        font-size: 30px;
+        font-size: 34px;
       }
 
       .topic-card-word {

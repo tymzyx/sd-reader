@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createForm } from 'rc-form';
 import { List, InputItem, TextareaItem, Button, Toast, Modal } from 'antd-mobile';
-import { PageBar } from '../../components';
+import { PageBar, SvgIcon } from '../../components';
 import { topicOperate } from '../../api/request';
 
 import './TopicOperator.scss';
@@ -104,7 +104,24 @@ class TopicOperator extends Component {
         const { getFieldProps } = this.props.form;
         return (
             <div className="topic-operator-wrapper">
-                <PageBar isLeft mode="light" />
+                <PageBar
+                    isLeft
+                    mode="light"
+                    left={(
+                        <SvgIcon
+                            iconClass="arrow"
+                            propClass="icon-arrow-back"
+                            click={() => {
+                                const info = this.props.location.topicInfo;
+                                if (info) {
+                                    this.props.history.push({ pathname: '/topicDetail', id: info.id });
+                                } else {
+                                    this.props.history.push('/topic');
+                                }
+                            }}
+                        />
+                    )}
+                />
                 <div className="topic-operator-main">
                     <form>
                         <List renderHeader={() => this.headTitle}>

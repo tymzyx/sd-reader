@@ -14,7 +14,8 @@ class TopicDetail extends Component {
     }
 
     componentWillMount() {
-        this.fetchDetail('1bc4aa30-5532-11e9-8004-498b3b8e17d2');
+        const initId = this.props.location.id || '1bc4aa30-5532-11e9-8004-498b3b8e17d2';
+        this.fetchDetail(initId);
     }
 
     fetchDetail = async (id) => {
@@ -36,7 +37,14 @@ class TopicDetail extends Component {
                     <SvgIcon
                         iconClass="arrow"
                         propClass="icon-arrow-back"
-                        click={() => { this.props.history.goBack(); }}
+                        click={() => { this.props.history.push('/topic'); }}
+                    />
+                    <SvgIcon
+                        iconClass="edit"
+                        propClass="icon-edit"
+                        click={() => {
+                            this.props.history.push({ pathname: '/topicOperator', topicInfo: detail });
+                        }}
                     />
                 </section>
                 <section className="topic-detail-body">
@@ -56,7 +64,8 @@ class TopicDetail extends Component {
 }
 
 TopicDetail.propTypes = {
-    history: PropTypes.any
+    history: PropTypes.any,
+    location: PropTypes.any
 };
 
 export default TopicDetail;

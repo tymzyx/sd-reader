@@ -18,6 +18,7 @@ class PageBar extends Component {
 
     render() {
         const { mode, title, isLeft, left, right, isOpacity } = this.props;
+        console.log(left);
 
         return (
             <div
