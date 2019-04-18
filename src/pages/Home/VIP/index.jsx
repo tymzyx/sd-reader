@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Tabs, Button } from 'antd-mobile';
+import { Tabs, WhiteSpace, Button } from 'antd-mobile';
+import GreatBook from '../../GreatBook';
 import './vip.scss';
 import SvgIcon from "../../../components/SvgIcon";
 
@@ -116,7 +117,7 @@ class Vip extends Component {
                             </div>
                         </div>
                         <div>
-                            Content of 好书精读 tab
+                            <GreatBook />
                         </div>
                     </Tabs>
                 </div>
